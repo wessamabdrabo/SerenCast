@@ -1,0 +1,131 @@
+{
+    "assets": [
+        {
+            "asset": "SerenCastTests/en.lproj/InfoPlist.strings", 
+            "target": "en.lproj/InfoPlist.strings"
+        }
+    ], 
+    "config": {
+        "APPLICATION_IDENTIFIER": "tum.SerenCastTests", 
+        "LONG_VERSION": "1", 
+        "SHORT_VERSION": "1.0", 
+        "TEMPLATE_VALUES": {
+            "EXECUTABLE_NAME": "SerenCastTests", 
+            "PRODUCT_NAME": "SerenCastTests"
+        }
+    }, 
+    "defines": {
+        "NS_BLOCK_ASSERTIONS": 1, 
+        "__IPHONE_OS_VERSION_MIN_REQUIRED": 70000
+    }, 
+    "deps": [
+        "UIKit", 
+        "AVFoundation", 
+        "CoreGraphics", 
+        "UIKit", 
+        "Foundation", 
+        "XCTest", 
+        "XCTest", 
+        "UIKit", 
+        "Foundation"
+    ], 
+    "flags": [
+        "-fobjc-arc", 
+        "-fasm-blocks", 
+        {
+            "flag": "-std=gnu99", 
+            "not_type": "c++"
+        }, 
+        {
+            "flag": "-fgnu-keywords", 
+            "not_type": "c++"
+        }, 
+        "-fno-asm", 
+        "-fpascal-strings", 
+        "-Wempty-body", 
+        "-Wshorten-64-to-32", 
+        "-Wno-deprecated-declarations", 
+        "-Wswitch", 
+        "-Wparentheses", 
+        "-Wformat", 
+        "-Wuninitialized", 
+        "-Wunused-function", 
+        "-Wunused-value", 
+        "-Wunused-variable", 
+        {
+            "flag": "-Winvalid-offsetof", 
+            "type": "c++"
+        }, 
+        {
+            "flag": "-Wprotocol", 
+            "type": "objc"
+        }, 
+        {
+            "flag": "-Wundeclared-selector", 
+            "type": "objc"
+        }
+    ], 
+    "header_paths": [
+        {
+            "header_path": "SerenCastTests-generated-files.hmap", 
+            "hmap": {}, 
+            "type": "iquote"
+        }, 
+        {
+            "header_path": "SerenCastTests-own-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "SerenCastTests-all-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "SerenCastTests-project-headers.hmap", 
+            "hmap": {
+                "SerenCast-Prefix.pch": {
+                    "key": "SerenCast-Prefix.pch", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCast-Prefix.pch"
+                }, 
+                "SerenCastAppDelegate.h": {
+                    "key": "SerenCastAppDelegate.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastAppDelegate.h"
+                }, 
+                "SerenCastPlayerViewController.h": {
+                    "key": "SerenCastPlayerViewController.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastPlayerViewController.h"
+                }, 
+                "SerenCastReviewViewController.h": {
+                    "key": "SerenCastReviewViewController.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastReviewViewController.h"
+                }
+            }, 
+            "type": "iquote"
+        }
+    ], 
+    "infoplists": [
+        "./SerenCastTests/SerenCastTests-Info.plist"
+    ], 
+    "libs": [], 
+    "modules": [], 
+    "pchs": [
+        "./SerenCast/SerenCast-Prefix.pch"
+    ], 
+    "sources": [
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "SerenCastTests/SerenCastTests.m"
+        }
+    ], 
+    "type": "com.apple.product-type.bundle.unit-test", 
+    "version": "1", 
+    "xcode_project": "SerenCast.xcodeproj"
+}

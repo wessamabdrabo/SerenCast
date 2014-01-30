@@ -1,0 +1,790 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		86099C06188C1A88000754AC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86099C05188C1A88000754AC /* CoreLocation.framework */; };
+		86099C08188C2B3D000754AC /* SerenCast-LocTime.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86099C07188C2B3D000754AC /* SerenCast-LocTime.plist */; };
+		86099C0C188C9891000754AC /* SerenCastLandingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86099C0A188C9890000754AC /* SerenCastLandingScreenViewController.m */; };
+		86099C0D188C9891000754AC /* SerenCastLandingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86099C0B188C9890000754AC /* SerenCastLandingScreenViewController.xib */; };
+		86099C11188C9C33000754AC /* SerenCastProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86099C0F188C9C33000754AC /* SerenCastProfileViewController.m */; };
+		86099C12188C9C33000754AC /* SerenCastProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86099C10188C9C33000754AC /* SerenCastProfileViewController.xib */; };
+		86099C16188C9F95000754AC /* SerenCastProfileInterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86099C14188C9F95000754AC /* SerenCastProfileInterestsViewController.m */; };
+		86099C17188C9F95000754AC /* SerenCastProfileInterestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86099C15188C9F95000754AC /* SerenCastProfileInterestsViewController.xib */; };
+		865593B718982D05008DAE10 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 865593B618982D05008DAE10 /* bg.png */; };
+		865593BE18989F28008DAE10 /* SerenCastTutorial1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865593BC18989F28008DAE10 /* SerenCastTutorial1ViewController.m */; };
+		865593BF18989F28008DAE10 /* SerenCastTutorial1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 865593BD18989F28008DAE10 /* SerenCastTutorial1ViewController.xib */; };
+		865593C31898A555008DAE10 /* SerenCastTutorial2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865593C11898A555008DAE10 /* SerenCastTutorial2ViewController.m */; };
+		865593C41898A555008DAE10 /* SerenCastTutorial2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 865593C21898A555008DAE10 /* SerenCastTutorial2ViewController.xib */; };
+		865593C81898A899008DAE10 /* SerenCastTutorial3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865593C61898A899008DAE10 /* SerenCastTutorial3ViewController.m */; };
+		865593C91898A899008DAE10 /* SerenCastTutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 865593C71898A899008DAE10 /* SerenCastTutorial3ViewController.xib */; };
+		86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */; };
+		86934AF71899AAE700B56952 /* SerenCastStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */; };
+		86CE2310188432A2008B23B1 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230A188432A2008B23B1 /* 1.mp3 */; };
+		86CE2311188432A2008B23B1 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230B188432A2008B23B1 /* 2.mp3 */; };
+		86CE2312188432A2008B23B1 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230C188432A2008B23B1 /* 3.mp3 */; };
+		86CE2313188432A2008B23B1 /* 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230D188432A2008B23B1 /* 4.mp3 */; };
+		86CE2314188432A2008B23B1 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230E188432A2008B23B1 /* 5.mp3 */; };
+		86CE2315188432A2008B23B1 /* 6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230F188432A2008B23B1 /* 6.mp3 */; };
+		86CE231718843368008B23B1 /* podcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 86CE231618843368008B23B1 /* podcast.png */; };
+		86CE231B18843766008B23B1 /* SerenCast-Casts.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86CE231A18843766008B23B1 /* SerenCast-Casts.plist */; };
+		86D09FC31881AFBF00DC760A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FC21881AFBF00DC760A /* Foundation.framework */; };
+		86D09FC51881AFBF00DC760A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FC41881AFBF00DC760A /* CoreGraphics.framework */; };
+		86D09FC71881AFBF00DC760A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FC61881AFBF00DC760A /* UIKit.framework */; };
+		86D09FCD1881AFBF00DC760A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86D09FCB1881AFBF00DC760A /* InfoPlist.strings */; };
+		86D09FCF1881AFBF00DC760A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D09FCE1881AFBF00DC760A /* main.m */; };
+		86D09FD31881AFBF00DC760A /* SerenCastAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D09FD21881AFBF00DC760A /* SerenCastAppDelegate.m */; };
+		86D09FD61881AFBF00DC760A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D09FD41881AFBF00DC760A /* Main.storyboard */; };
+		86D09FDB1881AFBF00DC760A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D09FDA1881AFBF00DC760A /* Images.xcassets */; };
+		86D09FE21881AFBF00DC760A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FE11881AFBF00DC760A /* XCTest.framework */; };
+		86D09FE31881AFBF00DC760A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FC21881AFBF00DC760A /* Foundation.framework */; };
+		86D09FE41881AFC000DC760A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D09FC61881AFBF00DC760A /* UIKit.framework */; };
+		86D09FEC1881AFC000DC760A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86D09FEA1881AFC000DC760A /* InfoPlist.strings */; };
+		86D09FEE1881AFC000DC760A /* SerenCastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D09FED1881AFC000DC760A /* SerenCastTests.m */; };
+		86D09FFA1881B03500DC760A /* SerenCastPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D09FF81881B03500DC760A /* SerenCastPlayerViewController.m */; };
+		86D09FFB1881B03500DC760A /* SerenCastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D09FF91881B03500DC760A /* SerenCastPlayerViewController.xib */; };
+		86D0A0021881B50200DC760A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D0A0011881B50200DC760A /* AVFoundation.framework */; };
+		86D0A0081882007A00DC760A /* SerenCastReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D0A0061882007A00DC760A /* SerenCastReviewViewController.m */; };
+		86D0A0091882007A00DC760A /* SerenCastReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D0A0071882007A00DC760A /* SerenCastReviewViewController.xib */; };
+		86D0A00B18820D4200DC760A /* SerenCast-Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86D0A00A18820D4200DC760A /* SerenCast-Data.plist */; };
+		86E8399418916AA0006E8D15 /* SerenCastUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8399318916AA0006E8D15 /* SerenCastUser.m */; };
+		86E8399718917B52006E8D15 /* SerenCastInterestTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8399618917B52006E8D15 /* SerenCastInterestTableCell.m */; };
+		86E8399918917B79006E8D15 /* SerenCastInterestTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8399818917B79006E8D15 /* SerenCastInterestTableCell.xib */; };
+		86E8399C1891E768006E8D15 /* SerenCastReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8399B1891E768006E8D15 /* SerenCastReview.m */; };
+		86EE1135188B15BF002DD9FF /* SerenCast-Reviews.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1134188B15BF002DD9FF /* SerenCast-Reviews.plist */; };
+		86EE1144188B1F01002DD9FF /* 7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1136188B1F01002DD9FF /* 7.mp3 */; };
+		86EE1145188B1F01002DD9FF /* 8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1137188B1F01002DD9FF /* 8.mp3 */; };
+		86EE1146188B1F01002DD9FF /* 9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1138188B1F01002DD9FF /* 9.mp3 */; };
+		86EE1147188B1F01002DD9FF /* 10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1139188B1F01002DD9FF /* 10.mp3 */; };
+		86EE1148188B1F01002DD9FF /* 11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113A188B1F01002DD9FF /* 11.mp3 */; };
+		86EE1149188B1F01002DD9FF /* 12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113B188B1F01002DD9FF /* 12.mp3 */; };
+		86EE114A188B1F01002DD9FF /* 13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113C188B1F01002DD9FF /* 13.mp3 */; };
+		86EE114B188B1F01002DD9FF /* 14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113D188B1F01002DD9FF /* 14.mp3 */; };
+		86EE114C188B1F01002DD9FF /* 15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113E188B1F01002DD9FF /* 15.mp3 */; };
+		86EE114D188B1F01002DD9FF /* 16.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE113F188B1F01002DD9FF /* 16.mp3 */; };
+		86EE114E188B1F01002DD9FF /* 17.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1140188B1F01002DD9FF /* 17.mp3 */; };
+		86EE114F188B1F01002DD9FF /* 18.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1141188B1F01002DD9FF /* 18.mp3 */; };
+		86EE1150188B1F01002DD9FF /* 19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1142188B1F01002DD9FF /* 19.mp3 */; };
+		86EE1151188B1F01002DD9FF /* 20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1143188B1F01002DD9FF /* 20.mp3 */; };
+		86EE1155188B2990002DD9FF /* SerenCastFinalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1153188B2990002DD9FF /* SerenCastFinalViewController.m */; };
+		86EE1156188B2990002DD9FF /* SerenCastFinalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1154188B2990002DD9FF /* SerenCastFinalViewController.xib */; };
+		86EE115A188B30F7002DD9FF /* SerenCastReviewSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1158188B30F7002DD9FF /* SerenCastReviewSentViewController.m */; };
+		86EE115B188B30F7002DD9FF /* SerenCastReviewSentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EE1159188B30F7002DD9FF /* SerenCastReviewSentViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86D09FE51881AFC000DC760A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86D09FB71881AFBE00DC760A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86D09FBE1881AFBE00DC760A;
+			remoteInfo = SerenCast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		86099C05188C1A88000754AC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		86099C07188C2B3D000754AC /* SerenCast-LocTime.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SerenCast-LocTime.plist"; sourceTree = "<group>"; };
+		86099C09188C9890000754AC /* SerenCastLandingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastLandingScreenViewController.h; sourceTree = "<group>"; };
+		86099C0A188C9890000754AC /* SerenCastLandingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastLandingScreenViewController.m; sourceTree = "<group>"; };
+		86099C0B188C9890000754AC /* SerenCastLandingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastLandingScreenViewController.xib; sourceTree = "<group>"; };
+		86099C0E188C9C33000754AC /* SerenCastProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastProfileViewController.h; sourceTree = "<group>"; };
+		86099C0F188C9C33000754AC /* SerenCastProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastProfileViewController.m; sourceTree = "<group>"; };
+		86099C10188C9C33000754AC /* SerenCastProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastProfileViewController.xib; sourceTree = "<group>"; };
+		86099C13188C9F95000754AC /* SerenCastProfileInterestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastProfileInterestsViewController.h; sourceTree = "<group>"; };
+		86099C14188C9F95000754AC /* SerenCastProfileInterestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastProfileInterestsViewController.m; sourceTree = "<group>"; };
+		86099C15188C9F95000754AC /* SerenCastProfileInterestsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastProfileInterestsViewController.xib; sourceTree = "<group>"; };
+		865593B618982D05008DAE10 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		865593BB18989F28008DAE10 /* SerenCastTutorial1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastTutorial1ViewController.h; sourceTree = "<group>"; };
+		865593BC18989F28008DAE10 /* SerenCastTutorial1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastTutorial1ViewController.m; sourceTree = "<group>"; };
+		865593BD18989F28008DAE10 /* SerenCastTutorial1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastTutorial1ViewController.xib; sourceTree = "<group>"; };
+		865593C01898A554008DAE10 /* SerenCastTutorial2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastTutorial2ViewController.h; sourceTree = "<group>"; };
+		865593C11898A555008DAE10 /* SerenCastTutorial2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastTutorial2ViewController.m; sourceTree = "<group>"; };
+		865593C21898A555008DAE10 /* SerenCastTutorial2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastTutorial2ViewController.xib; sourceTree = "<group>"; };
+		865593C51898A899008DAE10 /* SerenCastTutorial3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastTutorial3ViewController.h; sourceTree = "<group>"; };
+		865593C61898A899008DAE10 /* SerenCastTutorial3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastTutorial3ViewController.m; sourceTree = "<group>"; };
+		865593C71898A899008DAE10 /* SerenCastTutorial3ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastTutorial3ViewController.xib; sourceTree = "<group>"; };
+		86934AF31899AAE700B56952 /* SerenCastStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastStatusViewController.h; sourceTree = "<group>"; };
+		86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastStatusViewController.m; sourceTree = "<group>"; };
+		86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastStatusViewController.xib; sourceTree = "<group>"; };
+		86CE230A188432A2008B23B1 /* 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1.mp3; sourceTree = "<group>"; };
+		86CE230B188432A2008B23B1 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
+		86CE230C188432A2008B23B1 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
+		86CE230D188432A2008B23B1 /* 4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 4.mp3; sourceTree = "<group>"; };
+		86CE230E188432A2008B23B1 /* 5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5.mp3; sourceTree = "<group>"; };
+		86CE230F188432A2008B23B1 /* 6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 6.mp3; sourceTree = "<group>"; };
+		86CE231618843368008B23B1 /* podcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = podcast.png; sourceTree = "<group>"; };
+		86CE231A18843766008B23B1 /* SerenCast-Casts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SerenCast-Casts.plist"; sourceTree = "<group>"; };
+		86D09FBF1881AFBF00DC760A /* SerenCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SerenCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86D09FC21881AFBF00DC760A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		86D09FC41881AFBF00DC760A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		86D09FC61881AFBF00DC760A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		86D09FCA1881AFBF00DC760A /* SerenCast-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SerenCast-Info.plist"; sourceTree = "<group>"; };
+		86D09FCC1881AFBF00DC760A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86D09FCE1881AFBF00DC760A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		86D09FD01881AFBF00DC760A /* SerenCast-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SerenCast-Prefix.pch"; sourceTree = "<group>"; };
+		86D09FD11881AFBF00DC760A /* SerenCastAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerenCastAppDelegate.h; sourceTree = "<group>"; };
+		86D09FD21881AFBF00DC760A /* SerenCastAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerenCastAppDelegate.m; sourceTree = "<group>"; };
+		86D09FD51881AFBF00DC760A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		86D09FDA1881AFBF00DC760A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		86D09FE01881AFBF00DC760A /* SerenCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SerenCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		86D09FE11881AFBF00DC760A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		86D09FE91881AFC000DC760A /* SerenCastTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SerenCastTests-Info.plist"; sourceTree = "<group>"; };
+		86D09FEB1881AFC000DC760A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86D09FED1881AFC000DC760A /* SerenCastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerenCastTests.m; sourceTree = "<group>"; };
+		86D09FF71881B03500DC760A /* SerenCastPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastPlayerViewController.h; sourceTree = "<group>"; };
+		86D09FF81881B03500DC760A /* SerenCastPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastPlayerViewController.m; sourceTree = "<group>"; };
+		86D09FF91881B03500DC760A /* SerenCastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastPlayerViewController.xib; sourceTree = "<group>"; };
+		86D09FFF1881B49800DC760A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		86D0A0011881B50200DC760A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		86D0A0051882007A00DC760A /* SerenCastReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastReviewViewController.h; sourceTree = "<group>"; };
+		86D0A0061882007A00DC760A /* SerenCastReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastReviewViewController.m; sourceTree = "<group>"; };
+		86D0A0071882007A00DC760A /* SerenCastReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastReviewViewController.xib; sourceTree = "<group>"; };
+		86D0A00A18820D4200DC760A /* SerenCast-Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SerenCast-Data.plist"; sourceTree = "<group>"; };
+		86E8399218916AA0006E8D15 /* SerenCastUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastUser.h; sourceTree = "<group>"; };
+		86E8399318916AA0006E8D15 /* SerenCastUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastUser.m; sourceTree = "<group>"; };
+		86E8399518917B52006E8D15 /* SerenCastInterestTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastInterestTableCell.h; sourceTree = "<group>"; };
+		86E8399618917B52006E8D15 /* SerenCastInterestTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastInterestTableCell.m; sourceTree = "<group>"; };
+		86E8399818917B79006E8D15 /* SerenCastInterestTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastInterestTableCell.xib; sourceTree = "<group>"; };
+		86E8399A1891E768006E8D15 /* SerenCastReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastReview.h; sourceTree = "<group>"; };
+		86E8399B1891E768006E8D15 /* SerenCastReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastReview.m; sourceTree = "<group>"; };
+		86EE1134188B15BF002DD9FF /* SerenCast-Reviews.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SerenCast-Reviews.plist"; sourceTree = "<group>"; };
+		86EE1136188B1F01002DD9FF /* 7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 7.mp3; sourceTree = "<group>"; };
+		86EE1137188B1F01002DD9FF /* 8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8.mp3; sourceTree = "<group>"; };
+		86EE1138188B1F01002DD9FF /* 9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 9.mp3; sourceTree = "<group>"; };
+		86EE1139188B1F01002DD9FF /* 10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 10.mp3; sourceTree = "<group>"; };
+		86EE113A188B1F01002DD9FF /* 11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 11.mp3; sourceTree = "<group>"; };
+		86EE113B188B1F01002DD9FF /* 12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 12.mp3; sourceTree = "<group>"; };
+		86EE113C188B1F01002DD9FF /* 13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 13.mp3; sourceTree = "<group>"; };
+		86EE113D188B1F01002DD9FF /* 14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 14.mp3; sourceTree = "<group>"; };
+		86EE113E188B1F01002DD9FF /* 15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 15.mp3; sourceTree = "<group>"; };
+		86EE113F188B1F01002DD9FF /* 16.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 16.mp3; sourceTree = "<group>"; };
+		86EE1140188B1F01002DD9FF /* 17.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 17.mp3; sourceTree = "<group>"; };
+		86EE1141188B1F01002DD9FF /* 18.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 18.mp3; sourceTree = "<group>"; };
+		86EE1142188B1F01002DD9FF /* 19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 19.mp3; sourceTree = "<group>"; };
+		86EE1143188B1F01002DD9FF /* 20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 20.mp3; sourceTree = "<group>"; };
+		86EE1152188B2990002DD9FF /* SerenCastFinalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastFinalViewController.h; sourceTree = "<group>"; };
+		86EE1153188B2990002DD9FF /* SerenCastFinalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastFinalViewController.m; sourceTree = "<group>"; };
+		86EE1154188B2990002DD9FF /* SerenCastFinalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastFinalViewController.xib; sourceTree = "<group>"; };
+		86EE1157188B30F7002DD9FF /* SerenCastReviewSentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastReviewSentViewController.h; sourceTree = "<group>"; };
+		86EE1158188B30F7002DD9FF /* SerenCastReviewSentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastReviewSentViewController.m; sourceTree = "<group>"; };
+		86EE1159188B30F7002DD9FF /* SerenCastReviewSentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastReviewSentViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		86D09FBC1881AFBE00DC760A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86099C06188C1A88000754AC /* CoreLocation.framework in Frameworks */,
+				86D0A0021881B50200DC760A /* AVFoundation.framework in Frameworks */,
+				86D09FC51881AFBF00DC760A /* CoreGraphics.framework in Frameworks */,
+				86D09FC71881AFBF00DC760A /* UIKit.framework in Frameworks */,
+				86D09FC31881AFBF00DC760A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86D09FDD1881AFBF00DC760A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86D09FE21881AFBF00DC760A /* XCTest.framework in Frameworks */,
+				86D09FE41881AFC000DC760A /* UIKit.framework in Frameworks */,
+				86D09FE31881AFBF00DC760A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		865593B518982C85008DAE10 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				865593B618982D05008DAE10 /* bg.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		865593BA18989F15008DAE10 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				86EE1157188B30F7002DD9FF /* SerenCastReviewSentViewController.h */,
+				86EE1158188B30F7002DD9FF /* SerenCastReviewSentViewController.m */,
+				86EE1159188B30F7002DD9FF /* SerenCastReviewSentViewController.xib */,
+				865593BB18989F28008DAE10 /* SerenCastTutorial1ViewController.h */,
+				865593BC18989F28008DAE10 /* SerenCastTutorial1ViewController.m */,
+				865593BD18989F28008DAE10 /* SerenCastTutorial1ViewController.xib */,
+				865593C01898A554008DAE10 /* SerenCastTutorial2ViewController.h */,
+				865593C11898A555008DAE10 /* SerenCastTutorial2ViewController.m */,
+				865593C21898A555008DAE10 /* SerenCastTutorial2ViewController.xib */,
+				865593C51898A899008DAE10 /* SerenCastTutorial3ViewController.h */,
+				865593C61898A899008DAE10 /* SerenCastTutorial3ViewController.m */,
+				865593C71898A899008DAE10 /* SerenCastTutorial3ViewController.xib */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		86934AF81899AB0B00B56952 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				86934AF31899AAE700B56952 /* SerenCastStatusViewController.h */,
+				86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */,
+				86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */,
+			);
+			name = Status;
+			sourceTree = "<group>";
+		};
+		86D09FB61881AFBD00DC760A = {
+			isa = PBXGroup;
+			children = (
+				86D09FC81881AFBF00DC760A /* SerenCast */,
+				86D09FE71881AFC000DC760A /* SerenCastTests */,
+				86D09FC11881AFBF00DC760A /* Frameworks */,
+				86D09FC01881AFBF00DC760A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		86D09FC01881AFBF00DC760A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86D09FBF1881AFBF00DC760A /* SerenCast.app */,
+				86D09FE01881AFBF00DC760A /* SerenCastTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		86D09FC11881AFBF00DC760A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86099C05188C1A88000754AC /* CoreLocation.framework */,
+				86D0A0011881B50200DC760A /* AVFoundation.framework */,
+				86D09FFF1881B49800DC760A /* MediaPlayer.framework */,
+				86D09FC21881AFBF00DC760A /* Foundation.framework */,
+				86D09FC41881AFBF00DC760A /* CoreGraphics.framework */,
+				86D09FC61881AFBF00DC760A /* UIKit.framework */,
+				86D09FE11881AFBF00DC760A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86D09FC81881AFBF00DC760A /* SerenCast */ = {
+			isa = PBXGroup;
+			children = (
+				86934AF81899AB0B00B56952 /* Status */,
+				865593BA18989F15008DAE10 /* Tutorial */,
+				865593B518982C85008DAE10 /* Resources */,
+				86E8399118916A7A006E8D15 /* Model */,
+				86E83990189169D4006E8D15 /* Landing */,
+				86E8398F189169A0006E8D15 /* Player */,
+				86E8398E18916973006E8D15 /* Review */,
+				86E8398D18916957006E8D15 /* Profile */,
+				86D09FFC1881B40100DC760A /* podcasts */,
+				86D09FD11881AFBF00DC760A /* SerenCastAppDelegate.h */,
+				86D09FD21881AFBF00DC760A /* SerenCastAppDelegate.m */,
+				86D09FD41881AFBF00DC760A /* Main.storyboard */,
+				86D09FDA1881AFBF00DC760A /* Images.xcassets */,
+				86D09FC91881AFBF00DC760A /* Supporting Files */,
+				86EE1152188B2990002DD9FF /* SerenCastFinalViewController.h */,
+				86EE1153188B2990002DD9FF /* SerenCastFinalViewController.m */,
+				86EE1154188B2990002DD9FF /* SerenCastFinalViewController.xib */,
+			);
+			path = SerenCast;
+			sourceTree = "<group>";
+		};
+		86D09FC91881AFBF00DC760A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86CE231618843368008B23B1 /* podcast.png */,
+				86D0A00A18820D4200DC760A /* SerenCast-Data.plist */,
+				86D09FCA1881AFBF00DC760A /* SerenCast-Info.plist */,
+				86D09FCB1881AFBF00DC760A /* InfoPlist.strings */,
+				86D09FCE1881AFBF00DC760A /* main.m */,
+				86D09FD01881AFBF00DC760A /* SerenCast-Prefix.pch */,
+				86CE231A18843766008B23B1 /* SerenCast-Casts.plist */,
+				86EE1134188B15BF002DD9FF /* SerenCast-Reviews.plist */,
+				86099C07188C2B3D000754AC /* SerenCast-LocTime.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86D09FE71881AFC000DC760A /* SerenCastTests */ = {
+			isa = PBXGroup;
+			children = (
+				86D09FED1881AFC000DC760A /* SerenCastTests.m */,
+				86D09FE81881AFC000DC760A /* Supporting Files */,
+			);
+			path = SerenCastTests;
+			sourceTree = "<group>";
+		};
+		86D09FE81881AFC000DC760A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86D09FE91881AFC000DC760A /* SerenCastTests-Info.plist */,
+				86D09FEA1881AFC000DC760A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86D09FFC1881B40100DC760A /* podcasts */ = {
+			isa = PBXGroup;
+			children = (
+				86CE230A188432A2008B23B1 /* 1.mp3 */,
+				86CE230B188432A2008B23B1 /* 2.mp3 */,
+				86CE230C188432A2008B23B1 /* 3.mp3 */,
+				86CE230D188432A2008B23B1 /* 4.mp3 */,
+				86CE230E188432A2008B23B1 /* 5.mp3 */,
+				86CE230F188432A2008B23B1 /* 6.mp3 */,
+				86EE1136188B1F01002DD9FF /* 7.mp3 */,
+				86EE1137188B1F01002DD9FF /* 8.mp3 */,
+				86EE1138188B1F01002DD9FF /* 9.mp3 */,
+				86EE1139188B1F01002DD9FF /* 10.mp3 */,
+				86EE113A188B1F01002DD9FF /* 11.mp3 */,
+				86EE113B188B1F01002DD9FF /* 12.mp3 */,
+				86EE113C188B1F01002DD9FF /* 13.mp3 */,
+				86EE113D188B1F01002DD9FF /* 14.mp3 */,
+				86EE113E188B1F01002DD9FF /* 15.mp3 */,
+				86EE113F188B1F01002DD9FF /* 16.mp3 */,
+				86EE1140188B1F01002DD9FF /* 17.mp3 */,
+				86EE1141188B1F01002DD9FF /* 18.mp3 */,
+				86EE1142188B1F01002DD9FF /* 19.mp3 */,
+				86EE1143188B1F01002DD9FF /* 20.mp3 */,
+			);
+			path = podcasts;
+			sourceTree = "<group>";
+		};
+		86E8398D18916957006E8D15 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				86099C0E188C9C33000754AC /* SerenCastProfileViewController.h */,
+				86099C0F188C9C33000754AC /* SerenCastProfileViewController.m */,
+				86099C10188C9C33000754AC /* SerenCastProfileViewController.xib */,
+				86099C13188C9F95000754AC /* SerenCastProfileInterestsViewController.h */,
+				86099C14188C9F95000754AC /* SerenCastProfileInterestsViewController.m */,
+				86099C15188C9F95000754AC /* SerenCastProfileInterestsViewController.xib */,
+				86E8399518917B52006E8D15 /* SerenCastInterestTableCell.h */,
+				86E8399618917B52006E8D15 /* SerenCastInterestTableCell.m */,
+				86E8399818917B79006E8D15 /* SerenCastInterestTableCell.xib */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		86E8398E18916973006E8D15 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				86D0A0051882007A00DC760A /* SerenCastReviewViewController.h */,
+				86D0A0061882007A00DC760A /* SerenCastReviewViewController.m */,
+				86D0A0071882007A00DC760A /* SerenCastReviewViewController.xib */,
+			);
+			name = Review;
+			sourceTree = "<group>";
+		};
+		86E8398F189169A0006E8D15 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				86D09FF71881B03500DC760A /* SerenCastPlayerViewController.h */,
+				86D09FF81881B03500DC760A /* SerenCastPlayerViewController.m */,
+				86D09FF91881B03500DC760A /* SerenCastPlayerViewController.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		86E83990189169D4006E8D15 /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				86099C09188C9890000754AC /* SerenCastLandingScreenViewController.h */,
+				86099C0A188C9890000754AC /* SerenCastLandingScreenViewController.m */,
+				86099C0B188C9890000754AC /* SerenCastLandingScreenViewController.xib */,
+			);
+			name = Landing;
+			sourceTree = "<group>";
+		};
+		86E8399118916A7A006E8D15 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86E8399218916AA0006E8D15 /* SerenCastUser.h */,
+				86E8399318916AA0006E8D15 /* SerenCastUser.m */,
+				86E8399A1891E768006E8D15 /* SerenCastReview.h */,
+				86E8399B1891E768006E8D15 /* SerenCastReview.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		86D09FBE1881AFBE00DC760A /* SerenCast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86D09FF11881AFC000DC760A /* Build configuration list for PBXNativeTarget "SerenCast" */;
+			buildPhases = (
+				86D09FBB1881AFBE00DC760A /* Sources */,
+				86D09FBC1881AFBE00DC760A /* Frameworks */,
+				86D09FBD1881AFBE00DC760A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SerenCast;
+			productName = SerenCast;
+			productReference = 86D09FBF1881AFBF00DC760A /* SerenCast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		86D09FDF1881AFBF00DC760A /* SerenCastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86D09FF41881AFC000DC760A /* Build configuration list for PBXNativeTarget "SerenCastTests" */;
+			buildPhases = (
+				86D09FDC1881AFBF00DC760A /* Sources */,
+				86D09FDD1881AFBF00DC760A /* Frameworks */,
+				86D09FDE1881AFBF00DC760A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				86D09FE61881AFC000DC760A /* PBXTargetDependency */,
+			);
+			name = SerenCastTests;
+			productName = SerenCastTests;
+			productReference = 86D09FE01881AFBF00DC760A /* SerenCastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		86D09FB71881AFBE00DC760A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SerenCast;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = tum;
+				TargetAttributes = {
+					86D09FDF1881AFBF00DC760A = {
+						TestTargetID = 86D09FBE1881AFBE00DC760A;
+					};
+				};
+			};
+			buildConfigurationList = 86D09FBA1881AFBE00DC760A /* Build configuration list for PBXProject "SerenCast" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 86D09FB61881AFBD00DC760A;
+			productRefGroup = 86D09FC01881AFBF00DC760A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				86D09FBE1881AFBE00DC760A /* SerenCast */,
+				86D09FDF1881AFBF00DC760A /* SerenCastTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		86D09FBD1881AFBE00DC760A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86EE114E188B1F01002DD9FF /* 17.mp3 in Resources */,
+				86E8399918917B79006E8D15 /* SerenCastInterestTableCell.xib in Resources */,
+				86EE1145188B1F01002DD9FF /* 8.mp3 in Resources */,
+				86CE2314188432A2008B23B1 /* 5.mp3 in Resources */,
+				865593C41898A555008DAE10 /* SerenCastTutorial2ViewController.xib in Resources */,
+				86EE1147188B1F01002DD9FF /* 10.mp3 in Resources */,
+				86CE2313188432A2008B23B1 /* 4.mp3 in Resources */,
+				86CE2312188432A2008B23B1 /* 3.mp3 in Resources */,
+				86EE1150188B1F01002DD9FF /* 19.mp3 in Resources */,
+				86D0A0091882007A00DC760A /* SerenCastReviewViewController.xib in Resources */,
+				86099C17188C9F95000754AC /* SerenCastProfileInterestsViewController.xib in Resources */,
+				86EE1149188B1F01002DD9FF /* 12.mp3 in Resources */,
+				86099C12188C9C33000754AC /* SerenCastProfileViewController.xib in Resources */,
+				86D09FDB1881AFBF00DC760A /* Images.xcassets in Resources */,
+				86EE1151188B1F01002DD9FF /* 20.mp3 in Resources */,
+				86D09FCD1881AFBF00DC760A /* InfoPlist.strings in Resources */,
+				865593B718982D05008DAE10 /* bg.png in Resources */,
+				86CE2310188432A2008B23B1 /* 1.mp3 in Resources */,
+				86EE115B188B30F7002DD9FF /* SerenCastReviewSentViewController.xib in Resources */,
+				86CE231718843368008B23B1 /* podcast.png in Resources */,
+				86099C0D188C9891000754AC /* SerenCastLandingScreenViewController.xib in Resources */,
+				86EE1148188B1F01002DD9FF /* 11.mp3 in Resources */,
+				86D09FFB1881B03500DC760A /* SerenCastPlayerViewController.xib in Resources */,
+				86CE2315188432A2008B23B1 /* 6.mp3 in Resources */,
+				865593BF18989F28008DAE10 /* SerenCastTutorial1ViewController.xib in Resources */,
+				86EE114F188B1F01002DD9FF /* 18.mp3 in Resources */,
+				86099C08188C2B3D000754AC /* SerenCast-LocTime.plist in Resources */,
+				86EE1144188B1F01002DD9FF /* 7.mp3 in Resources */,
+				86EE114D188B1F01002DD9FF /* 16.mp3 in Resources */,
+				86EE1146188B1F01002DD9FF /* 9.mp3 in Resources */,
+				86CE231B18843766008B23B1 /* SerenCast-Casts.plist in Resources */,
+				86CE2311188432A2008B23B1 /* 2.mp3 in Resources */,
+				86EE114C188B1F01002DD9FF /* 15.mp3 in Resources */,
+				86EE1156188B2990002DD9FF /* SerenCastFinalViewController.xib in Resources */,
+				86EE114B188B1F01002DD9FF /* 14.mp3 in Resources */,
+				865593C91898A899008DAE10 /* SerenCastTutorial3ViewController.xib in Resources */,
+				86EE1135188B15BF002DD9FF /* SerenCast-Reviews.plist in Resources */,
+				86D0A00B18820D4200DC760A /* SerenCast-Data.plist in Resources */,
+				86934AF71899AAE700B56952 /* SerenCastStatusViewController.xib in Resources */,
+				86EE114A188B1F01002DD9FF /* 13.mp3 in Resources */,
+				86D09FD61881AFBF00DC760A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86D09FDE1881AFBF00DC760A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86D09FEC1881AFC000DC760A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		86D09FBB1881AFBE00DC760A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86D09FCF1881AFBF00DC760A /* main.m in Sources */,
+				86E8399718917B52006E8D15 /* SerenCastInterestTableCell.m in Sources */,
+				86EE1155188B2990002DD9FF /* SerenCastFinalViewController.m in Sources */,
+				86D0A0081882007A00DC760A /* SerenCastReviewViewController.m in Sources */,
+				86EE115A188B30F7002DD9FF /* SerenCastReviewSentViewController.m in Sources */,
+				86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */,
+				865593BE18989F28008DAE10 /* SerenCastTutorial1ViewController.m in Sources */,
+				86D09FFA1881B03500DC760A /* SerenCastPlayerViewController.m in Sources */,
+				86E8399C1891E768006E8D15 /* SerenCastReview.m in Sources */,
+				865593C81898A899008DAE10 /* SerenCastTutorial3ViewController.m in Sources */,
+				86D09FD31881AFBF00DC760A /* SerenCastAppDelegate.m in Sources */,
+				86099C16188C9F95000754AC /* SerenCastProfileInterestsViewController.m in Sources */,
+				865593C31898A555008DAE10 /* SerenCastTutorial2ViewController.m in Sources */,
+				86E8399418916AA0006E8D15 /* SerenCastUser.m in Sources */,
+				86099C11188C9C33000754AC /* SerenCastProfileViewController.m in Sources */,
+				86099C0C188C9891000754AC /* SerenCastLandingScreenViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86D09FDC1881AFBF00DC760A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86D09FEE1881AFC000DC760A /* SerenCastTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		86D09FE61881AFC000DC760A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86D09FBE1881AFBE00DC760A /* SerenCast */;
+			targetProxy = 86D09FE51881AFC000DC760A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		86D09FCB1881AFBF00DC760A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86D09FCC1881AFBF00DC760A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		86D09FD41881AFBF00DC760A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86D09FD51881AFBF00DC760A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		86D09FEA1881AFC000DC760A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86D09FEB1881AFC000DC760A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		86D09FEF1881AFC000DC760A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		86D09FF01881AFC000DC760A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		86D09FF21881AFC000DC760A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerenCast/SerenCast-Prefix.pch";
+				INFOPLIST_FILE = "SerenCast/SerenCast-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		86D09FF31881AFC000DC760A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerenCast/SerenCast-Prefix.pch";
+				INFOPLIST_FILE = "SerenCast/SerenCast-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		86D09FF51881AFC000DC760A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SerenCast.app/SerenCast";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerenCast/SerenCast-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SerenCastTests/SerenCastTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		86D09FF61881AFC000DC760A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SerenCast.app/SerenCast";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SerenCast/SerenCast-Prefix.pch";
+				INFOPLIST_FILE = "SerenCastTests/SerenCastTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		86D09FBA1881AFBE00DC760A /* Build configuration list for PBXProject "SerenCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86D09FEF1881AFC000DC760A /* Debug */,
+				86D09FF01881AFC000DC760A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86D09FF11881AFC000DC760A /* Build configuration list for PBXNativeTarget "SerenCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86D09FF21881AFC000DC760A /* Debug */,
+				86D09FF31881AFC000DC760A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86D09FF41881AFC000DC760A /* Build configuration list for PBXNativeTarget "SerenCastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86D09FF51881AFC000DC760A /* Debug */,
+				86D09FF61881AFC000DC760A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 86D09FB71881AFBE00DC760A /* Project object */;
+}

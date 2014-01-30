@@ -1,0 +1,207 @@
+{
+    "assets": [
+        {
+            "asset": "SerenCast/podcasts/5.mp3", 
+            "target": "5.mp3"
+        }, 
+        {
+            "asset": "SerenCast/podcasts/4.mp3", 
+            "target": "4.mp3"
+        }, 
+        {
+            "asset": "SerenCast/podcasts/3.mp3", 
+            "target": "3.mp3"
+        }, 
+        {
+            "asset": "SerenCast/SerenCastReviewViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "SerenCast/en.lproj/InfoPlist.strings", 
+            "target": "en.lproj/InfoPlist.strings"
+        }, 
+        {
+            "asset": "SerenCast/podcasts/1.mp3", 
+            "target": "1.mp3"
+        }, 
+        {
+            "asset": "SerenCast/podcast.png", 
+            "target": "podcast.png"
+        }, 
+        {
+            "asset": "SerenCast/SerenCastPlayerViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "SerenCast/podcasts/6.mp3", 
+            "target": "6.mp3"
+        }, 
+        {
+            "asset": "SerenCast/SerenCast-Casts.plist", 
+            "target": "SerenCast-Casts.plist"
+        }, 
+        {
+            "asset": "SerenCast/podcasts/2.mp3", 
+            "target": "2.mp3"
+        }, 
+        {
+            "asset": "SerenCast/SerenCast-Data.plist", 
+            "target": "SerenCast-Data.plist"
+        }, 
+        {
+            "asset": "SerenCast/Base.lproj/Main.storyboard", 
+            "target": null
+        }
+    ], 
+    "config": {
+        "APPLICATION_FULL_NAME": "SerenCast", 
+        "APPLICATION_IDENTIFIER": "tum.SerenCast", 
+        "APPLICATION_NAME": "SerenCast", 
+        "FEATURES": [
+            "portrait"
+        ], 
+        "ICU_CONFIG": "normal", 
+        "LONG_VERSION": "1.0", 
+        "SHORT_VERSION": "1.0", 
+        "TEMPLATE_VALUES": {
+            "EXECUTABLE_NAME": "SerenCast", 
+            "PRODUCT_NAME": "SerenCast"
+        }
+    }, 
+    "defines": {
+        "NS_BLOCK_ASSERTIONS": 1, 
+        "__IPHONE_OS_VERSION_MIN_REQUIRED": 70000
+    }, 
+    "deps": [
+        "UIKit", 
+        "AVFoundation", 
+        "CoreGraphics", 
+        "UIKit", 
+        "Foundation"
+    ], 
+    "flags": [
+        "-fobjc-arc", 
+        "-fasm-blocks", 
+        {
+            "flag": "-std=gnu99", 
+            "not_type": "c++"
+        }, 
+        {
+            "flag": "-fgnu-keywords", 
+            "not_type": "c++"
+        }, 
+        "-fno-asm", 
+        "-fpascal-strings", 
+        "-Wempty-body", 
+        "-Wshorten-64-to-32", 
+        "-Wno-deprecated-declarations", 
+        "-Wswitch", 
+        "-Wparentheses", 
+        "-Wformat", 
+        "-Wuninitialized", 
+        "-Wunused-function", 
+        "-Wunused-value", 
+        "-Wunused-variable", 
+        {
+            "flag": "-Winvalid-offsetof", 
+            "type": "c++"
+        }, 
+        {
+            "flag": "-Wprotocol", 
+            "type": "objc"
+        }, 
+        {
+            "flag": "-Wundeclared-selector", 
+            "type": "objc"
+        }
+    ], 
+    "header_paths": [
+        {
+            "header_path": "SerenCast-generated-files.hmap", 
+            "hmap": {}, 
+            "type": "iquote"
+        }, 
+        {
+            "header_path": "SerenCast-own-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "SerenCast-all-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "SerenCast-project-headers.hmap", 
+            "hmap": {
+                "SerenCast-Prefix.pch": {
+                    "key": "SerenCast-Prefix.pch", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCast-Prefix.pch"
+                }, 
+                "SerenCastAppDelegate.h": {
+                    "key": "SerenCastAppDelegate.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastAppDelegate.h"
+                }, 
+                "SerenCastPlayerViewController.h": {
+                    "key": "SerenCastPlayerViewController.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastPlayerViewController.h"
+                }, 
+                "SerenCastReviewViewController.h": {
+                    "key": "SerenCastReviewViewController.h", 
+                    "prefix": "SerenCast/", 
+                    "suffix": "SerenCastReviewViewController.h"
+                }
+            }, 
+            "type": "iquote"
+        }
+    ], 
+    "infoplists": [
+        "./SerenCast/SerenCast-Info.plist"
+    ], 
+    "java_libs": [], 
+    "java_res_dirs": [], 
+    "java_sourcepaths": [], 
+    "java_sources": [], 
+    "libs": [], 
+    "link_flags": [], 
+    "modules": [], 
+    "pchs": [
+        "./SerenCast/SerenCast-Prefix.pch"
+    ], 
+    "sources": [
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "SerenCast/SerenCastAppDelegate.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "SerenCast/SerenCastPlayerViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "SerenCast/SerenCastReviewViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "SerenCast/main.m"
+        }
+    ], 
+    "type": "app", 
+    "version": "1", 
+    "xcode_project": "SerenCast.xcodeproj"
+}
