@@ -87,10 +87,14 @@
     self.currentTimeSlider.minimumValue = 0.0f;
     self.currentTimeSlider.maximumValue = self.audioPlayer.duration;
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"SerenCast-Casts" ofType:@"plist"];
-    NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    NSString *currentTrackTitle = [plistDict objectForKey:self.currentTrackID];
-    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+    /*NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    NSString *currentTrackTitle = [plistDict objectForKey:self.currentTrackID];*/
+    NSArray *plist = [[NSArray alloc] initWithContentsOfFile:filePath];
+    NSDictionary *plistItem = [plist objectAtIndex:[self.currentTrackID intValue]-1];
+    NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
     self.titleLabel.text = currentTrackTitle;
     
     [self updateDisplay];

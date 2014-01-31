@@ -11,6 +11,9 @@
 #import "SerenCastReviewSentViewController.h"
 #import "SerenCastFinalViewController.h"
 #import "SerenCastLandingScreenViewController.h"
+#import "SerenCastStatusViewController.h"
+#import "SerenCastPlayerListViewController.h"
+#import "SerenCastNotificationsViewController.h"
 
 
 @implementation SerenCastAppDelegate
@@ -78,22 +81,52 @@
         self.window.rootViewController = navController;
     }
     else{
+        UITabBarController *tabBarController = [[UITabBarController alloc]init];
+        
+        /* bar items */
+        UITabBarItem* playerTabItem = [[UITabBarItem alloc] initWithTitle:@"Player" image:nil tag:0];
+        UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"List" image:nil tag:1];
+        UITabBarItem *statusTabItem = [[UITabBarItem alloc] initWithTitle:@"Status" image:nil tag:2];
+        UITabBarItem *notificationsTabItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:nil tag:3];
+        
+        /* view controllers */
         SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:currentTrack];
+        SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc] initWithTrackID:@"1"];
+        SerenCastPlayerListViewController *listController = [[SerenCastPlayerListViewController alloc]init];
+        SerenCastNotificationsViewController *notficationsController = [[SerenCastNotificationsViewController alloc]init];
+        
+        /*set bar items*/
+        [listController setTabBarItem:listTabItem];
+        [notficationsController setTabBarItem:notificationsTabItem];
+        [statusController setTabBarItem:statusTabItem];
+        
+        
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playerController];
         [navController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         [navController.navigationBar setShadowImage:[UIImage new]];
         [navController.navigationBar setTranslucent:YES];
+        [navController setTabBarItem:playerTabItem];
+        
         /* Navigation styling */
         UIColor * navBarTintColor = [UIColor whiteColor];
         [[UINavigationBar appearance] setBarTintColor:navBarTintColor];
         
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"GillSans-Light" size:24], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil];
         [[UINavigationBar appearance] setTitleTextAttributes:attributes];
-        self.window.rootViewController = navController;
+        
+        
+        tabBarController.viewControllers = [NSArray arrayWithObjects:navController,listController,statusController,notficationsController, nil];
+        //self.window.rootViewController = navController;
+        self.window.rootViewController = tabBarController;
     }
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+-(void) buildTabBarInterface
+{
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -24,6 +24,12 @@
 		865593C91898A899008DAE10 /* SerenCastTutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 865593C71898A899008DAE10 /* SerenCastTutorial3ViewController.xib */; };
 		86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */; };
 		86934AF71899AAE700B56952 /* SerenCastStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */; };
+		86934B01189C0AED00B56952 /* SerenCastPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934AFF189C0AED00B56952 /* SerenCastPlayerListViewController.m */; };
+		86934B02189C0AED00B56952 /* SerenCastPlayerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934B00189C0AED00B56952 /* SerenCastPlayerListViewController.xib */; };
+		86934B07189C0B1D00B56952 /* SerenCastNotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934B05189C0B1D00B56952 /* SerenCastNotificationsViewController.m */; };
+		86934B08189C0B1D00B56952 /* SerenCastNotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934B06189C0B1D00B56952 /* SerenCastNotificationsViewController.xib */; };
+		86934B0F189C621D00B56952 /* SerenCastPlayerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934B0E189C621D00B56952 /* SerenCastPlayerListCell.m */; };
+		86934B11189C623E00B56952 /* SerenCastPlayerListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934B10189C623E00B56952 /* SerenCastPlayerListCell.xib */; };
 		86CE2310188432A2008B23B1 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230A188432A2008B23B1 /* 1.mp3 */; };
 		86CE2311188432A2008B23B1 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230B188432A2008B23B1 /* 2.mp3 */; };
 		86CE2312188432A2008B23B1 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86CE230C188432A2008B23B1 /* 3.mp3 */; };
@@ -111,6 +117,15 @@
 		86934AF31899AAE700B56952 /* SerenCastStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastStatusViewController.h; sourceTree = "<group>"; };
 		86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastStatusViewController.m; sourceTree = "<group>"; };
 		86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastStatusViewController.xib; sourceTree = "<group>"; };
+		86934AFE189C0AED00B56952 /* SerenCastPlayerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastPlayerListViewController.h; sourceTree = "<group>"; };
+		86934AFF189C0AED00B56952 /* SerenCastPlayerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastPlayerListViewController.m; sourceTree = "<group>"; };
+		86934B00189C0AED00B56952 /* SerenCastPlayerListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastPlayerListViewController.xib; sourceTree = "<group>"; };
+		86934B04189C0B1D00B56952 /* SerenCastNotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastNotificationsViewController.h; sourceTree = "<group>"; };
+		86934B05189C0B1D00B56952 /* SerenCastNotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastNotificationsViewController.m; sourceTree = "<group>"; };
+		86934B06189C0B1D00B56952 /* SerenCastNotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastNotificationsViewController.xib; sourceTree = "<group>"; };
+		86934B0D189C621D00B56952 /* SerenCastPlayerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastPlayerListCell.h; sourceTree = "<group>"; };
+		86934B0E189C621D00B56952 /* SerenCastPlayerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastPlayerListCell.m; sourceTree = "<group>"; };
+		86934B10189C623E00B56952 /* SerenCastPlayerListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastPlayerListCell.xib; sourceTree = "<group>"; };
 		86CE230A188432A2008B23B1 /* 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1.mp3; sourceTree = "<group>"; };
 		86CE230B188432A2008B23B1 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
 		86CE230C188432A2008B23B1 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3.mp3; sourceTree = "<group>"; };
@@ -238,6 +253,29 @@
 			name = Status;
 			sourceTree = "<group>";
 		};
+		86934AFA189C0AB400B56952 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				86934AFE189C0AED00B56952 /* SerenCastPlayerListViewController.h */,
+				86934AFF189C0AED00B56952 /* SerenCastPlayerListViewController.m */,
+				86934B00189C0AED00B56952 /* SerenCastPlayerListViewController.xib */,
+				86934B0D189C621D00B56952 /* SerenCastPlayerListCell.h */,
+				86934B0E189C621D00B56952 /* SerenCastPlayerListCell.m */,
+				86934B10189C623E00B56952 /* SerenCastPlayerListCell.xib */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		86934B03189C0B0900B56952 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				86934B04189C0B1D00B56952 /* SerenCastNotificationsViewController.h */,
+				86934B05189C0B1D00B56952 /* SerenCastNotificationsViewController.m */,
+				86934B06189C0B1D00B56952 /* SerenCastNotificationsViewController.xib */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		86D09FB61881AFBD00DC760A = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +312,8 @@
 		86D09FC81881AFBF00DC760A /* SerenCast */ = {
 			isa = PBXGroup;
 			children = (
+				86934B03189C0B0900B56952 /* Notifications */,
+				86934AFA189C0AB400B56952 /* List */,
 				86934AF81899AB0B00B56952 /* Status */,
 				865593BA18989F15008DAE10 /* Tutorial */,
 				865593B518982C85008DAE10 /* Resources */,
@@ -496,11 +536,14 @@
 				86CE2314188432A2008B23B1 /* 5.mp3 in Resources */,
 				865593C41898A555008DAE10 /* SerenCastTutorial2ViewController.xib in Resources */,
 				86EE1147188B1F01002DD9FF /* 10.mp3 in Resources */,
+				86934B02189C0AED00B56952 /* SerenCastPlayerListViewController.xib in Resources */,
 				86CE2313188432A2008B23B1 /* 4.mp3 in Resources */,
 				86CE2312188432A2008B23B1 /* 3.mp3 in Resources */,
+				86934B11189C623E00B56952 /* SerenCastPlayerListCell.xib in Resources */,
 				86EE1150188B1F01002DD9FF /* 19.mp3 in Resources */,
 				86D0A0091882007A00DC760A /* SerenCastReviewViewController.xib in Resources */,
 				86099C17188C9F95000754AC /* SerenCastProfileInterestsViewController.xib in Resources */,
+				86934B08189C0B1D00B56952 /* SerenCastNotificationsViewController.xib in Resources */,
 				86EE1149188B1F01002DD9FF /* 12.mp3 in Resources */,
 				86099C12188C9C33000754AC /* SerenCastProfileViewController.xib in Resources */,
 				86D09FDB1881AFBF00DC760A /* Images.xcassets in Resources */,
@@ -552,6 +595,7 @@
 				86D09FCF1881AFBF00DC760A /* main.m in Sources */,
 				86E8399718917B52006E8D15 /* SerenCastInterestTableCell.m in Sources */,
 				86EE1155188B2990002DD9FF /* SerenCastFinalViewController.m in Sources */,
+				86934B01189C0AED00B56952 /* SerenCastPlayerListViewController.m in Sources */,
 				86D0A0081882007A00DC760A /* SerenCastReviewViewController.m in Sources */,
 				86EE115A188B30F7002DD9FF /* SerenCastReviewSentViewController.m in Sources */,
 				86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */,
@@ -560,11 +604,13 @@
 				86E8399C1891E768006E8D15 /* SerenCastReview.m in Sources */,
 				865593C81898A899008DAE10 /* SerenCastTutorial3ViewController.m in Sources */,
 				86D09FD31881AFBF00DC760A /* SerenCastAppDelegate.m in Sources */,
+				86934B07189C0B1D00B56952 /* SerenCastNotificationsViewController.m in Sources */,
 				86099C16188C9F95000754AC /* SerenCastProfileInterestsViewController.m in Sources */,
 				865593C31898A555008DAE10 /* SerenCastTutorial2ViewController.m in Sources */,
 				86E8399418916AA0006E8D15 /* SerenCastUser.m in Sources */,
 				86099C11188C9C33000754AC /* SerenCastProfileViewController.m in Sources */,
 				86099C0C188C9891000754AC /* SerenCastLandingScreenViewController.m in Sources */,
+				86934B0F189C621D00B56952 /* SerenCastPlayerListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

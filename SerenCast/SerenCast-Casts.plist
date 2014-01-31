@@ -1,18 +1,366 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>6</key>
-	<string>60-Second Mind</string>
-	<key>5</key>
-	<string>60-Second Earth</string>
-	<key>4</key>
-	<string>60-Second Science</string>
-	<key>3</key>
-	<string>60-Second Tech</string>
-	<key>2</key>
-	<string>60-Second Space</string>
-	<key>1</key>
-	<string>60-Second Health</string>
-</dict>
+<array>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Health</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Tech</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Science</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Earth</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Space</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Sports</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds News</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Health</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Arts</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Movies</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Photography</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Green</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Yellow</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Blue</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Blue</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Health</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Iron</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds Nice</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds great</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>60-Seconds bla</string>
+		<key>description</key>
+		<string>This is 60-seconds Health provided by Scientific American</string>
+		<key>provider</key>
+		<string>Scientific American</string>
+		<key>image</key>
+		<string></string>
+		<key>duration</key>
+		<string>1 min</string>
+		<key>isFav</key>
+		<false/>
+		<key>isPlayed</key>
+		<false/>
+		<key>playedCount</key>
+		<string>0</string>
+	</dict>
+</array>
 </plist>
