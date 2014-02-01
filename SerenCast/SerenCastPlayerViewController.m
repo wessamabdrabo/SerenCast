@@ -9,6 +9,7 @@
 #import "SerenCastPlayerViewController.h"
 #import "SerenCastReviewViewController.h"
 #import "SerenCastTutorial3ViewController.h"
+#import "SerenCastNotificationsManager.h"
 
 
 @interface SerenCastPlayerViewController ()
@@ -19,6 +20,7 @@
     CLLocationManager *locationManager;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
+    NSString * castTitle;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +32,7 @@
     return self;
 }
 
+
 - (id) initWithAudio:(NSString*) audioFileID
 {
     self = [super init];
@@ -38,6 +41,7 @@
         self.currentTrackID = audioFileID;
         locationManager = [[CLLocationManager alloc] init];
         geocoder = [[CLGeocoder alloc] init];
+        castTitle = [[NSString alloc]init];
     }
     return self;
 }
@@ -90,12 +94,14 @@
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
-    /*NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    NSString *currentTrackTitle = [plistDict objectForKey:self.currentTrackID];*/
     NSArray *plist = [[NSArray alloc] initWithContentsOfFile:filePath];
     NSDictionary *plistItem = [plist objectAtIndex:[self.currentTrackID intValue]-1];
     NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
+    
     self.titleLabel.text = currentTrackTitle;
+    castTitle = currentTrackTitle;
+    if([[plistItem objectForKey:@"isFav"] boolValue])
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favselected.png"] forState:UIControlStateNormal];
     
     [self updateDisplay];
 }
@@ -181,6 +187,25 @@
     [self stopTimer];
     [self updateDisplay];
     [self getCurrentLocation]; //update location manager
+    // Get the current date
+    
+    // Schedule the review notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:2.0];
+    NSLog(@"Fire date %@", localNotification.fireDate);
+    localNotification.alertBody = [NSString stringWithFormat:@"We hope you enjoyed '%@'. Rate it and tell us what you think.", castTitle?castTitle : @""];
+    localNotification.alertAction = @"Rating";
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    NSString* body = [NSString stringWithFormat:@"%@", localNotification.alertBody];
+    NSDate* firedDate = localNotification.fireDate;
+    
+    /* write notification to plist */
+    SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
+    [notificationsManager addToList:body notificationFiredDate:firedDate];
+    
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating"
                                                     message: @"Please take a minute to give us feedback about this cast before proceeding to the next one."
                                                    delegate: nil
@@ -207,6 +232,31 @@
             [self.navigationController pushViewController:reviewViewController animated:YES];
         }
     }
+}
+
+
+#pragma toggle favs button action
+- (IBAction)toggleFavsAction:(id)sender {
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+    NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
+    NSMutableDictionary *cast = [castsList objectAtIndex:[self.currentTrackID intValue]-1];
+    /* if not already a favorite */
+    if(![[cast objectForKey:@"isFav"]boolValue]){
+        [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isFav"];
+        //TODO: change icon to selected
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favselected.png"] forState:UIControlStateNormal];
+
+    }
+    else{
+        [cast setValue:[NSNumber numberWithBool:NO] forKey:@"isFav"];
+        //TODO: set icon to not fav
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favunselected.png"] forState:UIControlStateNormal];
+
+    }
+    
+    [castsList writeToFile:castsFilePath atomically:NO];
 }
 
 #pragma location
@@ -256,7 +306,7 @@
             [currentDict setValue:currentTime forKey:@"Time"];
             [plistDict addObject:currentDict];
             [plistDict writeToFile:filePath atomically:YES];
-            NSLog(@"location data is written to file!!!!!!!!!!!!!!!");
+            NSLog(@"location data is written to file!");
         } else {
             NSLog(@"%@", error.debugDescription);
         }

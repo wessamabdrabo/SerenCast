@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
 @property (strong, nonatomic) NSString* currentTrackID;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)toggleFavsAction:(id)sender;
 
 - (id) initWithAudio:(NSString*) audioFileID;
 - (IBAction)playBtnAction:(id)sender;
@@ -26,5 +27,6 @@
 - (IBAction)pauseBtnAction:(id)sender;
 - (IBAction)currentTimeSliderValueChanged:(id)sender;
 - (IBAction)currentTimeSliderTouchupInside:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *toggleFavsBtn;
 
 @end

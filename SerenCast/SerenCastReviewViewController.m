@@ -207,6 +207,13 @@
     
     else{ /* if not last track, save next track to plist and go back to player */
         
+        NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+        NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
+        NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
+        [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
+        [castsList writeToFile:castsFilePath atomically:NO];
+    
+        
         NSInteger nextTrackID = self.reviewedTrackID.integerValue + 1;
         NSString* nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)nextTrackID];
         [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];

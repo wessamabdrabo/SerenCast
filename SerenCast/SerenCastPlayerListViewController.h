@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+-(void)addToPlayed:(int)index;
+-(void)addToFavs:(int)index;
 @end

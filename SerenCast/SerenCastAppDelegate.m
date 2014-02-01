@@ -14,6 +14,7 @@
 #import "SerenCastStatusViewController.h"
 #import "SerenCastPlayerListViewController.h"
 #import "SerenCastNotificationsViewController.h"
+#import "SerenCastNotificationsManager.h"
 
 
 @implementation SerenCastAppDelegate
@@ -35,16 +36,21 @@
         NSLog(@"**Copying data plist to documents directory");
         
     }
-    /*NSString *reviewFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Reviews.plist"];
-    if(![[NSFileManager defaultManager]fileExistsAtPath:reviewFilePath]){
-        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Reviews" ofType:@"plist"] toPath:reviewFilePath error:nil];
-        NSLog(@"**Copying reviews plist to documents directory");
+    NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+    if(![[NSFileManager defaultManager]fileExistsAtPath:castsFilePath]){
+        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Casts" ofType:@"plist"] toPath:castsFilePath error:nil];
+        NSLog(@"**Copying casts plist to documents directory");
         
-    }*/
+    }
     NSString *locTimeFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-LocTime.plist"];
     if(![[NSFileManager defaultManager]fileExistsAtPath:locTimeFilePath]){
         [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-LocTime" ofType:@"plist"] toPath:locTimeFilePath error:nil];
         NSLog(@"**Copying loctime plist to documents directory");
+    }
+    NSString *notficationsFilepath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Notifications.plist"];
+    if(![[NSFileManager defaultManager]fileExistsAtPath:notficationsFilepath]){
+        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Notifications" ofType:@"plist"] toPath:locTimeFilePath error:nil];
+        NSLog(@"**Copying notifications plist to documents directory");
     }
     /* get current audio track from data plist */
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
@@ -55,14 +61,7 @@
 
     
     
-    /*if([reviewIsSent isEqualToString:@"1"]){
-        SerenCastReviewSentViewController *reviewSentController = [[SerenCastReviewSentViewController alloc]init];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:reviewSentController];
-        self.window.rootViewController = navController;
-    }else*/ if([expDone isEqualToString:@"1"]){
-        /*SerenCastFinalViewController *finalController = [[SerenCastFinalViewController alloc] init];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:finalController];
-        self.window.rootViewController = navController;*/
+    if([expDone isEqualToString:@"1"]){
         SerenCastReviewSentViewController *reviewSentController = [[SerenCastReviewSentViewController alloc]init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:reviewSentController];
         self.window.rootViewController = navController;
@@ -78,6 +77,18 @@
         
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"GillSans-Light" size:24], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil];
         [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+        
+        /* schedule status daily notification starting today in an hour*/
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:86580.0];
+        NSLog(@"###Status firedate %@", localNotification.fireDate);
+        localNotification.alertBody = [NSString stringWithFormat:@"Tell us what you feel like listening to today."];
+        localNotification.alertAction = @"Status";
+        localNotification.repeatInterval = NSDayCalendarUnit;
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
         self.window.rootViewController = navController;
     }
     else{
@@ -121,6 +132,13 @@
     }
     [self.window makeKeyAndVisible];
     
+    // Handle launching from a notification
+    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (locationNotification) {
+        // Set icon badge number to zero
+        application.applicationIconBadgeNumber = 0;
+    }
+    
     return YES;
 }
 
@@ -139,11 +157,13 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    application.applicationIconBadgeNumber = 0; /* reset notifications badge */
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // Handle launching from a notification
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

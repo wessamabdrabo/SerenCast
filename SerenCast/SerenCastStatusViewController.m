@@ -45,7 +45,9 @@
 }
 
 - (IBAction)proceedBtnAction:(id)sender {
-    SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc]initWithAudio:self.trackID];
-    [self.navigationController pushViewController:playerController animated:YES];
+    [self.statusTextField resignFirstResponder];
+    /* TODO: submit status. show progress indicator. clear text field */
+    /*SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc]initWithAudio:self.trackID];
+    [self.navigationController pushViewController:playerController animated:YES];*/
 }
 @end

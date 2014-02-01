@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SerenCastNotificationsViewController : UIViewController
+@interface SerenCastNotificationsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
