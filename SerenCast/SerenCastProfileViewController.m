@@ -70,6 +70,7 @@
         [self.navigationController pushViewController:interestsController animated:YES];
    }
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

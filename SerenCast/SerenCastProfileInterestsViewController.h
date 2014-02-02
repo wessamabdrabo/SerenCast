@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SerenCastUser.h"
 
-@interface SerenCastProfileInterestsViewController : UIViewController <UIAlertViewDelegate,UITableViewDataSource, UITableViewDelegate>
+@interface SerenCastProfileInterestsViewController : UIViewController </*UIAlertViewDelegate,*/UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) SerenCastUser *user;
 @property (nonatomic, strong) NSArray* Interests;
 -(id) initWithUser:(SerenCastUser*)user;
