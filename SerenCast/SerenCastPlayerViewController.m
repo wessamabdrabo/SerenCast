@@ -66,9 +66,10 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:self.currentTrackID withExtension:@"mp3"];
     NSLog(@"url = %@", url);
     NSError *error;
-   
+    
     //set location manager
     locationManager.delegate = self;
+    locationManager.pausesLocationUpdatesAutomatically = NO;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     // Set AVAudioSession
@@ -81,9 +82,9 @@
     AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
     
     self.audioPlayer = [[AVAudioPlayer alloc]
-                              initWithContentsOfURL:url error:&error];
+                        initWithContentsOfURL:url error:&error];
     if(error)
-       NSLog(@"error initializing player");
+        NSLog(@"error initializing player");
     
     self.audioPlayer.delegate = self;
     [self.audioPlayer prepareToPlay];
@@ -116,7 +117,7 @@
 #pragma mark - Player Control actions
 
 - (IBAction)playBtnAction:(id)sender {
-     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
     [self.audioPlayer play];
 }
 
@@ -187,7 +188,6 @@
     [self stopTimer];
     [self updateDisplay];
     [self getCurrentLocation]; //update location manager
-    // Get the current date
     
     // Schedule the review notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
@@ -205,7 +205,7 @@
     SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
     [notificationsManager addToList:body notificationFiredDate:firedDate];
     
-
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating"
                                                     message: @"Please take a minute to give us feedback about this cast before proceeding to the next one."
                                                    delegate: nil
@@ -247,13 +247,13 @@
         [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isFav"];
         //TODO: change icon to selected
         [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favselected.png"] forState:UIControlStateNormal];
-
+        
     }
     else{
         [cast setValue:[NSNumber numberWithBool:NO] forKey:@"isFav"];
         //TODO: set icon to not fav
         [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favunselected.png"] forState:UIControlStateNormal];
-
+        
     }
     
     [castsList writeToFile:castsFilePath atomically:NO];
@@ -261,8 +261,10 @@
 
 #pragma location
 -(void) getCurrentLocation{
-    if(!locationManager)
+    if(!locationManager){
+        NSLog(@"getCurrentLocation: no location manager!");
         return;
+    }
     [locationManager startUpdatingLocation];
 }
 
@@ -272,7 +274,7 @@
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-LocTime.plist"];
-   
+    
     NSMutableArray *plistDict = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
     NSMutableDictionary *currentDict = [[NSMutableDictionary alloc]init];
     NSMutableDictionary *currentLocDict = [[NSMutableDictionary alloc]init];
@@ -301,7 +303,7 @@
             [currentLocDict setValue:placemark.region forKey:@"region"];
             
             //write location and time to plist
-            [currentDict setValue:self.currentTrackID forKey:@"Id"];
+            [currentDict setValue:self.currentTrackID forKey:@"trackID"];
             [currentDict setValue:currentLocDict forKey:@"Location"];
             [currentDict setValue:currentTime forKey:@"Time"];
             [plistDict addObject:currentDict];
@@ -311,7 +313,20 @@
             NSLog(@"%@", error.debugDescription);
         }
     } ];
-  
+    
+}
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager{
+    NSLog(@"location update is paused!!");
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"location manager failed with error %@", error.debugDescription);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
+                                                    message: @"Your location can not be detected. Please reset your location settings."
+                                                   delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+
 }
 
 @end
