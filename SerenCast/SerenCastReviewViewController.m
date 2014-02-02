@@ -88,19 +88,43 @@ typedef void (^OnFailure)(NSString*);
     [self.view addSubview:activityView];
     [self.view bringSubviewToFront:activityView];
     //[self createActivityIndicator];
+    
+    /*sliders selectors */
+    [self.q1Slider addTarget:self action:@selector(slider1ValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.q2Slider addTarget:self action:@selector(slider2ValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.q3Slider addTarget:self action:@selector(slider3ValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.q4Slider addTarget:self action:@selector(slider4ValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.q1Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q1Slider.value)];
+    self.q2Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q2Slider.value)];
+    self.q3Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q3Slider.value)];
+    self.q4Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q4Slider.value)];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 -(void)done:(id)sender{
     [self prepareData];
     [self startActivityIndicator];
     [self performSelectorInBackground:@selector(startProcessing) withObject:self];
+}
+
+//####################################
+#pragma sliders
+//####################################
+
+- (void)slider1ValueChanged:(UISlider *)sender {
+    self.q1Label.text = [NSString stringWithFormat:@"%ld",lroundf(sender.value)];
+}
+- (void)slider2ValueChanged:(UISlider *)sender {
+    self.q2Label.text = [NSString stringWithFormat:@"%ld",lroundf(sender.value)];
+}
+- (void)slider3ValueChanged:(UISlider *)sender {
+    self.q3Label.text = [NSString stringWithFormat:@"%ld",lroundf(sender.value)];
+}
+- (void)slider4ValueChanged:(UISlider *)sender {
+    self.q4Label.text = [NSString stringWithFormat:@"%ld",lroundf(sender.value)];
 }
 
 //###############################
