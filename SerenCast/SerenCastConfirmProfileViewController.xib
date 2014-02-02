@@ -10,7 +10,6 @@
                 <outlet property="emailTextField" destination="tXy-iI-KBL" id="aAc-7n-OEv"/>
                 <outlet property="genderSegmentedControl" destination="6yj-TM-rqa" id="rmy-Hy-ojG"/>
                 <outlet property="occupationTextField" destination="RA0-Jb-WcX" id="HXD-6S-ALI"/>
-                <outlet property="progressIndicator" destination="Yz7-eu-T1N" id="nFo-gf-Rnx"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -89,10 +88,6 @@
                     </segments>
                     <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 </segmentedControl>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yz7-eu-T1N">
-                    <rect key="frame" x="139" y="290" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

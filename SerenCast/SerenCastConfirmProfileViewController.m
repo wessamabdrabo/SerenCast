@@ -15,6 +15,7 @@ typedef void (^OnFailure)(NSString*);
 
 @interface SerenCastConfirmProfileViewController (){
     bool submitSuccess;
+    UIActivityIndicatorView *activityView;
 }
 @end
 
@@ -40,8 +41,6 @@ typedef void (^OnFailure)(NSString*);
 {
     [super viewDidLoad];
     self.navigationItem.title = @"Confirm";
-    self.progressIndicator.hidden = YES;
-    //self.progressIndicatorView.hidden = YES;
     
     //self.navigationItem.hidesBackButton = YES;
     UIBarButtonItem *nextBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"  style:UIBarButtonItemStyleBordered target:self action:@selector(done:)];
@@ -58,6 +57,13 @@ typedef void (^OnFailure)(NSString*);
     self.occupationTextField.text = self.user.occupation;
     
     submitSuccess = false;
+    
+    /* activity indicator */
+    activityView = [[UIActivityIndicatorView alloc]  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = self.view.center;
+    [activityView hidesWhenStopped];
+    [self.view addSubview:activityView];
+    [self.view bringSubviewToFront:activityView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,17 +71,28 @@ typedef void (^OnFailure)(NSString*);
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)done:(id)sender{
+    [self startActivityIndicator];
+    [self performSelectorInBackground:@selector(startProcessing) withObject:self];
+}
 
+//###############################
+# pragma activity indicator
+//###############################
+-(void)startActivityIndicator{
+    [self.occupationTextField resignFirstResponder];
+    activityView.hidden = NO;
+    [activityView startAnimating];
+}
+-(void)stopActivityIndicator{
+    activityView.hidden = YES;
+    [activityView stopAnimating];
+}
+//#######################################
+#pragma data processing
+//#######################################
 -(void) save:(OnSuccess)saveSuccess failure:(OnFailure)saveFailure
 {
-    self.progressIndicator.hidden = NO;
-    //self.progressIndicatorView.hidden = NO;
-    //[self.view bringSubviewToFront:self.progressIndicatorView];
-    //[self.view bringSubviewToFront:self.progressIndicator];
-    NSLog(@"start animating");
-    [self.view addSubview:self.progressIndicator];
-    [self.progressIndicator startAnimating];
-    
     submitSuccess = false;
     
     NSData *__jsonData;
@@ -139,20 +156,16 @@ typedef void (^OnFailure)(NSString*);
     {
         NSError *jsonParsingError = nil;
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&jsonParsingError];
-         saveSuccess();
+        saveSuccess();
     }
 }
--(void)done:(id)sender{
+-(void) startProcessing
+{
     self.user.email = self.emailTextField.text;
     self.user.age = [NSString  stringWithFormat:@"%ld", (long)self.ageSegmentedControl.selectedSegmentIndex];
     self.user.gender = [NSString stringWithFormat:@"%ld", (long)self.genderSegmentedControl.selectedSegmentIndex];
     self.user.occupation = self.occupationTextField.text;
-    
     [self save: ^(void){
-        [self.progressIndicator stopAnimating];
-        self.progressIndicator.hidden = YES;
-        //self.progressIndicatorView.hidden = YES;
-        
         NSLog(@"save success!");
         NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docStorePath = [searchPaths objectAtIndex:0];
@@ -173,33 +186,29 @@ typedef void (^OnFailure)(NSString*);
         
         [alert show];
     }
-    failure:^(NSString* error){
-        [self.progressIndicator stopAnimating];
-        self.progressIndicator.hidden = YES;
-        //self.progressIndicatorView.hidden = YES;
-
-        NSLog(@"save failure!");
-        
-        submitSuccess = false;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
-                                                        message: error
-                                                       delegate: nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        alert.delegate = self;
-        
-        [alert show];
-    }];
+       failure:^(NSString* error){
+           NSLog(@"save failure!");
+           
+           submitSuccess = false;
+           
+           UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
+                                                           message: error
+                                                          delegate: nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+           alert.delegate = self;
+           
+           [alert show];
+       }];
 }
+
 //######################################
 #pragma mark - Alert Delegate
 //######################################
-
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(submitSuccess){
         SerenCastTutorial2ViewController *tutotrialController = [[SerenCastTutorial2ViewController alloc] init];
         [self.navigationController pushViewController:tutotrialController animated:YES];
     }
- }
+}
 @end

@@ -18,6 +18,8 @@ typedef void (^OnFailure)(NSString*);
 
 @interface SerenCastReviewViewController (){
     bool submitSuccess;
+    UIActivityIndicatorView *activityView;
+   // UIView *activityViewBg;
 }
 @end
 
@@ -35,7 +37,6 @@ typedef void (^OnFailure)(NSString*);
 {
     self = [super init];
     if(self){
-        NSLog(@"initWithTrackID");
         self.reviewedTrackID = trackID;
         self.review = [[SerenCastReview alloc]init];
         self.review.cast_id = @"N/A";
@@ -79,6 +80,14 @@ typedef void (^OnFailure)(NSString*);
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     
     submitSuccess = false;
+    
+    /* activity indicator */
+    activityView = [[UIActivityIndicatorView alloc]  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = self.view.center;
+    [activityView hidesWhenStopped];
+    [self.view addSubview:activityView];
+    [self.view bringSubviewToFront:activityView];
+    //[self createActivityIndicator];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,6 +96,106 @@ typedef void (^OnFailure)(NSString*);
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)done:(id)sender{
+    [self prepareData];
+    [self startActivityIndicator];
+    [self performSelectorInBackground:@selector(startProcessing) withObject:self];
+}
+
+//###############################
+# pragma activity indicator
+//###############################
+/*-(void) createActivityIndicator{
+     activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityViewBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, activityView.bounds.size.width + 20, activityView.bounds.size.height + 20)];
+    activityViewBg.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    activityViewBg.clipsToBounds = YES;
+    activityViewBg.layer.cornerRadius = 10.0;
+    
+   
+    activityView.frame = CGRectMake(activityViewBg.center.x, activityViewBg.center.y, activityView.bounds.size.width, activityView.bounds.size.height);
+    [activityViewBg addSubview:activityView];
+    
+    [self.view addSubview:activityViewBg];
+    //[self.view bringSubviewToFront:activityViewBg];
+    activityViewBg.hidden = YES;
+}*/
+-(void)startActivityIndicator{
+   // activityViewBg.hidden = NO;
+    activityView.hidden = NO;
+    [activityView startAnimating];
+}
+-(void)stopActivityIndicator{
+    //activityViewBg.hidden = YES;
+    activityView.hidden = YES;
+    [activityView stopAnimating];
+}
+
+//###############################
+# pragma data processing
+//###############################
+-(void)startProcessing{
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    [self save: ^(void){
+        //[activityView stopAnimating];
+        [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
+        /* if last track go to final step view */
+        if ([self.reviewedTrackID isEqualToString:LAST_TRACK_ID]) {
+            /* set expdone in data plist to indicate we're going to final step */
+            [dataList setValue:@"1" forKey:@"ExpDone"];
+            [dataList writeToFile:filePath atomically: NO];
+            
+            /*SerenCastFinalViewController  *finalController = [[SerenCastFinalViewController alloc] init];
+             [self.navigationController pushViewController:finalController animated:NO];*/
+            SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
+            [self.navigationController pushViewController:reviewCompleteController animated:YES];
+            
+        }
+        else{ /* if not last track, save next track to plist and go back to player */
+            
+            NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+            NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
+            NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
+            [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
+            [castsList writeToFile:castsFilePath atomically:NO];
+            
+            
+            NSInteger nextTrackID = self.reviewedTrackID.integerValue + 1;
+            NSString* nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)nextTrackID];
+            [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];
+            [dataList writeToFile:filePath atomically: NO];
+            
+            /* go to status view before player */
+            if([self.reviewedTrackID intValue]+1 == 3 || [self.reviewedTrackID intValue]+1 == 8 || [self.reviewedTrackID intValue]+1 == 13 || [self.reviewedTrackID intValue]+1 == 18){
+                SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc]initWithTrackID:nextTrackStrID];
+                [self.navigationController pushViewController:statusController animated:YES];
+            }else{
+                SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
+                [self.navigationController pushViewController:playerController animated:YES];
+            }
+        }
+    }failure:^(NSString* error){
+        //[activityView stopAnimating];
+        [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
+        
+        NSLog(@"save failure!");
+        
+        submitSuccess = false;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
+                                                        message: error
+                                                       delegate: nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        alert.delegate = self;
+        
+        [alert show];
+    }];
+}
 -(void) save:(OnSuccess)saveSuccess failure:(OnFailure)saveFailure
 {
     NSData *__jsonData;
@@ -172,8 +281,6 @@ typedef void (^OnFailure)(NSString*);
     self.review.criteria3 = [NSString stringWithFormat:@"%f", self.q3Slider.value];
     self.review.criteria4 = [NSString stringWithFormat:@"%f", self.q4Slider.value];
     
-    
-    
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-LocTime.plist"];
     
     NSMutableArray *locationsList = [NSMutableArray arrayWithContentsOfFile:filePath];
@@ -222,74 +329,5 @@ typedef void (^OnFailure)(NSString*);
             self.review.time = @"N/A";
         }
     }
-}
--(void)done:(id)sender{
-    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docStorePath = [searchPaths objectAtIndex:0];
-    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
-    NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    
-    [self prepareData];
-    
-    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityView.center=self.view.center;
-    [activityView startAnimating];
-    [activityView hidesWhenStopped];
-    [self.view addSubview:activityView];
-    [self.view bringSubviewToFront:activityView];
-
-    
-    [self save: ^(void){
-        [activityView stopAnimating];
-        /* if last track go to final step view */
-        if ([self.reviewedTrackID isEqualToString:LAST_TRACK_ID]) {
-            /* set expdone in data plist to indicate we're going to final step */
-            [dataList setValue:@"1" forKey:@"ExpDone"];
-            [dataList writeToFile:filePath atomically: NO];
-            
-            /*SerenCastFinalViewController  *finalController = [[SerenCastFinalViewController alloc] init];
-             [self.navigationController pushViewController:finalController animated:NO];*/
-            SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
-            [self.navigationController pushViewController:reviewCompleteController animated:YES];
-            
-        }
-        else{ /* if not last track, save next track to plist and go back to player */
-            
-            NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
-            NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
-            NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
-            [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
-            [castsList writeToFile:castsFilePath atomically:NO];
-            
-            
-            NSInteger nextTrackID = self.reviewedTrackID.integerValue + 1;
-            NSString* nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)nextTrackID];
-            [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];
-            [dataList writeToFile:filePath atomically: NO];
-            
-            /* go to status view before player */
-            if([self.reviewedTrackID intValue]+1 == 3 || [self.reviewedTrackID intValue]+1 == 8 || [self.reviewedTrackID intValue]+1 == 13 || [self.reviewedTrackID intValue]+1 == 18){
-                SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc]initWithTrackID:nextTrackStrID];
-                [self.navigationController pushViewController:statusController animated:YES];
-            }else{
-                SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
-                [self.navigationController pushViewController:playerController animated:YES];
-            }
-        }
-    }failure:^(NSString* error){
-        [activityView stopAnimating];
-        NSLog(@"save failure!");
-        
-        submitSuccess = false;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
-                                                        message: error
-                                                       delegate: nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        alert.delegate = self;
-        
-        [alert show];
-    }];
 }
 @end

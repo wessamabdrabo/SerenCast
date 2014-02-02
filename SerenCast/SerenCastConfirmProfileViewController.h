@@ -16,6 +16,4 @@
 @property(strong, nonatomic) SerenCastUser *user;
 @property (weak, nonatomic) IBOutlet UITextField *occupationTextField;
 - (id) initWithUser:(SerenCastUser*)user;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressIndicator;
-//@property (weak, nonatomic) IBOutlet UIView *progressIndicatorView;
 @end
