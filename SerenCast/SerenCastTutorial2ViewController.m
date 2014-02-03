@@ -55,7 +55,7 @@
     
     /* view controllers */
     SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:@"1"];
-    SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc] initWithTrackID:@"1"]; //TODO:CHANGE!!
+    SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc] init];
     SerenCastPlayerListViewController *listController = [[SerenCastPlayerListViewController alloc]init];
     SerenCastNotificationsViewController *notficationsController = [[SerenCastNotificationsViewController alloc]init];
     /*set bar items*/

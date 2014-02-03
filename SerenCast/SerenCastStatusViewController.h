@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SerenCastStatus.h"
 
 @interface SerenCastStatusViewController : UIViewController
 - (IBAction)proceedBtnAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *statusTextField;
 @property (strong, nonatomic) NSString* trackID;
+@property (strong, nonatomic) SerenCastStatus *status;
 -(id)initWithTrackID:(NSString*)trackID;
 @end

@@ -203,7 +203,6 @@ typedef void (^OnFailure)(NSString*);
             }
         }
     }failure:^(NSString* error){
-        //[activityView stopAnimating];
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         
         NSLog(@"save failure!");
@@ -298,7 +297,7 @@ typedef void (^OnFailure)(NSString*);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *datafilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
     NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] initWithContentsOfFile:datafilePath];
-    self.review.user_id = [dataDict objectForKey:@"userID"]; //TODO: get it from plist
+    self.review.user_id = [dataDict objectForKey:@"userID"];
     
     self.review.criteria1 = [NSString stringWithFormat:@"%f", self.q1Slider.value];
     self.review.criteria2 = [NSString stringWithFormat:@"%f", self.q2Slider.value];
