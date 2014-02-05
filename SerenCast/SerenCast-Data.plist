@@ -10,5 +10,7 @@
 	<string>0</string>
 	<key>CurrentAudioFileID</key>
 	<string>1</string>
+	<key>appAlreadyLaunched</key>
+	<string>0</string>
 </dict>
 </plist>

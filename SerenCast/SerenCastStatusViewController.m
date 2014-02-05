@@ -99,8 +99,23 @@ typedef void (^OnFailure)(NSString*);
     [self save:^{
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         if(self.trackID){ /* coming from in player status update */
-            SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc]initWithAudio:self.trackID];
-            [self.navigationController pushViewController:playerController animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            if([[self.navigationController topViewController]isKindOfClass:[SerenCastPlayerViewController class]]){
+                NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *docStorePath = [searchPaths objectAtIndex:0];
+                NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+                NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+                /* next track is the last in order list */
+                NSString * nextTrack = [dataList objectForKey:@"CurrentAudioFileID"];
+                SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
+                if(player){
+                    
+                    [player resetPlayer:nextTrack playerMode:1];
+                    NSLog(@"go to player. don't create a new one. just use the old");
+                    [player.navigationController setNavigationBarHidden:NO];
+                    [player.view setNeedsDisplay];
+                }
+            }
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Success"
                                                             message: @"Your status is submitted successfully."

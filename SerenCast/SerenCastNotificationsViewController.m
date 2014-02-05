@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:nil];
     notificationsList = [[NSMutableArray alloc]init];
     notificationsManager = [SerenCastNotificationsManager sharedInstance];
     
@@ -39,8 +39,10 @@
         notificationsList = notificationsManager.notificationsList;
     }
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:nil];
     if(notificationsManager){
         notificationsList = notificationsManager.notificationsList;
     }

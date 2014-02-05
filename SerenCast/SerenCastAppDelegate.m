@@ -15,6 +15,7 @@
 #import "SerenCastPlayerListViewController.h"
 #import "SerenCastNotificationsViewController.h"
 #import "SerenCastNotificationsManager.h"
+#import "SerenCastHelpViewController.h"
 
 
 @implementation SerenCastAppDelegate
@@ -30,9 +31,9 @@
     /* create  copies of data and casts plists in Documents direcotry if they don't exits */
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
-    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
-    if(![[NSFileManager defaultManager]fileExistsAtPath:filePath]){
-        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Data" ofType:@"plist"] toPath:filePath error:nil];
+    NSString *dataFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    if(![[NSFileManager defaultManager]fileExistsAtPath:dataFilePath]){
+        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Data" ofType:@"plist"] toPath:dataFilePath error:nil];
         NSLog(@"**Copying data plist to documents directory");
         
     }
@@ -53,14 +54,38 @@
         NSLog(@"**Copying notifications plist to documents directory");
     }
     /* get current audio track from data plist */
-    NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:dataFilePath];
     NSString *currentTrack = [plistDict objectForKey:@"CurrentAudioFileID"];
     NSString *reviewIsSent = [plistDict objectForKey:@"ReviewIsSent"];
     NSString *expDone = [plistDict objectForKey:@"ExpDone"];
     NSString *firstTimeUser = [plistDict objectForKey:@"firstTimeUser"];
-
+    NSString *appAlreadyLaunched = [plistDict objectForKey: @"appAlreadyLaunched"];
+    
+    /* if first time app launches, cancel all notoificaitons (from prev loads), and schedule daily status notification */
+    if ([appAlreadyLaunched isEqualToString:@"0"]) {
+        NSLog(@"### First time app launch");
+        if([[[UIApplication sharedApplication] scheduledLocalNotifications] count] > 0){
+            NSLog(@"cancel all local notificaions");
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        }
+        /* schedule status daily notification starting today in an hour*/
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:86580.0];
+        NSLog(@"Status firedate %@", localNotification.fireDate);
+        localNotification.alertBody = [NSString stringWithFormat:@"Tell us what you feel like listening to today."];
+        localNotification.alertAction = @"Status";
+        localNotification.repeatInterval = NSDayCalendarUnit;
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        [plistDict setValue:@"1" forKey:@"appAlreadyLaunched"];
+        [plistDict writeToFile:dataFilePath atomically:NO];
+    }
     
     
+    
+    /* decide which view to load */
     if([expDone isEqualToString:@"1"]){
         SerenCastReviewSentViewController *reviewSentController = [[SerenCastReviewSentViewController alloc]init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:reviewSentController];
@@ -78,44 +103,35 @@
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"GillSans-Light" size:24], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil];
         [[UINavigationBar appearance] setTitleTextAttributes:attributes];
         
-        /* schedule status daily notification starting today in an hour*/
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:86580.0];
-        NSLog(@"###Status firedate %@", localNotification.fireDate);
-        localNotification.alertBody = [NSString stringWithFormat:@"Tell us what you feel like listening to today."];
-        localNotification.alertAction = @"Status";
-        localNotification.repeatInterval = NSDayCalendarUnit;
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
         self.window.rootViewController = navController;
-    }
-    else{
+    }else{
         UITabBarController *tabBarController = [[UITabBarController alloc]init];
-        
         /* bar items */
-        UITabBarItem* playerTabItem = [[UITabBarItem alloc] initWithTitle:@"Player" image:nil tag:0];
-        UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"List" image:nil tag:1];
-        UITabBarItem *statusTabItem = [[UITabBarItem alloc] initWithTitle:@"Status" image:nil tag:2];
-        UITabBarItem *notificationsTabItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:nil tag:3];
+        UITabBarItem* playerTabItem = [[UITabBarItem alloc]  initWithTitle:@"Home" image:[UIImage imageNamed:@"homefull"] tag:0];
+        
+        UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"Playlist" image:[UIImage imageNamed:@"playlistfull"] tag:1];
+        UITabBarItem *statusTabItem = [[UITabBarItem alloc] initWithTitle:@"Status" image:[UIImage imageNamed:@"statusfull"] tag:2];
+        UITabBarItem *notificationsTabItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[UIImage imageNamed:@"notificationsfull"] tag:3];
+        UITabBarItem *helpTabItem = [[UITabBarItem alloc] initWithTitle:@"Help" image:[UIImage imageNamed:@"helpfull"] tag:3];
         
         /* view controllers */
         SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:currentTrack];
         SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc] init];
         SerenCastPlayerListViewController *listController = [[SerenCastPlayerListViewController alloc]init];
         SerenCastNotificationsViewController *notficationsController = [[SerenCastNotificationsViewController alloc]init];
+        SerenCastHelpViewController *helpViewController = [[SerenCastHelpViewController alloc]init];
+        
         
         /*set bar items*/
         [listController setTabBarItem:listTabItem];
         [notficationsController setTabBarItem:notificationsTabItem];
         [statusController setTabBarItem:statusTabItem];
-        
+        [helpViewController setTabBarItem:helpTabItem];
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playerController];
-        [navController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        /*[navController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         [navController.navigationBar setShadowImage:[UIImage new]];
-        [navController.navigationBar setTranslucent:YES];
+        [navController.navigationBar setTranslucent:YES];*/
         [navController setTabBarItem:playerTabItem];
         
         /* Navigation styling */
@@ -125,8 +141,9 @@
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"GillSans-Light" size:24], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil];
         [[UINavigationBar appearance] setTitleTextAttributes:attributes];
         
+       
         
-        tabBarController.viewControllers = [NSArray arrayWithObjects:navController,listController,statusController,notficationsController, nil];
+        tabBarController.viewControllers = [NSArray arrayWithObjects:navController,listController,statusController,notficationsController,helpViewController, nil];
         //self.window.rootViewController = navController;
         self.window.rootViewController = tabBarController;
     }
@@ -142,11 +159,6 @@
     return YES;
 }
 
--(void) buildTabBarInterface
-{
-    
-}
-							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

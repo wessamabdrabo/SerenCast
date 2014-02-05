@@ -8,6 +8,8 @@
 
 #import "SerenCastPlayerListViewController.h"
 #import "SerenCastPlayerListCell.h"
+#import "SerenCastPlayerViewController.h"
+#import "SerenCastReviewViewController.h"
 
 @interface SerenCastPlayerListViewController (){
     NSMutableArray *podcastsList;
@@ -69,7 +71,7 @@
             [podcastsFavsList addObject:item];
         }
         if([[item objectForKey:@"isPlayed"]boolValue]){
-             //NSLog(@"[ViewWillAppear] add to played %d, item %@", i, item);
+            //NSLog(@"[ViewWillAppear] add to played %d, item %@", i, item);
             [podcastsPlayedList addObject:item];
         }
     }
@@ -79,17 +81,15 @@
         for(int i=podcastsPlayedList.count-1; i>=0; i--)
             [podcastsPlayedList removeObjectAtIndex:i];
     }
-    NSLog(@"favs list count = %d", podcastsFavsList.count);
     if(podcastsFavsList.count){
         for(int i=podcastsFavsList.count-1; i>=0; i--){
-            NSLog(@"remove object at index %d",i);
             [podcastsFavsList removeObjectAtIndex:i];
         }
     }
 }
 -(void)listUpdate:(UISegmentedControl *)sender {
     int value = sender.selectedSegmentIndex;
-
+    
     if(value == 1){ /*show favs */
         filterFavs = true;
         filterPlayed = false;
@@ -142,13 +142,60 @@
     else
         list = podcastsList;
     NSMutableDictionary* item = [list objectAtIndex:row];
-
+    
     cell.titleLabel.text = [item objectForKey:@"title"];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    int selectedCastID = [indexPath row] + 1;
+    [self.tabBarController setSelectedIndex:0];
+    UINavigationController *navController = [self.tabBarController selectedViewController];
+    
+    if([[navController topViewController]isKindOfClass:[SerenCastReviewViewController class]]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating Needed"
+                                                        message: @"Please rate the current cast first before playing another."
+                                                       delegate: nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        SerenCastPlayerViewController *playerController = nil;
+        if(navController)
+        {
+            NSArray *childViewControllers = navController.childViewControllers;
+            for(int i=0; i<[childViewControllers count];i++)
+            {
+                if([[childViewControllers objectAtIndex:i] isKindOfClass:[SerenCastPlayerViewController class]]){
+                    playerController = [childViewControllers objectAtIndex:0];
+                    break;
+                }
+            }
+            if(playerController){
+                int nextTrack = 0;
+                /*track id based one which list? all/favs/played */
+                if(self.segmentedControl.selectedSegmentIndex == 0) /* all list*/
+                    nextTrack = selectedCastID;
+                else if(self.segmentedControl.selectedSegmentIndex == 1) /* favorites */{
+                    if(podcastsFavsList && [podcastsFavsList count] > 0 && [indexPath row] < [podcastsFavsList count]){
+                        NSMutableDictionary * item = [podcastsFavsList objectAtIndex:[indexPath row]];
+                        selectedCastID = [[item objectForKey:@"trackID"]intValue];
+                    }
+                }else if(self.segmentedControl.selectedSegmentIndex == 2) /* played */{
+                    if(podcastsPlayedList && [podcastsPlayedList count] > 0 && [indexPath row] < [podcastsPlayedList count]){
+                        NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:[indexPath row]];
+                        selectedCastID = [[item objectForKey:@"trackID"]intValue];
+                    }
+                }
+                
+                [playerController resetPlayer:[NSString stringWithFormat:@"%d", selectedCastID] playerMode:0]; /* free mode */
+            }
+            
+        }
+    }
 }
 
 

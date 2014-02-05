@@ -10,5 +10,4 @@
 
 @interface SerenCastTutorial3ViewController : UIViewController
 - (IBAction)proceedAction:(id)sender;
-
 @end

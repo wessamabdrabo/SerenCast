@@ -1,18 +1,18 @@
 //
-//  SerenCastReviewSentViewController.m
+//  SerenCastHelpViewController.m
 //  SerenCast
 //
-//  Created by Wessam Abdrabo on 1/18/14.
+//  Created by Wessam Abdrabo on 2/4/14.
 //  Copyright (c) 2014 tum. All rights reserved.
 //
 
-#import "SerenCastReviewSentViewController.h"
+#import "SerenCastHelpViewController.h"
 
-@interface SerenCastReviewSentViewController ()
+@interface SerenCastHelpViewController ()
 
 @end
 
-@implementation SerenCastReviewSentViewController
+@implementation SerenCastHelpViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
-    [self.tabBarController.tabBar setHidden:YES]; /* make sure user doesn't roam around after experiement is done */
+    
 }
 
 - (void)didReceiveMemoryWarning

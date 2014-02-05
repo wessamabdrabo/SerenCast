@@ -12,6 +12,9 @@
 #import "SerenCastStatusViewController.h"
 
 #define LAST_TRACK_ID @"20"
+#define PLAYER_MODE_FREE 0
+#define PLAYER_MODE_ORDER 1
+
 /* Blocks */
 typedef void (^OnSuccess)(void);
 typedef void (^OnFailure)(NSString*);
@@ -19,6 +22,7 @@ typedef void (^OnFailure)(NSString*);
 @interface SerenCastReviewViewController (){
     bool submitSuccess;
     UIActivityIndicatorView *activityView;
+    int playerMode;
    // UIView *activityViewBg;
 }
 @end
@@ -33,10 +37,11 @@ typedef void (^OnFailure)(NSString*);
     }
     return self;
 }
--(id) initWithReviewedTrackID:(NSString *) trackID
+-(id) initWithReviewedTrackIdAndMode:(NSString *) trackID mode:(int)mode
 {
     self = [super init];
     if(self){
+        playerMode = mode;
         self.reviewedTrackID = trackID;
         self.review = [[SerenCastReview alloc]init];
         self.review.cast_id = @"N/A";
@@ -167,8 +172,10 @@ typedef void (^OnFailure)(NSString*);
     [self save: ^(void){
         //[activityView stopAnimating];
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
-        /* if last track go to final step view */
-        if ([self.reviewedTrackID isEqualToString:LAST_TRACK_ID]) {
+        
+        /* STOPPING CONDITION. VERY IMPORTANT. */
+        /* playing last track from free mode, don't end exp */
+        if ([self.reviewedTrackID isEqualToString:LAST_TRACK_ID] && playerMode != PLAYER_MODE_FREE) {
             /* set expdone in data plist to indicate we're going to final step */
             [dataList setValue:@"1" forKey:@"ExpDone"];
             [dataList writeToFile:filePath atomically: NO];
@@ -187,19 +194,35 @@ typedef void (^OnFailure)(NSString*);
             [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
             [castsList writeToFile:castsFilePath atomically:NO];
             
-            
-            NSInteger nextTrackID = self.reviewedTrackID.integerValue + 1;
-            NSString* nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)nextTrackID];
-            [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];
-            [dataList writeToFile:filePath atomically: NO];
+            /* Next track decided by mode*/
+            NSString* nextTrackStrID = @"";
+            if(playerMode == PLAYER_MODE_FREE){
+                int lastPlayed = [[dataList objectForKey:@"CurrentAudioFileID"] integerValue];
+                nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)lastPlayed];
+            }
+            else{
+                NSInteger nextTrackID = self.reviewedTrackID.integerValue + 1;
+                nextTrackStrID = [NSString stringWithFormat:@"%ld",(long)nextTrackID];
+                [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];
+                [dataList writeToFile:filePath atomically: NO];
+            }
             
             /* go to status view before player */
             if([self.reviewedTrackID intValue]+1 == 3 || [self.reviewedTrackID intValue]+1 == 8 || [self.reviewedTrackID intValue]+1 == 13 || [self.reviewedTrackID intValue]+1 == 18){
                 SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc]initWithTrackID:nextTrackStrID];
                 [self.navigationController pushViewController:statusController animated:YES];
             }else{
-                SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
-                [self.navigationController pushViewController:playerController animated:YES];
+                /*SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
+                [self.navigationController pushViewController:playerController animated:YES];*/
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                if([[self.navigationController topViewController]isKindOfClass:[SerenCastPlayerViewController class]]){
+                    SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
+                    if(player){
+                        [player resetPlayer:nextTrackStrID playerMode:1]; /* always after review we go back to the ordered playlist */
+                        NSLog(@"go to player. don't create a new one. just use the old");
+                        [player.view setNeedsDisplay];
+                    }
+                }
             }
         }
     }failure:^(NSString* error){

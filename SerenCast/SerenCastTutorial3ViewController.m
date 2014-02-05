@@ -10,7 +10,6 @@
 #import "SerenCastReviewViewController.h"
 
 @interface SerenCastTutorial3ViewController ()
-
 @end
 
 @implementation SerenCastTutorial3ViewController
@@ -38,7 +37,7 @@
 }
 
 - (IBAction)proceedAction:(id)sender {
-    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackID:@"1"];
+    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:@"1" mode:1]; /* always order mode */
     [self.navigationController pushViewController:reviewViewController animated:YES];
 }
 @end

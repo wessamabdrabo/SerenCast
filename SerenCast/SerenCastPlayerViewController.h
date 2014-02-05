@@ -11,7 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface SerenCastPlayerViewController : UIViewController <AVAudioPlayerDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property(nonatomic,strong) AVAudioPlayer* audioPlayer;
 @property (nonatomic, strong) NSTimer* timer;
 @property (weak, nonatomic) IBOutlet UISlider *currentTimeSlider;
@@ -27,6 +29,9 @@
 - (IBAction)pauseBtnAction:(id)sender;
 - (IBAction)currentTimeSliderValueChanged:(id)sender;
 - (IBAction)currentTimeSliderTouchupInside:(id)sender;
+-(void) resetPlayer:(NSString*)trackID playerMode:(int)playerMode;
+
 @property (weak, nonatomic) IBOutlet UIButton *toggleFavsBtn;
+
 
 @end

@@ -11,6 +11,8 @@
 #import "SerenCastTutorial3ViewController.h"
 #import "SerenCastNotificationsManager.h"
 
+#define PLAYER_MODE_FREE 0
+#define PLAYER_MODE_ORDER 1
 
 @interface SerenCastPlayerViewController ()
 
@@ -21,6 +23,8 @@
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
     NSString * castTitle;
+    int mode;
+    NSString* playListTrackID;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,6 +46,8 @@
         locationManager = [[CLLocationManager alloc] init];
         geocoder = [[CLGeocoder alloc] init];
         castTitle = [[NSString alloc]init];
+        mode = PLAYER_MODE_ORDER;
+        playListTrackID = [[NSString alloc]init];
     }
     return self;
 }
@@ -50,12 +56,27 @@
 {
     NSLog(@"viewDidLoad");
     [super viewDidLoad];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ of 20", self.currentTrackID];
+    self.navigationItem.title = @"Discover";
+    self.subtitleLabel.text = [NSString stringWithFormat:@"%@ of 20", self.currentTrackID];
     self.navigationItem.hidesBackButton = YES;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTranslucent:YES];
+    
+    /* help button */
+    /* UIImage *notificationImg = [UIImage imageNamed:@"helpfull"];
+     UIButton *notificationsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+     [notificationsBtn setBackgroundImage:notificationImg forState:UIControlStateNormal];
+     [notificationsBtn setTitle:@"" forState:UIControlStateNormal];
+     [notificationsBtn addTarget:self action:@selector(openHelp:) forControlEvents:UIControlEventTouchDown];
+     UIBarButtonItem *notificationsBtnItem =[[UIBarButtonItem alloc] initWithCustomView:notificationsBtn];
+     notificationsBtn.frame = (CGRect) {
+     .size.width = 30,
+     .size.height = 30,
+     };
+     self.navigationItem.rightBarButtonItem = notificationsBtnItem;*/
+    
     /* Navigation styling */
     UIColor * navBarTintColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setBarTintColor:navBarTintColor];
@@ -63,14 +84,15 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"GillSans-Light" size:24], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:self.currentTrackID withExtension:@"mp3"];
-    NSLog(@"url = %@", url);
-    NSError *error;
-    
     //set location manager
     locationManager.delegate = self;
     locationManager.pausesLocationUpdatesAutomatically = NO;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    
+    NSURL *url = [[NSBundle mainBundle] URLForResource:self.currentTrackID withExtension:@"mp3"];
+    NSLog(@"url = %@", url);
+    NSError *error;
     
     // Set AVAudioSession
     NSError *sessionError = nil;
@@ -101,12 +123,72 @@
     
     self.titleLabel.text = currentTrackTitle;
     castTitle = currentTrackTitle;
+    
+    /* set fav icon */
     if([[plistItem objectForKey:@"isFav"] boolValue])
-        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favselected.png"] forState:UIControlStateNormal];
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
+    else [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon"] forState:UIControlStateNormal];
+    //[self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
     
     [self updateDisplay];
 }
 
+-(void) resetPlayer:(NSString*)trackID playerMode:(int)playerMode{
+    
+    NSLog(@"[resetPlayer] trackID = %@, mode = %d", trackID,playerMode);
+    
+    mode = playerMode;
+    
+    if(mode == PLAYER_MODE_FREE)
+        playListTrackID = trackID;
+    else if(mode == PLAYER_MODE_ORDER)
+        self.currentTrackID = trackID;
+    
+    NSURL *url = [[NSBundle mainBundle] URLForResource:trackID withExtension:@"mp3"];
+    NSLog(@"Played file url = %@", url);
+    NSError *error;
+    [self.audioPlayer stop];
+    self.audioPlayer = nil;
+    self.audioPlayer = [[AVAudioPlayer alloc]
+                        initWithContentsOfURL:url error:&error];
+    self.audioPlayer.delegate = self;
+    
+    if(error)
+        NSLog(@"error initializing player");
+    
+    self.currentTimeSlider.minimumValue = 0.0f;
+    self.currentTimeSlider.maximumValue = self.audioPlayer.duration;
+    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+    NSArray *plist = [[NSArray alloc] initWithContentsOfFile:filePath];
+    NSDictionary *plistItem = [plist objectAtIndex:[trackID intValue]-1];
+    NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
+    
+    self.titleLabel.text = currentTrackTitle;
+    castTitle = currentTrackTitle;
+    /* set fav icon */
+    if([[plistItem objectForKey:@"isFav"] boolValue])
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
+    else [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon"] forState:UIControlStateNormal];
+    
+    /* set title according to mode */
+    if(playerMode == PLAYER_MODE_ORDER) {
+        self.navigationItem.title = @"Discover";
+        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ of 20", trackID];
+    }else if (playerMode == PLAYER_MODE_FREE){
+        self.navigationItem.title = currentTrackTitle;
+        self.subtitleLabel.text = @"";
+    }
+    
+    //self.navigationItem.title = [NSString stringWithFormat:@"%@ of 20", trackID];
+    
+    if(playerMode ==PLAYER_MODE_FREE){
+        [self stopBtnAction:self.playBtn];
+        [self playBtnAction:self.playBtn];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -117,6 +199,7 @@
 #pragma mark - Player Control actions
 
 - (IBAction)playBtnAction:(id)sender {
+    NSLog(@"playBtnClicked...");
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
     [self.audioPlayer play];
 }
@@ -201,6 +284,8 @@
     NSString* body = [NSString stringWithFormat:@"%@", localNotification.alertBody];
     NSDate* firedDate = localNotification.fireDate;
     
+    [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:@"1"];
+    
     /* write notification to plist */
     SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
     [notificationsManager addToList:body notificationFiredDate:firedDate];
@@ -222,15 +307,23 @@
     if (buttonIndex == 1) { //review
         self.audioPlayer = nil;
         self.timer = nil;
+        NSString* track = (mode == PLAYER_MODE_FREE) ? playListTrackID :self.currentTrackID;
         
         //rating first track. Show tutorial.
-        if([self.currentTrackID isEqualToString:@"1"]){
+        if([self.currentTrackID isEqualToString:@"1"] && mode != PLAYER_MODE_FREE){
             SerenCastTutorial3ViewController *tutorialController = [[SerenCastTutorial3ViewController alloc]init];
             [self.navigationController pushViewController:tutorialController animated:YES];
         }else{
-            SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackID:self.currentTrackID];
+            NSLog(@"###reviewing track #: %@", track);
+            SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:track mode:mode];
             [self.navigationController pushViewController:reviewViewController animated:YES];
         }
+    }
+    
+    /* do some resetting */
+    if(mode == PLAYER_MODE_FREE){
+        playListTrackID = nil;
+        mode = PLAYER_MODE_ORDER;
     }
 }
 
@@ -241,18 +334,19 @@
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
     NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
-    NSMutableDictionary *cast = [castsList objectAtIndex:[self.currentTrackID intValue]-1];
+    int favTrackID = mode == PLAYER_MODE_ORDER ? [self.currentTrackID intValue] : [playListTrackID intValue];
+    NSMutableDictionary *cast = [castsList objectAtIndex:favTrackID-1];
     /* if not already a favorite */
     if(![[cast objectForKey:@"isFav"]boolValue]){
         [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isFav"];
         //TODO: change icon to selected
-        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favselected.png"] forState:UIControlStateNormal];
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
         
     }
     else{
         [cast setValue:[NSNumber numberWithBool:NO] forKey:@"isFav"];
         //TODO: set icon to not fav
-        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favunselected.png"] forState:UIControlStateNormal];
+        [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon"] forState:UIControlStateNormal];
         
     }
     
@@ -326,7 +420,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-
+    
 }
 
 @end

@@ -16,8 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *q3Slider;
 @property (weak, nonatomic) IBOutlet UISlider *q4Slider;
 @property (strong, nonatomic) SerenCastReview *review;
--(id) initWithReviewedTrackID:(NSString *) trackID;
-
+-(id) initWithReviewedTrackIdAndMode:(NSString *) trackID mode:(int)mode;
 @property (weak, nonatomic) IBOutlet UILabel *q1Label;
 @property (weak, nonatomic) IBOutlet UILabel *q2Label;
 @property (weak, nonatomic) IBOutlet UILabel *q4Label;
