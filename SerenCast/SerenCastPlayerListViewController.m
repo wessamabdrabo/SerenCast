@@ -10,6 +10,7 @@
 #import "SerenCastPlayerListCell.h"
 #import "SerenCastPlayerViewController.h"
 #import "SerenCastReviewViewController.h"
+#import "SerenCastCastDetialsViewController.h"
 
 @interface SerenCastPlayerListViewController (){
     NSMutableArray *podcastsList;
@@ -37,6 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Podcasts";
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
@@ -55,6 +64,8 @@
     filterFavs = false;
     filterPlayed = false;
     
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+
     [self.segmentedControl addTarget:self action:@selector(listUpdate:) forControlEvents:UIControlEventValueChanged];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -143,14 +154,21 @@
         list = podcastsList;
     NSMutableDictionary* item = [list objectAtIndex:row];
     
+    cell.backgroundColor = [UIColor clearColor];
     cell.titleLabel.text = [item objectForKey:@"title"];
+    cell.durationLabel.text = [item objectForKey:@"duration"];
+    [cell.playBtn setTag:row];
+    [cell.infoBtn setTag:row];
+    [cell.playBtn  addTarget:self action:@selector(playCast:) forControlEvents:UIControlEventTouchDown];
+    [cell.infoBtn  addTarget:self action:@selector(openCastDetails:) forControlEvents:UIControlEventTouchDown];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    /*[cell.imageView setImage:[UIImage imageNamed:[item objectForKey:@"image"]]];*/ /* need thumbnail */
+    
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    int selectedCastID = [indexPath row] + 1;
+-(void) playCast:(UIButton*)sender{
+    NSInteger row = sender.tag;
+    int selectedCastID = row + 1;
     [self.tabBarController setSelectedIndex:0];
     UINavigationController *navController = [self.tabBarController selectedViewController];
     
@@ -180,13 +198,13 @@
                 if(self.segmentedControl.selectedSegmentIndex == 0) /* all list*/
                     nextTrack = selectedCastID;
                 else if(self.segmentedControl.selectedSegmentIndex == 1) /* favorites */{
-                    if(podcastsFavsList && [podcastsFavsList count] > 0 && [indexPath row] < [podcastsFavsList count]){
-                        NSMutableDictionary * item = [podcastsFavsList objectAtIndex:[indexPath row]];
+                    if(podcastsFavsList && [podcastsFavsList count] > 0 && row < [podcastsFavsList count]){
+                        NSMutableDictionary * item = [podcastsFavsList objectAtIndex:row];
                         selectedCastID = [[item objectForKey:@"trackID"]intValue];
                     }
                 }else if(self.segmentedControl.selectedSegmentIndex == 2) /* played */{
-                    if(podcastsPlayedList && [podcastsPlayedList count] > 0 && [indexPath row] < [podcastsPlayedList count]){
-                        NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:[indexPath row]];
+                    if(podcastsPlayedList && [podcastsPlayedList count] > 0 && row < [podcastsPlayedList count]){
+                        NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:row];
                         selectedCastID = [[item objectForKey:@"trackID"]intValue];
                     }
                 }
@@ -197,6 +215,33 @@
         }
     }
 }
-
+-(void)openCastDetails:(UIButton*) sender{
+    NSInteger row = sender.tag;
+    int selectedTrackID = 0;
+    if(self.segmentedControl.selectedSegmentIndex == 0) /* all list*/
+        selectedTrackID = row + 1; /* sending the actual id not the index */
+    else if(self.segmentedControl.selectedSegmentIndex == 1) /* favorites */{
+        if(podcastsFavsList && [podcastsFavsList count] > 0 && row < [podcastsFavsList count]){
+            NSMutableDictionary * item = [podcastsFavsList objectAtIndex:row];
+            selectedTrackID = [[item objectForKey:@"trackID"]intValue];
+        }
+    }else if(self.segmentedControl.selectedSegmentIndex == 2) /* played */{
+        if(podcastsPlayedList && [podcastsPlayedList count] > 0 && row < [podcastsPlayedList count]){
+            NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:row];
+            selectedTrackID = [[item objectForKey:@"trackID"]intValue];
+        }
+    }
+    NSLog(@"[openCastDetails] castID = %d", selectedTrackID);
+    SerenCastCastDetialsViewController *detailsViewController = [[SerenCastCastDetialsViewController alloc]initWithCastID:[NSString stringWithFormat:@"%d", selectedTrackID]];
+    [self.navigationController pushViewController:detailsViewController animated:YES];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 108.0;
+}
 
 @end

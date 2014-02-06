@@ -6,13 +6,13 @@
 		<key>trackID</key>
 		<string>1</string>
 		<key>title</key>
-		<string>60-Seconds Health</string>
+		<string>60-Seconds Health: Got a Minute?</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
@@ -32,7 +32,7 @@
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
@@ -52,7 +52,7 @@
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
@@ -72,7 +72,7 @@
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
@@ -92,7 +92,7 @@
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
@@ -112,7 +112,7 @@
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>

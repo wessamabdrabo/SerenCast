@@ -22,6 +22,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"didFinishLaunchingWithOptions");
+    
+    // Handle launching from a notification
+    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (locationNotification) {
+        // Set icon badge number to zero
+        application.applicationIconBadgeNumber = 0;
+        NSLog(@"launching from notification. just retun yes.");
+        return YES;
+    }
+    
 /*#ifdef ANDROID
     [UIScreen mainScreen].currentMode =
     [UIScreenMode emulatedMode:UIScreenAspectFitEmulationMode];
@@ -109,7 +120,7 @@
         /* bar items */
         UITabBarItem* playerTabItem = [[UITabBarItem alloc]  initWithTitle:@"Home" image:[UIImage imageNamed:@"homefull"] tag:0];
         
-        UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"Playlist" image:[UIImage imageNamed:@"playlistfull"] tag:1];
+        UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"Podcasts" image:[UIImage imageNamed:@"playlistfull"] tag:1];
         UITabBarItem *statusTabItem = [[UITabBarItem alloc] initWithTitle:@"Status" image:[UIImage imageNamed:@"statusfull"] tag:2];
         UITabBarItem *notificationsTabItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[UIImage imageNamed:@"notificationsfull"] tag:3];
         UITabBarItem *helpTabItem = [[UITabBarItem alloc] initWithTitle:@"Help" image:[UIImage imageNamed:@"helpfull"] tag:3];
@@ -123,16 +134,19 @@
         
         
         /*set bar items*/
-        [listController setTabBarItem:listTabItem];
+        //[listController setTabBarItem:listTabItem];
         [notficationsController setTabBarItem:notificationsTabItem];
         [statusController setTabBarItem:statusTabItem];
         [helpViewController setTabBarItem:helpTabItem];
         
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playerController];
+        UINavigationController *playerNavController = [[UINavigationController alloc] initWithRootViewController:playerController];
         /*[navController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         [navController.navigationBar setShadowImage:[UIImage new]];
         [navController.navigationBar setTranslucent:YES];*/
-        [navController setTabBarItem:playerTabItem];
+        [playerNavController setTabBarItem:playerTabItem];
+        
+        UINavigationController *playListNavController = [[UINavigationController alloc]initWithRootViewController: listController];
+        [playListNavController setTabBarItem:listTabItem];
         
         /* Navigation styling */
         UIColor * navBarTintColor = [UIColor whiteColor];
@@ -143,18 +157,12 @@
         
        
         
-        tabBarController.viewControllers = [NSArray arrayWithObjects:navController,listController,statusController,notficationsController,helpViewController, nil];
+        tabBarController.viewControllers = [NSArray arrayWithObjects:playerNavController,playListNavController,statusController,notficationsController,helpViewController, nil];
         //self.window.rootViewController = navController;
         self.window.rootViewController = tabBarController;
     }
     [self.window makeKeyAndVisible];
     
-    // Handle launching from a notification
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (locationNotification) {
-        // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
-    }
     
     return YES;
 }

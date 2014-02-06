@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -51,7 +51,7 @@
     /* bar items */
     UITabBarItem* playerTabItem = [[UITabBarItem alloc]  initWithTitle:@"Home" image:[UIImage imageNamed:@"homefull"] tag:0];
     
-    UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"Playlist" image:[UIImage imageNamed:@"playlistfull"] tag:1];
+    UITabBarItem *listTabItem = [[UITabBarItem alloc] initWithTitle:@"Podcasts" image:[UIImage imageNamed:@"playlistfull"] tag:1];
     UITabBarItem *statusTabItem = [[UITabBarItem alloc] initWithTitle:@"Status" image:[UIImage imageNamed:@"statusfull"] tag:2];
     UITabBarItem *notificationsTabItem = [[UITabBarItem alloc] initWithTitle:@"Notifications" image:[UIImage imageNamed:@"notificationsfull"] tag:3];
     UITabBarItem *helpTabItem = [[UITabBarItem alloc] initWithTitle:@"Help" image:[UIImage imageNamed:@"helpfull"] tag:3];
@@ -64,20 +64,26 @@
     SerenCastHelpViewController *helpViewController = [[SerenCastHelpViewController alloc]init];
 
     /*set bar items*/
-    [listController setTabBarItem:listTabItem];
+    //[listController setTabBarItem:listTabItem];
     [notficationsController setTabBarItem:notificationsTabItem];
     [statusController setTabBarItem:statusTabItem];
     [helpViewController setTabBarItem:helpTabItem];
 
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playerController];
-    [navController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [navController.navigationBar setShadowImage:[UIImage new]];
-    [navController.navigationBar setTranslucent:YES];
-    [navController setTabBarItem:playerTabItem];
+    UINavigationController *playerNavController = [[UINavigationController alloc] initWithRootViewController:playerController];
+    [playerNavController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [playerNavController.navigationBar setShadowImage:[UIImage new]];
+    [playerNavController.navigationBar setTranslucent:YES];
+    [playerNavController setTabBarItem:playerTabItem];
+    
+    UINavigationController *playListNavController = [[UINavigationController alloc]initWithRootViewController: listController];
+    [playListNavController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [playListNavController.navigationBar setShadowImage:[UIImage new]];
+    [playListNavController.navigationBar setTranslucent:YES];
+    [playListNavController setTabBarItem:listTabItem];
 
     
-    tabBarController.viewControllers = [NSArray arrayWithObjects:navController,listController,statusController,notficationsController, helpViewController, nil];
+    tabBarController.viewControllers = [NSArray arrayWithObjects:playerNavController,playListNavController,statusController,notficationsController, helpViewController, nil];
     [self.navigationController pushViewController:tabBarController animated:YES];
 }
 @end

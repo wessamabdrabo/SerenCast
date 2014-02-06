@@ -25,6 +25,12 @@
 		8672A3D918A1C15100222D51 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3D818A1C15100222D51 /* app-icon.png */; };
 		8672A3DB18A1C29800222D51 /* app-icon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3DA18A1C29800222D51 /* app-icon58x58.png */; };
 		8672A3DD18A1C2A200222D51 /* app-icon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3DC18A1C2A200222D51 /* app-icon80x80.png */; };
+		8672A3E218A3E3C000222D51 /* SerenCastCastDetialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8672A3E018A3E3C000222D51 /* SerenCastCastDetialsViewController.m */; };
+		8672A3E318A3E3C000222D51 /* SerenCastCastDetialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3E118A3E3C000222D51 /* SerenCastCastDetialsViewController.xib */; };
+		8672A3ED18A40A6900222D51 /* podcast-thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3EC18A40A6900222D51 /* podcast-thumb.png */; };
+		8672A3EF18A410FB00222D51 /* temp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3EE18A410FA00222D51 /* temp.gif */; };
+		8672A3F218A4125200222D51 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3F018A4125200222D51 /* play@2x.png */; };
+		8672A3FB18A4176900222D51 /* info-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8672A3FA18A4176900222D51 /* info-list@2x.png */; };
 		86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */; };
 		86934AF71899AAE700B56952 /* SerenCastStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */; };
 		86934B01189C0AED00B56952 /* SerenCastPlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86934AFF189C0AED00B56952 /* SerenCastPlayerListViewController.m */; };
@@ -137,6 +143,13 @@
 		8672A3D818A1C15100222D51 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
 		8672A3DA18A1C29800222D51 /* app-icon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon58x58.png"; sourceTree = "<group>"; };
 		8672A3DC18A1C2A200222D51 /* app-icon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon80x80.png"; sourceTree = "<group>"; };
+		8672A3DF18A3E3C000222D51 /* SerenCastCastDetialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastCastDetialsViewController.h; sourceTree = "<group>"; };
+		8672A3E018A3E3C000222D51 /* SerenCastCastDetialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastCastDetialsViewController.m; sourceTree = "<group>"; };
+		8672A3E118A3E3C000222D51 /* SerenCastCastDetialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastCastDetialsViewController.xib; sourceTree = "<group>"; };
+		8672A3EC18A40A6900222D51 /* podcast-thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "podcast-thumb.png"; sourceTree = "<group>"; };
+		8672A3EE18A410FA00222D51 /* temp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = temp.gif; sourceTree = "<group>"; };
+		8672A3F018A4125200222D51 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		8672A3FA18A4176900222D51 /* info-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-list@2x.png"; sourceTree = "<group>"; };
 		86934AF31899AAE700B56952 /* SerenCastStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerenCastStatusViewController.h; sourceTree = "<group>"; };
 		86934AF41899AAE700B56952 /* SerenCastStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerenCastStatusViewController.m; sourceTree = "<group>"; };
 		86934AF51899AAE700B56952 /* SerenCastStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerenCastStatusViewController.xib; sourceTree = "<group>"; };
@@ -276,6 +289,10 @@
 		865593B518982C85008DAE10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8672A3FA18A4176900222D51 /* info-list@2x.png */,
+				8672A3F018A4125200222D51 /* play@2x.png */,
+				8672A3EE18A410FA00222D51 /* temp.gif */,
+				8672A3EC18A40A6900222D51 /* podcast-thumb.png */,
 				8672A3DC18A1C2A200222D51 /* app-icon80x80.png */,
 				8672A3DA18A1C29800222D51 /* app-icon58x58.png */,
 				8672A3D818A1C15100222D51 /* app-icon.png */,
@@ -305,6 +322,16 @@
 				865593C71898A899008DAE10 /* SerenCastTutorial3ViewController.xib */,
 			);
 			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		8672A3DE18A3E39100222D51 /* CastDetails */ = {
+			isa = PBXGroup;
+			children = (
+				8672A3DF18A3E3C000222D51 /* SerenCastCastDetialsViewController.h */,
+				8672A3E018A3E3C000222D51 /* SerenCastCastDetialsViewController.m */,
+				8672A3E118A3E3C000222D51 /* SerenCastCastDetialsViewController.xib */,
+			);
+			name = CastDetails;
 			sourceTree = "<group>";
 		};
 		86934AF81899AB0B00B56952 /* Status */ = {
@@ -391,6 +418,7 @@
 		86D09FC81881AFBF00DC760A /* SerenCast */ = {
 			isa = PBXGroup;
 			children = (
+				8672A3DE18A3E39100222D51 /* CastDetails */,
 				86C7647518A19CD100462EE8 /* help */,
 				86934B03189C0B0900B56952 /* Notifications */,
 				86934AFA189C0AB400B56952 /* List */,
@@ -623,6 +651,7 @@
 				86CE2314188432A2008B23B1 /* 5.mp3 in Resources */,
 				865593C41898A555008DAE10 /* SerenCastTutorial2ViewController.xib in Resources */,
 				86C76444189D5D9B00462EE8 /* SerenCast-Notifications.plist in Resources */,
+				8672A3E318A3E3C000222D51 /* SerenCastCastDetialsViewController.xib in Resources */,
 				86C7644C189D698F00462EE8 /* SerenCastNotificationCell.xib in Resources */,
 				86EE1147188B1F01002DD9FF /* 10.mp3 in Resources */,
 				86934B02189C0AED00B56952 /* SerenCastPlayerListViewController.xib in Resources */,
@@ -636,6 +665,7 @@
 				86C7646E18A185DF00462EE8 /* homefull@2x.png in Resources */,
 				86D0A0091882007A00DC760A /* SerenCastReviewViewController.xib in Resources */,
 				86C7647D18A1A5AD00462EE8 /* favicon-selected@2x.png in Resources */,
+				8672A3FB18A4176900222D51 /* info-list@2x.png in Resources */,
 				86099C17188C9F95000754AC /* SerenCastProfileInterestsViewController.xib in Resources */,
 				86C7647118A185DF00462EE8 /* statusfull@2x.png in Resources */,
 				86934B08189C0B1D00B56952 /* SerenCastNotificationsViewController.xib in Resources */,
@@ -648,6 +678,7 @@
 				86CE2310188432A2008B23B1 /* 1.mp3 in Resources */,
 				86EE115B188B30F7002DD9FF /* SerenCastReviewSentViewController.xib in Resources */,
 				86CE231718843368008B23B1 /* podcast.png in Resources */,
+				8672A3EF18A410FB00222D51 /* temp.gif in Resources */,
 				86099C0D188C9891000754AC /* SerenCastLandingScreenViewController.xib in Resources */,
 				86EE1148188B1F01002DD9FF /* 11.mp3 in Resources */,
 				86D09FFB1881B03500DC760A /* SerenCastPlayerViewController.xib in Resources */,
@@ -670,11 +701,13 @@
 				8672A3DB18A1C29800222D51 /* app-icon58x58.png in Resources */,
 				86D0A00B18820D4200DC760A /* SerenCast-Data.plist in Resources */,
 				86C7646F18A185DF00462EE8 /* notificationsfull@2x.png in Resources */,
+				8672A3F218A4125200222D51 /* play@2x.png in Resources */,
 				86C7647E18A1A5AD00462EE8 /* favicon@2x.png in Resources */,
 				8672A3DD18A1C2A200222D51 /* app-icon80x80.png in Resources */,
 				86934AF71899AAE700B56952 /* SerenCastStatusViewController.xib in Resources */,
 				86EE114A188B1F01002DD9FF /* 13.mp3 in Resources */,
 				86D09FD61881AFBF00DC760A /* Main.storyboard in Resources */,
+				8672A3ED18A40A6900222D51 /* podcast-thumb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +738,7 @@
 				86934AF61899AAE700B56952 /* SerenCastStatusViewController.m in Sources */,
 				865593BE18989F28008DAE10 /* SerenCastTutorial1ViewController.m in Sources */,
 				86D09FFA1881B03500DC760A /* SerenCastPlayerViewController.m in Sources */,
+				8672A3E218A3E3C000222D51 /* SerenCastCastDetialsViewController.m in Sources */,
 				86E8399C1891E768006E8D15 /* SerenCastReview.m in Sources */,
 				865593C81898A899008DAE10 /* SerenCastTutorial3ViewController.m in Sources */,
 				86D09FD31881AFBF00DC760A /* SerenCastAppDelegate.m in Sources */,
