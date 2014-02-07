@@ -12,5 +12,11 @@
 	<string>1</string>
 	<key>appAlreadyLaunched</key>
 	<string>0</string>
+	<key>lastPlayedDate</key>
+	<date>2011-01-25T11:00:00Z</date>
+	<key>numCastsPlayedToday</key>
+	<integer>0</integer>
+	<key>lastCastPlayedToday</key>
+	<string></string>
 </dict>
 </plist>

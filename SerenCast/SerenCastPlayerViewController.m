@@ -13,6 +13,7 @@
 
 #define PLAYER_MODE_FREE 0
 #define PLAYER_MODE_ORDER 1
+//#define CAST_DEFAULT_DATE @"Jan 25, 2011, 12:00:00 PM"
 
 @interface SerenCastPlayerViewController ()
 
@@ -196,12 +197,68 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL) checkTodayCasts{
+    NSLog(@"#######[Check Today's Casts]");
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    NSString *todayStr = [dateFormat stringFromDate:today];
+    
+    NSLog(@"today's date: %@", today);
+    NSLog(@"today str only date = %@", todayStr);
+    if(plist && [plist count] > 0){
+        NSDate* lastCastDate = [plist objectForKey:@"lastPlayedDate"];
+        //NSString* lastCastDateAllStr = [NSString stringWithFormat:@"%@", lastCastDateStr];
+        NSString* lastCastDateStr = [dateFormat stringFromDate:lastCastDate];
+        NSInteger numberOfCastsPlayed = [[plist objectForKey:@"numCastsPlayedToday"]integerValue];
+        NSLog(@"Last cast played at %@", [lastCastDate description]);
+        NSLog(@"last cast date str only date = %@", lastCastDateStr);
+        NSLog(@"Number of casts played today: %d", numberOfCastsPlayed);
+        /* first time to set */
+        /*if([lastCastDateAllStr isEqualToString:CAST_DEFAULT_DATE]) {
+         NSLog(@"first time to set date to %@", today);
+         [plist setValue:today forKey:@"lastPlayedDate"];
+         [plist writeToFile:filePath atomically:NO];
+         return YES;
+         }
+         else*/ if([todayStr isEqualToString:lastCastDateStr]){
+             NSString * lastCastPlayed = [plist objectForKey:@"lastCastPlayedToday"];
+             if(numberOfCastsPlayed >= 2 && ![lastCastPlayed isEqualToString:self.currentTrackID]){ /* if today and number of casts exceeded*/
+                 NSLog(@"Number of casts exceeded!!!!!");
+                 return NO;
+             }
+         }else{ /* if no today, reset everything*/
+             NSLog(@"resetting date to today");
+             [plist setValue:today forKey:@"lastPlayedDate"];
+             [plist setValue:0 forKey:@"numCastsPlayedToday"];
+             [plist setValue:@"0" forKey:@"lastCastPlayedToday"];
+             [plist writeToFile:filePath atomically:NO];
+             return YES;
+         }
+    }
+    return YES;
+}
 #pragma mark - Player Control actions
-
 - (IBAction)playBtnAction:(id)sender {
     NSLog(@"playBtnClicked...");
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-    [self.audioPlayer play];
+    BOOL doPlay = [self checkTodayCasts];
+    if(doPlay){
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        [self.audioPlayer play];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Podcasts Per Day Exceeded!"
+                                                        message: @"You have reached the limit of 2 podcasts per day. Please resume listening to casts tomorrow."
+                                                       delegate: nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 - (IBAction)stopBtnAction:(id)sender {
@@ -265,11 +322,29 @@
     [self updateDisplay];
 }
 
+/* increment number of casts played today by 1 and save to file */
+-(void) updateNumberOfCastsPlayed{
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    NSString* lastCastPlayed = [plist objectForKey:@"lastCastPlayedToday"];
+    NSString *  trackID = mode == PLAYER_MODE_ORDER ? self.currentTrackID : playListTrackID;
+    if(![trackID isEqualToString:lastCastPlayed]){
+        NSLog(@"listened to a new track today. Increment!");
+        NSNumber *numberOfCastsPlayed = [NSNumber numberWithInteger:[[plist objectForKey:@"numCastsPlayedToday"]integerValue]+1];
+        [plist setValue:numberOfCastsPlayed forKey:@"numCastsPlayedToday"];
+        [plist setValue:trackID forKey:@"lastCastPlayedToday"];
+        [plist writeToFile:filePath atomically:NO];
+    }
+}
+
 #pragma mark - AVAudioPlayerDelegate
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self stopTimer];
     [self updateDisplay];
+    [self updateNumberOfCastsPlayed];
     [self getCurrentLocation]; //update location manager
     
     // Schedule the review notification

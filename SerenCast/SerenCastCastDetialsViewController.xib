@@ -25,7 +25,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <view alpha="0.19999999999999968" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ir-jU4">
-                    <rect key="frame" x="7" y="75" width="306" height="397"/>
+                    <rect key="frame" x="7" y="75" width="306" height="368"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-0e-eUl">
-                    <rect key="frame" x="18" y="317" width="275" height="184"/>
+                    <rect key="frame" x="18" y="317" width="275" height="139"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <string key="text">This is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast description.</string>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -65,7 +65,7 @@
     filterPlayed = false;
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-
+    
     [self.segmentedControl addTarget:self action:@selector(listUpdate:) forControlEvents:UIControlEventValueChanged];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -166,12 +166,57 @@
     
     return cell;
 }
--(void) playCast:(UIButton*)sender{
-    NSInteger row = sender.tag;
-    int selectedCastID = row + 1;
-    [self.tabBarController setSelectedIndex:0];
-    UINavigationController *navController = [self.tabBarController selectedViewController];
+-(BOOL) checkTodayCasts:(NSString*)selectedCastID{
+    NSLog(@"#######[Check Today's Casts]");
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    NSString *todayStr = [dateFormat stringFromDate:today];
+    
+    NSLog(@"today's date: %@", today);
+    NSLog(@"today str only date = %@", todayStr);
+    if(plist && [plist count] > 0){
+        NSDate* lastCastDate = [plist objectForKey:@"lastPlayedDate"];
+        //NSString* lastCastDateAllStr = [NSString stringWithFormat:@"%@", lastCastDateStr];
+        NSString* lastCastDateStr = [dateFormat stringFromDate:lastCastDate];
+        NSInteger numberOfCastsPlayed = [[plist objectForKey:@"numCastsPlayedToday"]integerValue];
+        NSLog(@"Last cast played at %@", [lastCastDate description]);
+        NSLog(@"last cast date str only date = %@", lastCastDateStr);
+        NSLog(@"Number of casts played today: %d", numberOfCastsPlayed);
+        /* first time to set */
+        /*if([lastCastDateAllStr isEqualToString:CAST_DEFAULT_DATE]) {
+         NSLog(@"first time to set date to %@", today);
+         [plist setValue:today forKey:@"lastPlayedDate"];
+         [plist writeToFile:filePath atomically:NO];
+         return YES;
+         }
+         else*/ if([todayStr isEqualToString:lastCastDateStr]){
+             NSString * lastCastPlayed = [plist objectForKey:@"lastCastPlayedToday"];
+             if(numberOfCastsPlayed >= 2 && ![lastCastPlayed isEqualToString:selectedCastID]){ /* if today and number of casts exceeded*/
+                 NSLog(@"Number of casts exceeded!!!!!");
+                 return NO;
+             }
+         }else{ /* if no today, reset everything*/
+             NSLog(@"resetting date to today");
+             [plist setValue:today forKey:@"lastPlayedDate"];
+             [plist setValue:0 forKey:@"numCastsPlayedToday"];
+             [plist setValue:@"0" forKey:@"lastCastPlayedToday"];
+             [plist writeToFile:filePath atomically:NO];
+             return YES;
+         }
+    }
+    return YES;
+}
+-(void) playCast:(UIButton*)sender{
+    
+    /* review needed. don't start player*/
+    [self.tabBarController setSelectedIndex:0];
+    UINavigationController *navController = (UINavigationController*)[self.tabBarController selectedViewController];
     if([[navController topViewController]isKindOfClass:[SerenCastReviewViewController class]]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating Needed"
                                                         message: @"Please rate the current cast first before playing another."
@@ -181,38 +226,45 @@
         [alert show];
     }
     else{
-        SerenCastPlayerViewController *playerController = nil;
-        if(navController)
-        {
-            NSArray *childViewControllers = navController.childViewControllers;
-            for(int i=0; i<[childViewControllers count];i++)
-            {
-                if([[childViewControllers objectAtIndex:i] isKindOfClass:[SerenCastPlayerViewController class]]){
-                    playerController = [childViewControllers objectAtIndex:0];
-                    break;
-                }
+        NSInteger row = sender.tag;
+        int selectedCastID = row + 1;
+        if(self.segmentedControl.selectedSegmentIndex == 1) /* favorites */{
+            if(podcastsFavsList && [podcastsFavsList count] > 0 && row < [podcastsFavsList count]){
+                NSMutableDictionary * item = [podcastsFavsList objectAtIndex:row];
+                selectedCastID = [[item objectForKey:@"trackID"]intValue];
             }
-            if(playerController){
-                int nextTrack = 0;
-                /*track id based one which list? all/favs/played */
-                if(self.segmentedControl.selectedSegmentIndex == 0) /* all list*/
-                    nextTrack = selectedCastID;
-                else if(self.segmentedControl.selectedSegmentIndex == 1) /* favorites */{
-                    if(podcastsFavsList && [podcastsFavsList count] > 0 && row < [podcastsFavsList count]){
-                        NSMutableDictionary * item = [podcastsFavsList objectAtIndex:row];
-                        selectedCastID = [[item objectForKey:@"trackID"]intValue];
-                    }
-                }else if(self.segmentedControl.selectedSegmentIndex == 2) /* played */{
-                    if(podcastsPlayedList && [podcastsPlayedList count] > 0 && row < [podcastsPlayedList count]){
-                        NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:row];
-                        selectedCastID = [[item objectForKey:@"trackID"]intValue];
-                    }
-                }
-                
-                [playerController resetPlayer:[NSString stringWithFormat:@"%d", selectedCastID] playerMode:0]; /* free mode */
+        }else if(self.segmentedControl.selectedSegmentIndex == 2) /* played */{
+            if(podcastsPlayedList && [podcastsPlayedList count] > 0 && row < [podcastsPlayedList count]){
+                NSMutableDictionary * item = [podcastsPlayedList objectAtIndex:row];
+                selectedCastID = [[item objectForKey:@"trackID"]intValue];
             }
-            
         }
+        bool doPlay = [self checkTodayCasts:[NSString stringWithFormat:@"%d", selectedCastID]];
+        if(doPlay)
+        {
+            SerenCastPlayerViewController *playerController = nil;
+            if(navController)
+            {
+                NSArray *childViewControllers = navController.childViewControllers;
+                for(int i=0; i<[childViewControllers count];i++)
+                {
+                    if([[childViewControllers objectAtIndex:i] isKindOfClass:[SerenCastPlayerViewController class]]){
+                        playerController = [childViewControllers objectAtIndex:0];
+                        break;
+                    }
+                }
+                if(playerController)
+                    [playerController resetPlayer:[NSString stringWithFormat:@"%d", selectedCastID] playerMode:0]; /* free mode */
+            }
+        }else{ //exceeded play count. display alert.
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Podcasts Per Day Exceeded!"
+                                                            message: @"You have reached the limit of 2 podcasts per day. Please resume listening to casts tomorrow."
+                                                           delegate: nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
     }
 }
 -(void)openCastDetails:(UIButton*) sender{
