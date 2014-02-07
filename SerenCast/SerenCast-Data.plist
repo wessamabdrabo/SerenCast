@@ -18,5 +18,7 @@
 	<integer>0</integer>
 	<key>lastCastPlayedToday</key>
 	<string></string>
+	<key>ratedCount</key>
+	<integer>0</integer>
 </dict>
 </plist>

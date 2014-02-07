@@ -22,17 +22,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"didFinishLaunchingWithOptions");
-    
-    // Handle launching from a notification
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (locationNotification) {
-        // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
-        NSLog(@"launching from notification. just retun yes.");
-        return YES;
-    }
-    
 /*#ifdef ANDROID
     [UIScreen mainScreen].currentMode =
     [UIScreenMode emulatedMode:UIScreenAspectFitEmulationMode];

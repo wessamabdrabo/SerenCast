@@ -11,19 +11,22 @@
 #import "SerenCastReviewSentViewController.h"
 #import "SerenCastStatusViewController.h"
 
-#define LAST_TRACK_ID @"20"
+//#define LAST_TRACK_ID @"20"
 #define PLAYER_MODE_FREE 0
 #define PLAYER_MODE_ORDER 1
+#define MAX_TRACK_COUNT 4 /* count for stopping condition. only 20 reviews needed.*/
 
 /* Blocks */
 typedef void (^OnSuccess)(void);
 typedef void (^OnFailure)(NSString*);
+typedef void (^OnSendSuccess)(void);
+typedef void (^OnSendFailure)(NSString*);
 
 @interface SerenCastReviewViewController (){
     bool submitSuccess;
     UIActivityIndicatorView *activityView;
     int playerMode;
-   // UIView *activityViewBg;
+    // UIView *activityViewBg;
 }
 @end
 
@@ -136,22 +139,22 @@ typedef void (^OnFailure)(NSString*);
 # pragma activity indicator
 //###############################
 /*-(void) createActivityIndicator{
-     activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityViewBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, activityView.bounds.size.width + 20, activityView.bounds.size.height + 20)];
-    activityViewBg.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    activityViewBg.clipsToBounds = YES;
-    activityViewBg.layer.cornerRadius = 10.0;
-    
-   
-    activityView.frame = CGRectMake(activityViewBg.center.x, activityViewBg.center.y, activityView.bounds.size.width, activityView.bounds.size.height);
-    [activityViewBg addSubview:activityView];
-    
-    [self.view addSubview:activityViewBg];
-    //[self.view bringSubviewToFront:activityViewBg];
-    activityViewBg.hidden = YES;
-}*/
+ activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+ activityViewBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, activityView.bounds.size.width + 20, activityView.bounds.size.height + 20)];
+ activityViewBg.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+ activityViewBg.clipsToBounds = YES;
+ activityViewBg.layer.cornerRadius = 10.0;
+ 
+ 
+ activityView.frame = CGRectMake(activityViewBg.center.x, activityViewBg.center.y, activityView.bounds.size.width, activityView.bounds.size.height);
+ [activityViewBg addSubview:activityView];
+ 
+ [self.view addSubview:activityViewBg];
+ //[self.view bringSubviewToFront:activityViewBg];
+ activityViewBg.hidden = YES;
+ }*/
 -(void)startActivityIndicator{
-   // activityViewBg.hidden = NO;
+    // activityViewBg.hidden = NO;
     activityView.hidden = NO;
     [activityView startAnimating];
 }
@@ -161,39 +164,147 @@ typedef void (^OnFailure)(NSString*);
     [activityView stopAnimating];
 }
 
+
 //###############################
 # pragma data processing
 //###############################
+-(void) sendFavorites:(OnSendSuccess)sendSuccess failure:(OnSendFailure)sendFailure
+{
+    NSData *__jsonData;
+    NSString *__jsonString;
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"user_id",@"fav1_id",@"fav2_id",@"fav3_id",@"fav4_id",@"fav5_id",
+                     @"fav6_id",@"fav7_id",@"fav8_id",@"fav9_id",@"fav10_id",@"fav11_id",@"fav12_id",@"fav13_id",@"fav14_id"
+                     ,@"fav15_id",@"fav16_id",@"fav17_id",@"fav18_id",@"fav19_id",@"fav20_id",nil];
+    
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docStorePath = [searchPaths objectAtIndex:0];
+    NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+    NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+    NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    NSArray *podcastsList = [[NSArray alloc] initWithContentsOfFile:castsFilePath];
+    
+    NSMutableArray *objects = [[NSMutableArray alloc]init];
+    [objects addObject:[dataList objectForKey:@"userID"]];
+    for(int i=0; i < 20/*MAX_TRACK_COUNT*/; i++){
+        if(i < [podcastsList count]){
+            NSDictionary *item = [podcastsList objectAtIndex:i];
+            if([[item objectForKey:@"isFav"]boolValue]){
+                [objects addObject:@"1"];
+            }else{
+                [objects addObject:@"0"];
+            }
+        }else [objects addObject:@"N/A"];
+    }
+    
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObject:jsonDictionary forKey:@"favorite"];
+    
+    if([NSJSONSerialization isValidJSONObject:params])
+    {
+        __jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+        __jsonString = [[NSString alloc]initWithData:__jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    // Be sure to properly escape your url string.
+    NSURL * url = [NSURL URLWithString:@"http://shrouded-tor-1742.herokuapp.com/favorites"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody: __jsonData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[__jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    NSLog(@"Request body %@", [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
+    NSError *errorReturned = nil;
+    NSURLResponse *theResponse =[[NSURLResponse alloc]init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&theResponse error:&errorReturned];
+    if (errorReturned) {
+        // Handle error.
+        NSLog(@"error %@", errorReturned);
+        sendFailure(@"Favorites submission failed. Check connection and try again.");
+    }
+    else
+    {
+        NSError *jsonParsingError = nil;
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers|NSJSONReadingAllowFragments error:&jsonParsingError];
+        sendSuccess();
+    }
+}
+
+-(void)terminateExperiment{
+    [self sendFavorites:^{
+        /* on success */
+        NSLog(@"Favorites sent successfully!");
+        [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
+        SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
+        [self.navigationController pushViewController:reviewCompleteController animated:YES];
+    } failure:^(NSString *error) {
+        NSLog(@"Favorites sending failed!!!");
+        /* on failure */
+        [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
+        SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
+        [self.navigationController pushViewController:reviewCompleteController animated:YES];
+    }];
+}
 -(void)startProcessing{
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docStorePath = [searchPaths objectAtIndex:0];
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
     NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    
     [self save: ^(void){
-        //[activityView stopAnimating];
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         
+        NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
+        NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
+        int ratedCount = [[dataList objectForKey:@"ratedCount"]intValue];
+        
+        /* Update rated count, used to check stopping condition (number of rated tracks = max tracks) */
+        for(int i = 0; i < [castsList count]; i++){
+            NSDictionary* item = [castsList objectAtIndex:i];
+            bool isRated = [[item objectForKey:@"isPlayed"]boolValue];
+            NSString* itemID = [item objectForKey:@"trackID"];
+            /* if currently rated item is not rated before, increment count */
+            NSLog(@"===================================");
+            NSLog(@"itemID = %@", itemID);
+            NSLog(@"reviewedTrackID = %@", self.reviewedTrackID);
+            NSLog(@"isRated = %d", isRated);
+            NSLog(@"===================================");
+            if ([itemID isEqualToString:self.reviewedTrackID]) {
+                if(!isRated){
+                    /* rating new track, incerment rated count and save */
+                    NSLog(@"INCREMENT RATED COUNT");
+                    NSLog(@"===================================");
+                    [dataList setValue:[NSNumber numberWithInteger:ratedCount+1] forKey:@"ratedCount"];
+                    [dataList writeToFile:filePath atomically:NO];
+                }
+                break;
+            }
+        }
+        /* now mark it as rated/played*/
+        NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
+        [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
+        [castsList writeToFile:castsFilePath atomically:NO];
+        
         /* STOPPING CONDITION. VERY IMPORTANT. */
-        /* playing last track from free mode, don't end exp */
-        if ([self.reviewedTrackID isEqualToString:LAST_TRACK_ID] && playerMode != PLAYER_MODE_FREE) {
+        /* User rated 20 DIFFERENT casts. End Expirement. */
+        ratedCount = [[dataList objectForKey:@"ratedCount"]intValue]; /* reread updated value from plist*/
+        NSLog(@"!!!ratedCount = %d!!!", ratedCount);
+        if (ratedCount == MAX_TRACK_COUNT/*[self.reviewedTrackID isEqualToString:LAST_TRACK_ID] && playerMode != PLAYER_MODE_FREE*/) {
             /* set expdone in data plist to indicate we're going to final step */
             [dataList setValue:@"1" forKey:@"ExpDone"];
             [dataList writeToFile:filePath atomically: NO];
             
-            /*SerenCastFinalViewController  *finalController = [[SerenCastFinalViewController alloc] init];
-             [self.navigationController pushViewController:finalController animated:NO];*/
-            SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
-            [self.navigationController pushViewController:reviewCompleteController animated:YES];
+            /* cancel all notifications*/
+            if([[[UIApplication sharedApplication] scheduledLocalNotifications] count] > 0){
+                NSLog(@"cancel all local notificaions");
+                [[UIApplication sharedApplication] cancelAllLocalNotifications];
+            }
             
+            [self performSelectorOnMainThread:@selector(startActivityIndicator) withObject:self waitUntilDone:false];
+            [self performSelectorInBackground:@selector(terminateExperiment) withObject:self];
         }
         else{ /* if not last track, save next track to plist and go back to player */
-            
-            NSString *castsFilePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Casts.plist"];
-            NSMutableArray *castsList = [[NSMutableArray alloc] initWithContentsOfFile:castsFilePath];
-            NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
-            [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
-            [castsList writeToFile:castsFilePath atomically:NO];
-            
             /* Next track decided by mode*/
             NSString* nextTrackStrID = @"";
             if(playerMode == PLAYER_MODE_FREE){
@@ -206,14 +317,13 @@ typedef void (^OnFailure)(NSString*);
                 [dataList setValue:nextTrackStrID forKey:@"CurrentAudioFileID"];
                 [dataList writeToFile:filePath atomically: NO];
             }
-            
             /* go to status view before player */
             if([self.reviewedTrackID intValue]+1 == 3 || [self.reviewedTrackID intValue]+1 == 8 || [self.reviewedTrackID intValue]+1 == 13 || [self.reviewedTrackID intValue]+1 == 18){
                 SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc]initWithTrackID:nextTrackStrID];
                 [self.navigationController pushViewController:statusController animated:YES];
             }else{
                 /*SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
-                [self.navigationController pushViewController:playerController animated:YES];*/
+                 [self.navigationController pushViewController:playerController animated:YES];*/
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 if([[self.navigationController topViewController]isKindOfClass:[SerenCastPlayerViewController class]]){
                     SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
