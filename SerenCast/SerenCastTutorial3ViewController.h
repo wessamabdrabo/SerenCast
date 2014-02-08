@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SerenCastTutorial3ViewController : UIViewController
+@property(nonatomic, strong)NSString* trackID;
 - (IBAction)proceedAction:(id)sender;
+-(id) initWithTrackIDAndMode:(NSString*) trackID :(int)playerMode;
 @end

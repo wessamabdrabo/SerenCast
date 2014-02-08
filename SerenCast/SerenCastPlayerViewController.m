@@ -264,7 +264,6 @@
         [self updateDisplay];
     }
     else{ /*play */
-        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
         [self play];
     }
 }
@@ -272,6 +271,7 @@
     BOOL doPlay = [self checkTodayCasts];
     if(doPlay){
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
         [self.audioPlayer play];
     }
     else{
@@ -434,8 +434,12 @@
         NSString* track = (mode == PLAYER_MODE_FREE) ? playListTrackID :self.currentTrackID;
         
         //rating first track. Show tutorial.
-        if([self.currentTrackID isEqualToString:@"1"] && mode != PLAYER_MODE_FREE){
-            SerenCastTutorial3ViewController *tutorialController = [[SerenCastTutorial3ViewController alloc]init];
+        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docStorePath = [searchPaths objectAtIndex:0];
+        NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
+        NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+        if([[plist objectForKey:@"ratedCount"]intValue] == 0 /*&& mode != PLAYER_MODE_FREE*/){
+            SerenCastTutorial3ViewController *tutorialController = [[SerenCastTutorial3ViewController alloc]initWithTrackIDAndMode:track :mode];
             [self.navigationController pushViewController:tutorialController animated:YES];
         }else{
             NSLog(@"###reviewing track #: %@", track);

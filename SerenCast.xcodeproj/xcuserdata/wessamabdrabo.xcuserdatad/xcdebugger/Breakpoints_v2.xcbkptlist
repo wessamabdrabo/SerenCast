@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerenCast/SerenCastPlayerViewController.m"
-            timestampString = "413514899.947145"
+            timestampString = "413517836.9377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "500"
-            endingLineNumber = "500"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
             landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerenCast/SerenCastPlayerViewController.m"
-            timestampString = "413514899.947145"
+            timestampString = "413517836.9377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
             landmarkType = "5">
          </BreakpointContent>

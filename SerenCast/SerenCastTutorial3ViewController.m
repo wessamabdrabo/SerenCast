@@ -9,7 +9,9 @@
 #import "SerenCastTutorial3ViewController.h"
 #import "SerenCastReviewViewController.h"
 
-@interface SerenCastTutorial3ViewController ()
+@interface SerenCastTutorial3ViewController (){
+    int playerMode;
+}
 @end
 
 @implementation SerenCastTutorial3ViewController
@@ -19,6 +21,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+-(id) initWithTrackIDAndMode:(NSString*) trackID :(int)mode{
+    self = [super init];
+    if(self){
+        self.trackID = trackID;
+        playerMode = mode;
     }
     return self;
 }
@@ -37,7 +47,7 @@
 }
 
 - (IBAction)proceedAction:(id)sender {
-    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:@"1" mode:1]; /* always order mode */
+    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:self.trackID mode:playerMode]; /* always order mode */
     [self.navigationController pushViewController:reviewViewController animated:YES];
 }
 @end
