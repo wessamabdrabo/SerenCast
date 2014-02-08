@@ -140,10 +140,16 @@
     
     mode = playerMode;
     
-    if(mode == PLAYER_MODE_FREE)
+    if(mode == PLAYER_MODE_FREE){
         playListTrackID = trackID;
-    else if(mode == PLAYER_MODE_ORDER)
+        [self.discoverBtn setHidden:NO];
+        [self.discoverBtnView setHidden:NO];
+    }
+    else if(mode == PLAYER_MODE_ORDER){
         self.currentTrackID = trackID;
+        [self.discoverBtn setHidden:YES];
+        [self.discoverBtnView setHidden:YES];
+    }
     
     NSURL *url = [[NSBundle mainBundle] URLForResource:trackID withExtension:@"mp3"];
     NSLog(@"Played file url = %@", url);
@@ -186,8 +192,11 @@
     //self.navigationItem.title = [NSString stringWithFormat:@"%@ of 20", trackID];
     
     if(playerMode ==PLAYER_MODE_FREE){
-        [self stopBtnAction:self.playBtn];
-        [self playBtnAction:self.playBtn];
+        //[self stopBtnAction:self.playBtn];
+        //[self playBtnAction:self.playBtn];
+        [self stop];
+        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        [self play];
     }
 }
 
@@ -246,6 +255,20 @@
 #pragma mark - Player Control actions
 - (IBAction)playBtnAction:(id)sender {
     NSLog(@"playBtnClicked...");
+   
+    if([self.audioPlayer isPlaying]){  /* pause */
+        NSLog(@"pausing");
+        [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+        [self.audioPlayer pause];
+        [self stopTimer];
+        [self updateDisplay];
+    }
+    else{ /*play */
+        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        [self play];
+    }
+}
+-(void) play{
     BOOL doPlay = [self checkTodayCasts];
     if(doPlay){
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
@@ -260,18 +283,39 @@
         [alert show];
     }
 }
-
-- (IBAction)stopBtnAction:(id)sender {
+-(void) stop{
     [self.audioPlayer stop];
     [self stopTimer];
     self.audioPlayer.currentTime = 0;
     [self.audioPlayer prepareToPlay];
     [self updateDisplay];
 }
+- (IBAction)stopBtnAction:(id)sender {
+    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    [self stop];
+}
+
+-(void)switchModeToDiscover
+{
+    [self resetPlayer:self.currentTrackID playerMode:1];
+    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    [self.discoverBtn setHidden:YES];
+    [self.discoverBtnView setHidden:YES];
+    //[self.view setNeedsDisplay];
+}
 - (IBAction)pauseBtnAction:(id)sender {
-    [self.audioPlayer pause];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Swtich Mode"
+                                                    message: @"You are about to switch back to Discover mode."
+                                                   delegate: nil
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    alert.tag = 2;
+    alert.delegate = self;
+    [alert show];
+    
+    /*[self.audioPlayer pause];
     [self stopTimer];
-    [self updateDisplay];
+    [self updateDisplay];*/
 }
 
 #pragma mark - Current time slider Update
@@ -342,6 +386,7 @@
 #pragma mark - AVAudioPlayerDelegate
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
     [self stopTimer];
     [self updateDisplay];
     [self updateNumberOfCastsPlayed];
@@ -371,15 +416,19 @@
                                                    delegate: nil
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"Rate", nil];
+    alert.tag = 1;
     alert.delegate = self;
     [alert show];
 }
 
 #pragma mark - Alert Delegate
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    /* clicked ok on either rating alert or switch mode alert*/
     
-    if (buttonIndex == 1) { //review
+    if (buttonIndex == 1 && alertView.tag == 1) /* rating alert */
+    { //review
         self.audioPlayer = nil;
         self.timer = nil;
         NSString* track = (mode == PLAYER_MODE_FREE) ? playListTrackID :self.currentTrackID;
@@ -393,6 +442,9 @@
             SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:track mode:mode];
             [self.navigationController pushViewController:reviewViewController animated:YES];
         }
+    }
+    else if(buttonIndex == 1 && alertView.tag == 2){ /* switch mode alert */
+        [self switchModeToDiscover];
     }
     
     /* do some resetting */

@@ -7,12 +7,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastPlayerViewController">
             <connections>
                 <outlet property="currentTimeSlider" destination="TUP-6w-sVA" id="KE9-t9-D28"/>
+                <outlet property="discoverBtn" destination="dkM-V2-xAh" id="OvL-mb-HBH"/>
+                <outlet property="discoverBtnView" destination="Zfv-qf-Ty9" id="Ufm-TG-9vq"/>
                 <outlet property="elapsedTimeLabel" destination="Ncq-cY-M5b" id="uuf-FL-DtI"/>
                 <outlet property="playBtn" destination="e7u-Yp-ZJD" id="MPa-8L-Mah"/>
                 <outlet property="remainingTimeLabel" destination="gJP-UO-PPe" id="AI5-cE-0lu"/>
                 <outlet property="subtitleLabel" destination="YrF-aW-icP" id="MEF-Q4-jjF"/>
                 <outlet property="titleLabel" destination="QQT-zq-fb6" id="SbS-ZG-I0T"/>
                 <outlet property="toggleFavsBtn" destination="ecb-lm-nvJ" id="NVy-uc-5uE"/>
+                <outlet property="togglePlayBtn" destination="e7u-Yp-ZJD" id="0BI-fX-Jf5"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -26,7 +29,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-Yp-ZJD">
-                    <rect key="frame" x="148" y="377" width="30" height="30"/>
+                    <rect key="frame" x="189" y="377" width="56" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
                     <state key="normal" title="Play">
@@ -38,7 +41,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-eX-9DT">
-                    <rect key="frame" x="46" y="377" width="33" height="30"/>
+                    <rect key="frame" x="97" y="377" width="33" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
                     <state key="normal" title="Stop">
@@ -71,11 +74,16 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-V2-xAh">
-                    <rect key="frame" x="240" y="377" width="43" height="30"/>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zfv-qf-Ty9">
+                    <rect key="frame" x="172" y="162" width="125" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-V2-xAh">
+                    <rect key="frame" x="174" y="163" width="126" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
-                    <state key="normal" title="Pause">
+                    <state key="normal" title="Back To Discover">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -84,7 +92,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="podcast.png" translatesAutoresizingMaskIntoConstraints="NO" id="xIR-zL-W9J">
-                    <rect key="frame" x="22" y="66" width="98" height="144"/>
+                    <rect key="frame" x="22" y="81" width="98" height="129"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="268" translatesAutoresizingMaskIntoConstraints="NO" id="QQT-zq-fb6">

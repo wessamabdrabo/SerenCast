@@ -11,7 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface SerenCastPlayerViewController : UIViewController <AVAudioPlayerDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *discoverBtnView;
+
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
+@property (weak, nonatomic) IBOutlet UIButton *discoverBtn;
+@property (weak, nonatomic) IBOutlet UIButton *togglePlayBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property(nonatomic,strong) AVAudioPlayer* audioPlayer;

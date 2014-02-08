@@ -322,8 +322,6 @@ typedef void (^OnSendFailure)(NSString*);
                 SerenCastStatusViewController *statusController = [[SerenCastStatusViewController alloc]initWithTrackID:nextTrackStrID];
                 [self.navigationController pushViewController:statusController animated:YES];
             }else{
-                /*SerenCastPlayerViewController *playerController = [[SerenCastPlayerViewController alloc] initWithAudio:nextTrackStrID];
-                 [self.navigationController pushViewController:playerController animated:YES];*/
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 if([[self.navigationController topViewController]isKindOfClass:[SerenCastPlayerViewController class]]){
                     SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
