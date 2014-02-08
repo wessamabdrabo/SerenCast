@@ -16,6 +16,7 @@ typedef void (^OnFailure)(NSString*);
 @interface SerenCastConfirmProfileViewController (){
     bool submitSuccess;
     UIActivityIndicatorView *activityView;
+    UIBarButtonItem *nextBtnItem;
 }
 @end
 
@@ -43,7 +44,7 @@ typedef void (^OnFailure)(NSString*);
     self.navigationItem.title = @"Confirm";
     
     //self.navigationItem.hidesBackButton = YES;
-    UIBarButtonItem *nextBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"  style:UIBarButtonItemStyleBordered target:self action:@selector(done:)];
+    nextBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"  style:UIBarButtonItemStyleBordered target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = nextBtnItem;
     
     self.emailTextField.text = self.user.email;
@@ -165,8 +166,14 @@ typedef void (^OnFailure)(NSString*);
     self.user.age = [NSString  stringWithFormat:@"%ld", (long)self.ageSegmentedControl.selectedSegmentIndex];
     self.user.gender = [NSString stringWithFormat:@"%ld", (long)self.genderSegmentedControl.selectedSegmentIndex];
     self.user.occupation = self.occupationTextField.text;
+    if(nextBtnItem){
+        [nextBtnItem setEnabled:NO];
+    }
     [self save: ^(void){
         NSLog(@"save success!");
+        if(nextBtnItem){
+            [nextBtnItem setEnabled:NO];
+        }
         NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docStorePath = [searchPaths objectAtIndex:0];
         NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
@@ -187,6 +194,9 @@ typedef void (^OnFailure)(NSString*);
         [alert show];
     }
        failure:^(NSString* error){
+           if(nextBtnItem){
+               [nextBtnItem setEnabled:NO];
+           }
            NSLog(@"save failure!");
            
            submitSuccess = false;

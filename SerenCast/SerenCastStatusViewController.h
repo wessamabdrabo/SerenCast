@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *statusTextField;
 @property (strong, nonatomic) NSString* trackID;
 @property (strong, nonatomic) SerenCastStatus *status;
+@property (weak, nonatomic) IBOutlet UIButton *proceedBtn;
+
 -(id)initWithTrackID:(NSString*)trackID;
 @end

@@ -26,6 +26,7 @@ typedef void (^OnSendFailure)(NSString*);
     bool submitSuccess;
     UIActivityIndicatorView *activityView;
     int playerMode;
+    UIBarButtonItem *nextBtnItem;
     // UIView *activityViewBg;
 }
 @end
@@ -77,7 +78,7 @@ typedef void (^OnSendFailure)(NSString*);
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTranslucent:YES];
-    UIBarButtonItem *nextBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"  style:UIBarButtonItemStyleBordered target:self action:@selector(done:)];
+    nextBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"  style:UIBarButtonItemStyleBordered target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = nextBtnItem;
     
     /* Navigation styling */
@@ -239,6 +240,9 @@ typedef void (^OnSendFailure)(NSString*);
         SerenCastReviewSentViewController *reviewCompleteController = [[SerenCastReviewSentViewController alloc] init];
         [self.navigationController pushViewController:reviewCompleteController animated:YES];
     } failure:^(NSString *error) {
+        if(nextBtnItem){
+            [nextBtnItem setEnabled:YES];
+        }
         NSLog(@"Favorites sending failed!!!");
         /* on failure */
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
@@ -252,6 +256,9 @@ typedef void (^OnSendFailure)(NSString*);
     NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
     NSMutableDictionary *dataList = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     
+    if(nextBtnItem){
+        [nextBtnItem setEnabled:NO];
+    }
     [self save: ^(void){
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         
@@ -306,6 +313,11 @@ typedef void (^OnSendFailure)(NSString*);
         }
         else{ /* if not last track, save next track to plist and go back to player */
             /* Next track decided by mode*/
+            
+            if(nextBtnItem){
+                [nextBtnItem setEnabled:YES];
+            }
+            
             NSString* nextTrackStrID = @"";
             if(playerMode == PLAYER_MODE_FREE){
                 int lastPlayed = [[dataList objectForKey:@"CurrentAudioFileID"] integerValue];

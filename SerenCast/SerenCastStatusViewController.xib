@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastStatusViewController">
             <connections>
+                <outlet property="proceedBtn" destination="GIp-xe-9UW" id="BJi-TO-Rql"/>
                 <outlet property="statusTextField" destination="cnQ-Q8-Mtf" id="K1P-AG-aeT"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

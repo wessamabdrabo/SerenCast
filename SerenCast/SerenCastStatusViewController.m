@@ -96,6 +96,7 @@ typedef void (^OnFailure)(NSString*);
 //=======================
 -(void) startProcessing{
     [self prepareData];
+    [self.proceedBtn setEnabled:NO];
     [self save:^{
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         if(self.trackID){ /* coming from in player status update */
@@ -109,7 +110,6 @@ typedef void (^OnFailure)(NSString*);
                 NSString * nextTrack = [dataList objectForKey:@"CurrentAudioFileID"];
                 SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
                 if(player){
-                    
                     [player resetPlayer:nextTrack playerMode:1];
                     NSLog(@"go to player. don't create a new one. just use the old");
                     [player.navigationController setNavigationBarHidden:NO];
@@ -125,7 +125,9 @@ typedef void (^OnFailure)(NSString*);
             [alert show];
         }
         self.statusTextField.text = @"";
+        [self.proceedBtn setEnabled:YES];
     } failure:^(NSString* error){
+        [self.proceedBtn setEnabled:YES];
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
         NSLog(@"save failure!");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Problem"
