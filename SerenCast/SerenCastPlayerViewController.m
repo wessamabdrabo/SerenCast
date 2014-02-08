@@ -255,7 +255,7 @@
 #pragma mark - Player Control actions
 - (IBAction)playBtnAction:(id)sender {
     NSLog(@"playBtnClicked...");
-   
+    
     if([self.audioPlayer isPlaying]){  /* pause */
         NSLog(@"pausing");
         [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
@@ -314,8 +314,8 @@
     [alert show];
     
     /*[self.audioPlayer pause];
-    [self stopTimer];
-    [self updateDisplay];*/
+     [self stopTimer];
+     [self updateDisplay];*/
 }
 
 #pragma mark - Current time slider Update
@@ -392,24 +392,24 @@
     [self updateNumberOfCastsPlayed];
     [self getCurrentLocation]; //update location manager
     
-    // Schedule the review notification
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:2.0];
-    NSLog(@"Fire date %@", localNotification.fireDate);
-    localNotification.alertBody = [NSString stringWithFormat:@"We hope you enjoyed '%@'. Rate it and tell us what you think.", castTitle?castTitle : @""];
-    localNotification.alertAction = @"Rating";
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    NSString* body = [NSString stringWithFormat:@"%@", localNotification.alertBody];
-    NSDate* firedDate = localNotification.fireDate;
-    
-    [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:@"1"];
-    
-    /* write notification to plist */
-    SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
-    [notificationsManager addToList:body notificationFiredDate:firedDate];
-    
+    if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
+        // Schedule the review notification
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:2.0];
+        NSLog(@"Fire date %@", localNotification.fireDate);
+        localNotification.alertBody = [NSString stringWithFormat:@"We hope you enjoyed '%@'. Rate it and tell us what you think.", castTitle?castTitle : @""];
+        localNotification.alertAction = @"Rating";
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        NSString* body = [NSString stringWithFormat:@"%@", localNotification.alertBody];
+        NSDate* firedDate = localNotification.fireDate;
+        
+        [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:@"1"];
+        /* write notification to plist */
+        SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
+        [notificationsManager addToList:body notificationFiredDate:firedDate];
+    }
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating"
                                                     message: @"Please take a minute to give us feedback about this cast before proceeding to the next one."

@@ -68,16 +68,10 @@
             NSLog(@"cancel all local notificaions");
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }
-        /* schedule status daily notification starting today in an hour*/
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:86580.0];
-        NSLog(@"Status firedate %@", localNotification.fireDate);
-        localNotification.alertBody = [NSString stringWithFormat:@"Tell us what you feel like listening to today."];
-        localNotification.alertAction = @"Status";
-        localNotification.repeatInterval = NSDayCalendarUnit;
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+       
+        /* schedule notifications for reminder and status */
+        [[SerenCastNotificationsManager sharedInstance] scheduleStatusNotification];
+        [[SerenCastNotificationsManager sharedInstance] scheduleActivityReminderNotification];
         
         [plistDict setValue:@"1" forKey:@"appAlreadyLaunched"];
         [plistDict writeToFile:dataFilePath atomically:NO];
@@ -173,6 +167,11 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     // Handle launching from a notification
+    NSLog(@"############## Application will enter Foreground ##############");
+    if([[[UIApplication sharedApplication] scheduledLocalNotifications] count] > 0){
+        NSLog(@"Cancelling and rescheduling all locall notifications");
+        [[SerenCastNotificationsManager sharedInstance] cancelAndRescheduleAll];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

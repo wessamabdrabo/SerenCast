@@ -48,4 +48,51 @@
         [self.notificationsList writeToFile:filepath atomically:NO];
     }
 }
+
+-(void) scheduleStatusNotification{
+   
+    NSDate *currentDate = [NSDate date];
+    NSLog(@"current date = %@", [currentDate description]);
+
+    /* schedule status daily notification starting today in an hour*/
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:86400]; /* seconds in 1 days */
+    NSLog(@"Status firedate %@", localNotification.fireDate);
+    localNotification.alertBody = [NSString stringWithFormat:@"Tell us what you feel like listening to today."];
+    localNotification.alertAction = @"Status";
+    localNotification.repeatInterval = NSDayCalendarUnit;
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+-(void) scheduleActivityReminderNotification{
+   
+    NSDate *currentDate = [NSDate date];
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:604800]; /* seconds in 7 days */
+    NSLog(@"Reminder firedate %@", localNotification.fireDate);
+    localNotification.alertBody = [NSString stringWithFormat:@"You have not listened to any podcasts in a couple of days. Want to give it a try now?"];
+    localNotification.alertAction = @"Reminder";
+    localNotification.repeatInterval = NSWeekCalendarUnit; /* every week */
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+-(void) cancelAndRescheduleAll{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    if( notifications && [notifications count]){
+        for (int i=0; i< [notifications count]; i++)
+        {
+            UILocalNotification *notification = [notifications objectAtIndex:i];
+            if (notification) {
+                if([[notification alertAction]isEqualToString:@"Reminder"]){
+                    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                    [self scheduleActivityReminderNotification];
+                    break;
+                }
+            }
+        }
+    }
+}
+
 @end

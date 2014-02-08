@@ -12,4 +12,7 @@
 @property(nonatomic, strong) NSMutableArray* notificationsList;
 +(id) sharedInstance;
 -(void) addToList:(NSString*)body notificationFiredDate:(NSDate*)firedDate;
+-(void) scheduleStatusNotification;
+-(void) scheduleActivityReminderNotification;
+-(void) cancelAndRescheduleAll;
 @end
