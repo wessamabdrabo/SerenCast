@@ -195,7 +195,8 @@
         //[self stopBtnAction:self.playBtn];
         //[self playBtnAction:self.playBtn];
         [self stop];
-        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        //[self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.togglePlayBtn setImage:[UIImage imageNamed:@"pause-icon"] forState:UIControlStateNormal];
         [self play];
     }
 }
@@ -258,7 +259,9 @@
     
     if([self.audioPlayer isPlaying]){  /* pause */
         NSLog(@"pausing");
-        [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+        //[self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+        [self.togglePlayBtn setImage:[UIImage imageNamed:@"play-icon"] forState:UIControlStateNormal];
+
         [self.audioPlayer pause];
         [self stopTimer];
         [self updateDisplay];
@@ -271,7 +274,8 @@
     BOOL doPlay = [self checkTodayCasts];
     if(doPlay){
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        [self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        //[self.togglePlayBtn setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.togglePlayBtn setImage:[UIImage imageNamed:@"pause-icon"] forState:UIControlStateNormal];
         [self.audioPlayer play];
     }
     else{
@@ -291,14 +295,16 @@
     [self updateDisplay];
 }
 - (IBAction)stopBtnAction:(id)sender {
-    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    //[self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    [self.togglePlayBtn setImage:[UIImage imageNamed:@"play-icon"] forState:UIControlStateNormal];
     [self stop];
 }
 
 -(void)switchModeToDiscover
 {
     [self resetPlayer:self.currentTrackID playerMode:1];
-    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    //[self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    [self.togglePlayBtn setImage:[UIImage imageNamed:@"play-icon"] forState:UIControlStateNormal];
     [self.discoverBtn setHidden:YES];
     [self.discoverBtnView setHidden:YES];
     //[self.view setNeedsDisplay];
@@ -386,7 +392,8 @@
 #pragma mark - AVAudioPlayerDelegate
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    [self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    //[self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
+    [self.togglePlayBtn setImage:[UIImage imageNamed:@"play-icon"] forState:UIControlStateNormal];
     [self stopTimer];
     [self updateDisplay];
     [self updateNumberOfCastsPlayed];
@@ -410,7 +417,6 @@
         SerenCastNotificationsManager *notificationsManager = [SerenCastNotificationsManager sharedInstance];
         [notificationsManager addToList:body notificationFiredDate:firedDate];
     }
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating"
                                                     message: @"Please take a minute to give us feedback about this cast before proceeding to the next one."
                                                    delegate: nil

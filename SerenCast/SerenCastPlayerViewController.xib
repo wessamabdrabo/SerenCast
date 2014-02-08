@@ -28,11 +28,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="325" height="603"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-Yp-ZJD">
-                    <rect key="frame" x="189" y="377" width="56" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-Yp-ZJD">
+                    <rect key="frame" x="122" y="374" width="34" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
-                    <state key="normal" title="Play">
+                    <state key="normal" image="play-icon.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -40,11 +40,11 @@
                         <action selector="playBtnAction:" destination="-1" eventType="touchUpInside" id="PUs-0S-uJI"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-eX-9DT">
-                    <rect key="frame" x="97" y="377" width="33" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgu-eX-9DT">
+                    <rect key="frame" x="167" y="374" width="47" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
-                    <state key="normal" title="Stop">
+                    <state key="normal" image="stop-icon.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -148,6 +148,8 @@
     <resources>
         <image name="bg.png" width="640" height="1136"/>
         <image name="favicon.png" width="25" height="24"/>
+        <image name="play-icon.png" width="13" height="18"/>
         <image name="podcast.png" width="300" height="300"/>
+        <image name="stop-icon.png" width="17" height="17"/>
     </resources>
 </document>

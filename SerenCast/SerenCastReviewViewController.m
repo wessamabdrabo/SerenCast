@@ -14,7 +14,7 @@
 //#define LAST_TRACK_ID @"20"
 #define PLAYER_MODE_FREE 0
 #define PLAYER_MODE_ORDER 1
-#define MAX_TRACK_COUNT 4 /* count for stopping condition. only 20 reviews needed.*/
+#define MAX_TRACK_COUNT 20 /* count for stopping condition. only 20 reviews needed.*/
 
 /* Blocks */
 typedef void (^OnSuccess)(void);
@@ -187,7 +187,7 @@ typedef void (^OnSendFailure)(NSString*);
     
     NSMutableArray *objects = [[NSMutableArray alloc]init];
     [objects addObject:[dataList objectForKey:@"userID"]];
-    for(int i=0; i < 20/*MAX_TRACK_COUNT*/; i++){
+    for(int i=0; i < MAX_TRACK_COUNT; i++){
         if(i < [podcastsList count]){
             NSDictionary *item = [podcastsList objectAtIndex:i];
             if([[item objectForKey:@"isFav"]boolValue]){
