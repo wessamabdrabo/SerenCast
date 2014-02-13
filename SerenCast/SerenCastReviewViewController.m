@@ -347,7 +347,9 @@ typedef void (^OnSendFailure)(NSString*);
         }
     }failure:^(NSString* error){
         [self performSelectorOnMainThread:@selector(stopActivityIndicator) withObject:self waitUntilDone:false];
-        
+        if(nextBtnItem){
+            [nextBtnItem setEnabled:YES];
+        }
         NSLog(@"save failure!");
         
         submitSuccess = false;
