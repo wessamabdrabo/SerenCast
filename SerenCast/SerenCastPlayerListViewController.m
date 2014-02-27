@@ -157,6 +157,7 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.titleLabel.text = [item objectForKey:@"title"];
     cell.durationLabel.text = [item objectForKey:@"duration"];
+    cell.descriptionLabel.text = [item objectForKey:@"description"];
     [cell.playBtn setTag:row];
     [cell.infoBtn setTag:row];
     [cell.playBtn  addTarget:self action:@selector(playCast:) forControlEvents:UIControlEventTouchDown];
@@ -293,7 +294,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 108.0;
+    return 158.0;
 }
 
 @end

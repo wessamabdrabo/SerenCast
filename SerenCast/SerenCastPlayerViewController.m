@@ -310,7 +310,7 @@
     //[self.view setNeedsDisplay];
 }
 - (IBAction)pauseBtnAction:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Swtich Mode"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Switch Mode"
                                                     message: @"You are about to switch back to Discover mode."
                                                    delegate: nil
                                           cancelButtonTitle:@"Cancel"
@@ -445,11 +445,11 @@
         NSString *filePath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Data.plist"];
         NSDictionary *plist = [[NSDictionary alloc] initWithContentsOfFile:filePath];
         if([[plist objectForKey:@"ratedCount"]intValue] == 0 /*&& mode != PLAYER_MODE_FREE*/){
-            SerenCastTutorial3ViewController *tutorialController = [[SerenCastTutorial3ViewController alloc]initWithTrackIDAndMode:track :mode];
+            SerenCastTutorial3ViewController *tutorialController = [[SerenCastTutorial3ViewController alloc]initWithTrackIDAndMode:track trackTitle:castTitle mode:mode];
             [self.navigationController pushViewController:tutorialController animated:YES];
         }else{
             NSLog(@"###reviewing track #: %@", track);
-            SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:track mode:mode];
+            SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackAndMode:track trackTitle:castTitle mode:mode];
             [self.navigationController pushViewController:reviewViewController animated:YES];
         }
     }

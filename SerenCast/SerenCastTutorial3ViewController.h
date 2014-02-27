@@ -10,6 +10,7 @@
 
 @interface SerenCastTutorial3ViewController : UIViewController
 @property(nonatomic, strong)NSString* trackID;
+@property(nonatomic, strong)NSString* trackTitle;
 - (IBAction)proceedAction:(id)sender;
--(id) initWithTrackIDAndMode:(NSString*) trackID :(int)playerMode;
+-(id) initWithTrackIDAndMode:(NSString*) trackID trackTitle:(NSString*)trackTitle mode:(int)mode;
 @end

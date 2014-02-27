@@ -67,6 +67,17 @@ typedef void (^OnFailure)(NSString*);
     [activityView hidesWhenStopped];
     [self.view addSubview:activityView];
     [self.view bringSubviewToFront:activityView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    [tap setCancelsTouchesInView:NO];
+}
+
+-(void)dismissKeyboard {
+    [self.statusTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,9 +86,18 @@ typedef void (^OnFailure)(NSString*);
 }
 
 - (IBAction)proceedBtnAction:(id)sender {
-    [self.statusTextField resignFirstResponder];
-    [self startActivityIndicator];
-    [self performSelectorInBackground:@selector(startProcessing) withObject:self];
+    if(![self.statusTextField.text isEqualToString:@""]){
+        [self.statusTextField resignFirstResponder];
+        [self startActivityIndicator];
+        [self performSelectorInBackground:@selector(startProcessing) withObject:self];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Empty Status!"
+                                                        message: @"Please enter a stauts before submission."
+                                                       delegate: nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 //###############################
 # pragma activity indicator

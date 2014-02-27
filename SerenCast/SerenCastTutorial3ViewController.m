@@ -24,10 +24,11 @@
     }
     return self;
 }
--(id) initWithTrackIDAndMode:(NSString*) trackID :(int)mode{
+-(id) initWithTrackIDAndMode:(NSString*) trackID trackTitle:(NSString*)trackTitle mode:(int)mode{
     self = [super init];
     if(self){
         self.trackID = trackID;
+        self.trackTitle = trackTitle;
         playerMode = mode;
     }
     return self;
@@ -47,7 +48,7 @@
 }
 
 - (IBAction)proceedAction:(id)sender {
-    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackIdAndMode:self.trackID mode:playerMode]; /* always order mode */
+    SerenCastReviewViewController * reviewViewController = [[SerenCastReviewViewController alloc]initWithReviewedTrackAndMode:self.trackID trackTitle:self.trackTitle mode:playerMode]; /* always order mode */
     [self.navigationController pushViewController:reviewViewController animated:YES];
 }
 @end

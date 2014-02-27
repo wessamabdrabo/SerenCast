@@ -41,7 +41,7 @@ typedef void (^OnSendFailure)(NSString*);
     }
     return self;
 }
--(id) initWithReviewedTrackIdAndMode:(NSString *) trackID mode:(int)mode
+-(id) initWithReviewedTrackAndMode:(NSString *) trackID trackTitle:(NSString*)trackTitle mode:(int)mode
 {
     self = [super init];
     if(self){
@@ -65,6 +65,7 @@ typedef void (^OnSendFailure)(NSString*);
         self.review.loc_name = @"N/A";
         self.review.loc_region = @"N/A";
         self.review.loc_locality = @"N/A";
+        self.reviewedTrackTitle = trackTitle;
     }
     return self;
 }
@@ -107,6 +108,8 @@ typedef void (^OnSendFailure)(NSString*);
     self.q2Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q2Slider.value)];
     self.q3Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q3Slider.value)];
     self.q4Label.text = [NSString stringWithFormat:@"%ld",lroundf(self.q4Slider.value)];
+    
+    self.titleLabel.text = self.reviewedTrackTitle;
 }
 
 - (void)didReceiveMemoryWarning{
@@ -358,11 +361,26 @@ typedef void (^OnSendFailure)(NSString*);
                                                         message: error
                                                        delegate: nil
                                               cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
+                                              otherButtonTitles:@"Submit Later", nil];
         alert.delegate = self;
-        
+        alert.delegate = self;
         [alert show];
     }];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //submit later: go back to player view
+    if (buttonIndex == 1){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        if([[self.navigationController topViewController]isKindOfClass:[SerenCastPlayerViewController class]]){
+            SerenCastPlayerViewController *player =(SerenCastPlayerViewController*) [self.navigationController topViewController];
+            if(player){
+                [player resetPlayer:self.reviewedTrackID playerMode:playerMode]; /* go back to player with the same track id and same mode*/
+                NSLog(@"go to player. don't create a new one. just use the old");
+                [player.view setNeedsDisplay];
+            }
+        }
+    }
 }
 -(void) save:(OnSuccess)saveSuccess failure:(OnFailure)saveFailure
 {
