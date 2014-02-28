@@ -18,4 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *castTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteBtn;
 - (IBAction)favoriteBtnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 @end

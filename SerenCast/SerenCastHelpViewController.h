@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SerenCastHelpViewController : UIViewController
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @end

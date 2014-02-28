@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self adjustHeightOfTableview];
     [[self.tabBarController.tabBar.items objectAtIndex:3] setBadgeValue:nil];
     notificationsList = [[NSMutableArray alloc]init];
     notificationsManager = [SerenCastNotificationsManager sharedInstance];
@@ -91,5 +92,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 90.0;
+}
+- (void)adjustHeightOfTableview
+{
+    CGFloat height = self.tableView.contentSize.height;
+    CGFloat maxHeight = [[UIScreen mainScreen]bounds].size.height - self.tableView.frame.origin.y - self.tabBarController.tabBar.frame.size.height;
+    
+    // if the height of the content is greater than the maxHeight of
+    // total space on the screen, limit the height to the size of the
+    // superview.
+    
+    if (height > maxHeight)
+        height = maxHeight;
+    // now set the height constraint accordingly
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableViewHeightConstraint.constant = maxHeight;
+        [self.view needsUpdateConstraints];
+    }];
 }
 @end

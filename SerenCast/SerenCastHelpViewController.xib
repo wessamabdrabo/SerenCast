@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastHelpViewController">
             <connections>
+                <outlet property="bgView" destination="MdH-0e-9nX" id="1XC-Zs-W1F"/>
+                <outlet property="bgViewHeightConstraint" destination="zji-9S-FBn" id="7b6-eb-eWi"/>
+                <outlet property="textViewHeightConstraint" destination="iXT-Fa-7Ez" id="gZ7-i4-sGq"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -25,16 +28,27 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdH-0e-9nX">
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdH-0e-9nX">
                     <rect key="frame" x="10" y="89" width="299" height="335"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="335" id="zji-9S-FBn"/>
+                    </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-cZ-8VW">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-cZ-8VW">
                     <rect key="frame" x="19" y="95" width="277" height="316"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">The experiment starts in "Discover" mode in which 20 podcasts are presented to you. After you finish listening to each podcast, you will be asked to rate it. While you can skip it we urge you to complete the rating as it is the core part of the experiment.You can listen up to 2 different casts per day. At any point, you can select a cast yourself from the podcast list. You can easily switch back to the "Discover" mode by clicking on the "Back to Discover" button on the player interface. It is possible to listen to and rate the same podcast more than once. After you have submitted 20 ratings for 20 different podcasts, the experiment will be ended.Additionally, please submit a short status about what you would like to listen to at any point (recommended: few times every day).</mutableString>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="316" id="iXT-Fa-7Ez"/>
+                    </constraints>
+                    <string key="text">The experiment starts in "Discover" mode in which 20 podcasts are presented to you. After you finish listening to each podcast, you will be asked to rate it. While you can skip it we urge you to complete the rating as it is the core part of the experiment.
+
+You can listen up to 2 different casts per day. At any point, you can select a cast yourself from the podcast list. You can easily switch back to the "Discover" mode by clicking on the "Back to Discover" button on the player interface. It is possible to listen to and rate the same podcast more than once. After you have submitted 20 ratings for 20 different podcasts, the experiment will be ended.
+
+Additionally, please submit a short status about what you would like to listen to at any point (recommended: few times every day).
+</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

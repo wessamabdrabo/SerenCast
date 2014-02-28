@@ -38,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self adjustHeightOfTableview];
     
     self.navigationItem.title = @"Podcasts";
     self.navigationItem.hidesBackButton = YES;
@@ -295,6 +296,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 158.0;
+}
+- (void)adjustHeightOfTableview
+{
+    CGFloat height = self.tableView.contentSize.height;
+    CGFloat maxHeight = [[UIScreen mainScreen]bounds].size.height - self.tableView.frame.origin.y - self.tabBarController.tabBar.frame.size.height;
+    
+    // if the height of the content is greater than the maxHeight of
+    // total space on the screen, limit the height to the size of the
+    // superview.
+    
+    if (height > maxHeight)
+        height = maxHeight;
+    // now set the height constraint accordingly
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableViewHeightConstraint.constant = maxHeight;
+        self.bgViewHeightConstraint.constant = maxHeight;
+        [self.view needsUpdateConstraints];
+    }];
 }
 
 @end

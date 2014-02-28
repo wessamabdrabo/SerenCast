@@ -22,11 +22,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
 /*#ifdef ANDROID
     [UIScreen mainScreen].currentMode =
     [UIScreenMode emulatedMode:UIScreenAspectFitEmulationMode];
 #endif*/
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     
     /* create  copies of data and casts plists in Documents direcotry if they don't exits */
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

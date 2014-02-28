@@ -6,8 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastPlayerListViewController">
             <connections>
+                <outlet property="bgView" destination="32b-YR-yCP" id="SL4-dg-JyO"/>
+                <outlet property="bgViewHeightConstraint" destination="GQl-oZ-zGL" id="WWi-yo-Pso"/>
                 <outlet property="segmentedControl" destination="EBp-ZP-rNb" id="mx6-8h-hiX"/>
                 <outlet property="tableView" destination="JjV-sp-mFM" id="v3r-BJ-tLY"/>
+                <outlet property="tableViewHeightConstraint" destination="oqc-ug-KQE" id="79j-1a-3J3"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -30,15 +33,21 @@
                     </segments>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </segmentedControl>
-                <view alpha="0.24999999999999967" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32b-YR-yCP">
-                    <rect key="frame" x="0.0" y="121" width="326" height="297"/>
+                <view alpha="0.24999999999999967" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32b-YR-yCP">
+                    <rect key="frame" x="0.0" y="121" width="326" height="359"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="359" id="GQl-oZ-zGL"/>
+                    </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JjV-sp-mFM">
-                    <rect key="frame" x="0.0" y="121" width="326" height="297"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JjV-sp-mFM">
+                    <rect key="frame" x="0.0" y="121" width="326" height="359"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="359" id="oqc-ug-KQE"/>
+                    </constraints>
                     <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="hMb-DG-ShX"/>

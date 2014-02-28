@@ -6,12 +6,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastCastDetialsViewController">
             <connections>
+                <outlet property="bgView" destination="KoW-Ir-jU4" id="meY-Sf-AH8"/>
+                <outlet property="bgViewHeightConstraint" destination="9OR-ed-zJc" id="dEl-y2-aN0"/>
                 <outlet property="castDescriptionTextView" destination="od6-0e-eUl" id="cuq-rp-r4I"/>
                 <outlet property="castDurationLabel" destination="Z3E-LY-IOA" id="r3s-LB-fcn"/>
                 <outlet property="castImageView" destination="i1X-J1-PUJ" id="h6y-pF-xdY"/>
                 <outlet property="castSourceLabel" destination="frZ-rA-gGS" id="cHW-NZ-to5"/>
                 <outlet property="castTitleLabel" destination="Ffm-ZG-kih" id="REc-uF-JPj"/>
                 <outlet property="favoriteBtn" destination="n3u-eT-7Qs" id="HK1-Ez-V0w"/>
+                <outlet property="textViewHeightConstraint" destination="OU3-45-HKe" id="6bp-NJ-C0H"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -24,10 +27,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <view alpha="0.19999999999999968" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ir-jU4">
+                <view alpha="0.19999999999999968" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-Ir-jU4">
                     <rect key="frame" x="7" y="75" width="306" height="368"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="368" id="9OR-ed-zJc"/>
+                    </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1X-J1-PUJ">
                     <rect key="frame" x="18" y="103" width="106" height="115"/>
@@ -40,9 +46,12 @@
                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-0e-eUl">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-0e-eUl">
                     <rect key="frame" x="18" y="317" width="275" height="139"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="139" id="OU3-45-HKe"/>
+                    </constraints>
                     <string key="text">This is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast descriptionThis is cast description.</string>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
