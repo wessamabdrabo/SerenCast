@@ -58,7 +58,7 @@
         if([[item objectForKey:@"isFav"]boolValue]){
             [podcastsFavsList addObject:item];
         }
-        if([[item objectForKey:@"isPlayed"]boolValue]){
+        if([[item objectForKey:@"isRated"]boolValue]){
             [podcastsPlayedList addObject:item];
         }
     }
@@ -82,7 +82,7 @@
             //NSLog(@"[ViewWillAppear] Add to favs index %d, item %@", i, item);
             [podcastsFavsList addObject:item];
         }
-        if([[item objectForKey:@"isPlayed"]boolValue]){
+        if([[item objectForKey:@"isRated"]boolValue]){
             //NSLog(@"[ViewWillAppear] add to played %d, item %@", i, item);
             [podcastsPlayedList addObject:item];
         }

@@ -272,7 +272,7 @@ typedef void (^OnSendFailure)(NSString*);
         /* Update rated count, used to check stopping condition (number of rated tracks = max tracks) */
         for(int i = 0; i < [castsList count]; i++){
             NSDictionary* item = [castsList objectAtIndex:i];
-            bool isRated = [[item objectForKey:@"isPlayed"]boolValue];
+            bool isRated = [[item objectForKey:@"isRated"]boolValue];
             NSString* itemID = [item objectForKey:@"trackID"];
             /* if currently rated item is not rated before, increment count */
             NSLog(@"===================================");
@@ -293,7 +293,7 @@ typedef void (^OnSendFailure)(NSString*);
         }
         /* now mark it as rated/played*/
         NSMutableDictionary *cast = [castsList objectAtIndex:[self.reviewedTrackID intValue]-1];
-        [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isPlayed"];
+        [cast setValue:[NSNumber numberWithBool:YES] forKey:@"isRated"];
         [castsList writeToFile:castsFilePath atomically:NO];
         
         /* STOPPING CONDITION. VERY IMPORTANT. */
@@ -387,7 +387,7 @@ typedef void (^OnSendFailure)(NSString*);
     NSData *__jsonData;
     NSString *__jsonString;
     
-    NSArray *keys = [NSArray arrayWithObjects:@"cast_id",@"user_id",@"criteria1",@"criteria2",@"criteria3",@"criteria4",@"time",@"loc_longitude",@"loc_latitude",@"loc_subthroughfare",@"loc_throughfare",@"loc_postalcode",@"loc_adminarea",@"loc_country",@"loc_name",@"loc_region",@"loc_locality", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"cast_id",@"user_id",@"criteria1",@"criteria2",@"criteria3",@"criteria4",@"time",@"loc_longitude",@"loc_latitude",@"loc_subthroughfare",@"loc_throughfare",@"loc_postalcode",@"loc_adminarea",@"loc_country",@"loc_name",@"loc_region",@"loc_locality", @"mode", nil];
     
     NSMutableArray *objects = [[NSMutableArray alloc]init];
     [objects addObject:self.review.cast_id];
@@ -407,6 +407,7 @@ typedef void (^OnSendFailure)(NSString*);
     [objects addObject:self.review.loc_name];
     [objects addObject:self.review.loc_region];
     [objects addObject:self.review.loc_locality];
+    [objects addObject:[NSString stringWithFormat:@"%d",playerMode]];
     
     NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     

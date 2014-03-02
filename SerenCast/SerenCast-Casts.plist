@@ -6,7 +6,7 @@
 		<key>trackID</key>
 		<string>1</string>
 		<key>title</key>
-		<string>60-Seconds Health: Got a Minute?</string>
+		<string>Track 1</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -17,16 +17,16 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>2</string>
 		<key>title</key>
-		<string>60-Seconds Tech</string>
+		<string>Track 2</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -37,16 +37,16 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>3</string>
 		<key>title</key>
-		<string>60-Seconds Science</string>
+		<string>Track 3</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -57,16 +57,16 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>4</string>
 		<key>title</key>
-		<string>60-Seconds Earth</string>
+		<string>Track 4</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -77,16 +77,16 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>5</string>
 		<key>title</key>
-		<string>60-Seconds Space</string>
+		<string>Track 5</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -97,16 +97,16 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>6</string>
 		<key>title</key>
-		<string>60-Seconds Sports</string>
+		<string>Track 6</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
@@ -117,290 +117,290 @@
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>7</string>
 		<key>title</key>
-		<string>60-Seconds News</string>
+		<string>Track 7</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>8</string>
 		<key>title</key>
-		<string>60-Seconds Health</string>
+		<string>Track 8</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>9</string>
 		<key>title</key>
-		<string>60-Seconds Arts</string>
+		<string>Track 9</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>10</string>
 		<key>title</key>
-		<string>60-Seconds Movies</string>
+		<string>Track 10</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>11</string>
 		<key>title</key>
-		<string>60-Seconds Photography</string>
+		<string>Track 11</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>12</string>
 		<key>title</key>
-		<string>60-Seconds Green</string>
+		<string>Track 12</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>13</string>
 		<key>title</key>
-		<string>60-Seconds Yellow</string>
+		<string>Track 13</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>14</string>
 		<key>title</key>
-		<string>60-Seconds Blue</string>
+		<string>Track 14</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>15</string>
 		<key>title</key>
-		<string>60-Seconds Blue</string>
+		<string>Track 15</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>16</string>
 		<key>title</key>
-		<string>60-Seconds Health</string>
+		<string>Track 16</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>17</string>
 		<key>title</key>
-		<string>60-Seconds Iron</string>
+		<string>Track 17</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>18</string>
 		<key>title</key>
-		<string>60-Seconds Nice</string>
+		<string>Track 18</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>19</string>
 		<key>title</key>
-		<string>60-Seconds great</string>
+		<string>Track 19</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>trackID</key>
 		<string>20</string>
 		<key>title</key>
-		<string>60-Seconds bla</string>
+		<string>Track 20</string>
 		<key>description</key>
 		<string>This is 60-seconds Health provided by Scientific American</string>
 		<key>provider</key>
 		<string>Scientific American</string>
 		<key>image</key>
-		<string></string>
+		<string>podcast-thumb</string>
 		<key>duration</key>
 		<string>1 min</string>
 		<key>isFav</key>
 		<false/>
-		<key>isPlayed</key>
+		<key>isRated</key>
 		<false/>
-		<key>playedCount</key>
-		<string>0</string>
+		<key>isPlayedFromList</key>
+		<false/>
 	</dict>
 </array>
 </plist>

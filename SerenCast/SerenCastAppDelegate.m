@@ -52,9 +52,10 @@
     }
     NSString *notficationsFilepath = [docStorePath stringByAppendingPathComponent:@"SerenCast-Notifications.plist"];
     if(![[NSFileManager defaultManager]fileExistsAtPath:notficationsFilepath]){
-        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Notifications" ofType:@"plist"] toPath:locTimeFilePath error:nil];
+        [[NSFileManager defaultManager]copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"SerenCast-Notifications" ofType:@"plist"] toPath:notficationsFilepath error:nil];
         NSLog(@"**Copying notifications plist to documents directory");
     }
+   
     /* get current audio track from data plist */
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:dataFilePath];
     NSString *currentTrack = [plistDict objectForKey:@"CurrentAudioFileID"];
