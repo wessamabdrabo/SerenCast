@@ -74,7 +74,7 @@
     CGFloat maxHeight = [[UIScreen mainScreen]bounds].size.height - self.bgView.frame.origin.y - self.tabBarController.tabBar.frame.size.height;
     
     [UIView animateWithDuration:0.25 animations:^{
-        self.textViewHeightConstraint.constant = maxHeight;
+        //self.textViewHeightConstraint.constant = maxHeight;
         self.bgViewHeightConstraint.constant = maxHeight;
         [self.view needsUpdateConstraints];
     }];

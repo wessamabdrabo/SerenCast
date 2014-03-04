@@ -177,6 +177,7 @@
     NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
     NSString *trackImageURL = [plistItem objectForKey:@"image"];
     NSString *description = [plistItem objectForKey:@"description"];
+    NSString *provider = [plistItem objectForKey:@"provider"];
     
     self.titleLabel.text = currentTrackTitle;
     castTitle = currentTrackTitle;
@@ -194,7 +195,7 @@
         self.navigationItem.title = @"Discover";
         self.subtitleLabel.text = [NSString stringWithFormat:@"%@ of 20", trackID];
     }else if (playerMode == PLAYER_MODE_FREE){
-        self.navigationItem.title = currentTrackTitle;
+        self.navigationItem.title = provider;
         self.subtitleLabel.text = @"";
     }
     

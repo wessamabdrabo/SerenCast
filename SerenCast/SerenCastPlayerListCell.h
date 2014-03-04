@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *infoBtn;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
