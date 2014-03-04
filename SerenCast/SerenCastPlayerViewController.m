@@ -121,10 +121,13 @@
     NSArray *plist = [[NSArray alloc] initWithContentsOfFile:filePath];
     NSDictionary *plistItem = [plist objectAtIndex:[self.currentTrackID intValue]-1];
     NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
-    
+    NSString *trackImageURL = [plistItem objectForKey:@"image"];
+    NSString *description = [plistItem objectForKey:@"description"];
     self.titleLabel.text = currentTrackTitle;
     castTitle = currentTrackTitle;
     
+    [self.img setImage:[UIImage imageNamed:trackImageURL]];
+    [self.descriptionTextView setText:description];
     /* set fav icon */
     if([[plistItem objectForKey:@"isFav"] boolValue])
         [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
@@ -172,9 +175,15 @@
     NSArray *plist = [[NSArray alloc] initWithContentsOfFile:filePath];
     NSDictionary *plistItem = [plist objectAtIndex:[trackID intValue]-1];
     NSString *currentTrackTitle = [plistItem objectForKey:@"title"];
+    NSString *trackImageURL = [plistItem objectForKey:@"image"];
+    NSString *description = [plistItem objectForKey:@"description"];
     
     self.titleLabel.text = currentTrackTitle;
     castTitle = currentTrackTitle;
+    
+    [self.img setImage:[UIImage imageNamed:trackImageURL]];
+    [self.descriptionTextView setText:description];
+    
     /* set fav icon */
     if([[plistItem objectForKey:@"isFav"] boolValue])
         [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];

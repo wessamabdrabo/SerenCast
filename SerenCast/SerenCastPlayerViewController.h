@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSString* currentTrackID;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)toggleFavsAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 - (id) initWithAudio:(NSString*) audioFileID;
 - (IBAction)playBtnAction:(id)sender;
@@ -35,6 +36,7 @@
 - (IBAction)currentTimeSliderValueChanged:(id)sender;
 - (IBAction)currentTimeSliderTouchupInside:(id)sender;
 -(void) resetPlayer:(NSString*)trackID playerMode:(int)playerMode;
+@property (weak, nonatomic) IBOutlet UIImageView *img;
 
 @property (weak, nonatomic) IBOutlet UIButton *toggleFavsBtn;
 

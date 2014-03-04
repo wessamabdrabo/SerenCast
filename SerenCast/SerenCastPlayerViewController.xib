@@ -7,9 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerenCastPlayerViewController">
             <connections>
                 <outlet property="currentTimeSlider" destination="TUP-6w-sVA" id="KE9-t9-D28"/>
+                <outlet property="descriptionTextView" destination="mS6-cV-7TV" id="Hxw-Wu-0RF"/>
                 <outlet property="discoverBtn" destination="dkM-V2-xAh" id="OvL-mb-HBH"/>
                 <outlet property="discoverBtnView" destination="Zfv-qf-Ty9" id="Ufm-TG-9vq"/>
                 <outlet property="elapsedTimeLabel" destination="Ncq-cY-M5b" id="uuf-FL-DtI"/>
+                <outlet property="img" destination="xIR-zL-W9J" id="X2g-zD-ioj"/>
                 <outlet property="playBtn" destination="e7u-Yp-ZJD" id="MPa-8L-Mah"/>
                 <outlet property="remainingTimeLabel" destination="gJP-UO-PPe" id="AI5-cE-0lu"/>
                 <outlet property="subtitleLabel" destination="YrF-aW-icP" id="MEF-Q4-jjF"/>
@@ -95,8 +97,8 @@
                     <rect key="frame" x="22" y="81" width="98" height="129"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="268" translatesAutoresizingMaskIntoConstraints="NO" id="QQT-zq-fb6">
-                    <rect key="frame" x="24" y="203" width="268" height="27"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="268" translatesAutoresizingMaskIntoConstraints="NO" id="QQT-zq-fb6">
+                    <rect key="frame" x="24" y="212" width="268" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,16 +114,8 @@
                         <action selector="toggleFavsAction:" destination="-1" eventType="touchUpInside" id="Hbh-Qh-I7Z"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="276" translatesAutoresizingMaskIntoConstraints="NO" id="9WS-zh-CXH">
-                    <rect key="frame" x="24" y="242" width="276" height="81"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <string key="text">This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.This is a description of the cast.</string>
-                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view alpha="0.14999999999999969" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FtF-TD-4em">
-                    <rect key="frame" x="24" y="236" width="276" height="1"/>
+                    <rect key="frame" x="24" y="259" width="276" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -139,6 +133,15 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-cV-7TV">
+                    <rect key="frame" x="21" y="259" width="274" height="71"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="13"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
