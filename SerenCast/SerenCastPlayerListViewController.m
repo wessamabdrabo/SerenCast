@@ -11,6 +11,7 @@
 #import "SerenCastPlayerViewController.h"
 #import "SerenCastReviewViewController.h"
 #import "SerenCastCastDetialsViewController.h"
+#import "SerenCastStatusViewController.h"
 
 @interface SerenCastPlayerListViewController (){
     NSMutableArray *podcastsList;
@@ -159,6 +160,7 @@
     cell.titleLabel.text = [item objectForKey:@"title"];
     cell.durationLabel.text = [item objectForKey:@"duration"];
     cell.descriptionLabel.text = [item objectForKey:@"description"];
+    cell.idLabel.text = [NSString stringWithFormat:@"%@/50",[item objectForKey:@"trackID"]];
     [cell.playBtn setTag:row];
     [cell.infoBtn setTag:row];
     [cell.playBtn  addTarget:self action:@selector(playCast:) forControlEvents:UIControlEventTouchDown];
@@ -222,6 +224,14 @@
     if([[navController topViewController]isKindOfClass:[SerenCastReviewViewController class]]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating Needed"
                                                         message: @"Please rate the current cast first before playing another."
+                                                       delegate: nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if([[navController topViewController]isKindOfClass:[SerenCastStatusViewController class]]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Status Needed"
+                                                        message: @"Please submit a status before playing another episode."
                                                        delegate: nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

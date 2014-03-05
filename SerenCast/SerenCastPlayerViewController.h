@@ -27,7 +27,9 @@
 @property (strong, nonatomic) NSString* currentTrackID;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)toggleFavsAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
+
 
 - (id) initWithAudio:(NSString*) audioFileID;
 - (IBAction)playBtnAction:(id)sender;

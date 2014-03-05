@@ -127,7 +127,7 @@
     castTitle = currentTrackTitle;
     
     [self.img setImage:[UIImage imageNamed:trackImageURL]];
-    [self.descriptionTextView setText:description];
+    self.descriptionLabel.text = description;
     /* set fav icon */
     if([[plistItem objectForKey:@"isFav"] boolValue])
         [self.toggleFavsBtn setImage:[UIImage imageNamed:@"favicon-selected"] forState:UIControlStateNormal];
@@ -183,7 +183,7 @@
     castTitle = currentTrackTitle;
     
     [self.img setImage:[UIImage imageNamed:trackImageURL]];
-    [self.descriptionTextView setText:description];
+    self.descriptionLabel.text = description;
     
     /* set fav icon */
     if([[plistItem objectForKey:@"isFav"] boolValue])
@@ -308,6 +308,14 @@
     //[self.togglePlayBtn setTitle:@"Play" forState:UIControlStateNormal];
     [self.togglePlayBtn setImage:[UIImage imageNamed:@"play-icon"] forState:UIControlStateNormal];
     [self stop];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Rating"
+                                                    message: @"Please take a minute to give us feedback about this cast before proceeding to the next one."
+                                                   delegate: nil
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Rate", nil];
+    alert.tag = 1;
+    alert.delegate = self;
+    [alert show];
 }
 
 -(void)switchModeToDiscover

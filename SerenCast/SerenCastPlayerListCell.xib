@@ -48,12 +48,20 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkZ-8X-ohH">
+                        <rect key="frame" x="11" y="5" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="descriptionLabel" destination="Wvn-ze-WtD" id="zTn-Mp-dWh"/>
                 <outlet property="durationLabel" destination="dfo-j1-o2I" id="5vL-bh-vRr"/>
+                <outlet property="idLabel" destination="ZkZ-8X-ohH" id="nQc-S6-tQH"/>
                 <outlet property="infoBtn" destination="fnj-vq-FBP" id="s39-aw-hUG"/>
                 <outlet property="playBtn" destination="7sX-yV-Rzh" id="vHG-ld-FFp"/>
                 <outlet property="titleLabel" destination="Lq4-iN-URq" id="oeA-tR-558"/>

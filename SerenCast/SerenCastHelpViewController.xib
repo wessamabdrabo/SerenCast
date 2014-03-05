@@ -37,18 +37,18 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-cZ-8VW">
-                    <rect key="frame" x="19" y="95" width="277" height="316"/>
+                    <rect key="frame" x="19" y="95" width="277" height="471"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="316" id="iXT-Fa-7Ez"/>
                     </constraints>
-                    <string key="text">The experiment starts in "Discover" mode in which 20 podcasts are presented to you. After you finish listening to each podcast, you will be asked to rate it. While you can skip it we urge you to complete the rating as it is the core part of the experiment.
+                    <mutableString key="text">The experiment starts in "Discover" mode in which 20 podcasts' episodes are presented to you. After you finish listening to each episode, you will be asked to rate it. While you can skip it we urge you to complete the rating as it is the core part of the experiment.
 
-You can listen up to 2 different casts per day. At any point, you can select a cast yourself from the podcast list. You can easily switch back to the "Discover" mode by clicking on the "Back to Discover" button on the player interface. It is possible to listen to and rate the same podcast more than once. After you have submitted 20 ratings for 20 different podcasts, the experiment will be ended.
+You can listen up to 2 different episodes per day. At any point, you can select an episode yourself from the 50 available on the podcasts list. You can easily switch back to the "Discover" mode by clicking on the "Back to Discover" button on the player interface. It is possible to listen to and rate the same episode more than once. After you have submitted 20 ratings for 20 different episodes, the experiment will end.
 
 Additionally, please submit a short status about what you would like to listen to at any point (recommended: few times every day).
-</string>
+</mutableString>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
